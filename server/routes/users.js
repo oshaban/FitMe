@@ -9,10 +9,12 @@ const mongoose = require('mongoose'); // Loads mongoose for DB queries
 const userSchema = require('../models/userSchema'); // Loads Mongoose userSchema
 const userDB = mongoose.model('Users', userSchema); // Creates a new DB collection 'Users'
 
+const userTestData = require('./userTestData'); // Loads user test data
+
 // GET /api/users
     // Body response: Returns all users from the 'Users' collection
 router.get('/', function(req,res) {
-    res.send('test');
+    res.send(userTestData);
 });
 
 // GET /api/users/:id

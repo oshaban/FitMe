@@ -27,7 +27,8 @@ export class UsersService {
       // Users specifies how the JSON shape looks like
       // This returns an observable, that we .subscribe() to
     getAllUsers() {
-      return this.http.get('https://jsonplaceholder.typicode.com/users');
+      return this.http.get('http://localhost:3500/api/users/');
+      //https://jsonplaceholder.typicode.com/users
     }
 
 }

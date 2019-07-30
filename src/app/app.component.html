@@ -5,12 +5,13 @@
         <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
       </button>
       <h1>FitMe</h1>
-      <span class="menu-spacer"></span>
-      <div>
+      <span flex></span>
+      <div class="nav-items ml-auto">
         <a mat-button [routerLink]="'/accounts'">Login</a>
         <a mat-button [routerLink]="'/create-account'">Register</a>
       </div>
     </mat-toolbar-row>
+
 </mat-toolbar>
 
 <!-- Container for side bar and main content -->

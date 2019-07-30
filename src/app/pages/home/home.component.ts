@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser'; // For setting page title
-
 import { UsersService, Users } from 'src/app/core/users.service';
 import { Observable } from 'rxjs';
 

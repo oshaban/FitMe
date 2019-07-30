@@ -1,0 +1,21 @@
+.example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://image.flaticon.com/icons/svg/1694/1694106.svg');
+    background-size: cover;
+  }
+
+  img {
+    width: 80%;
+  }
+
+.mat-card-image:first-child {
+    margin-top: 15px;
+    margin-right: 20px;
+}
+
+.mat-card-header-text {
+    margin: 0 0px;
+}

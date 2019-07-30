@@ -9,26 +9,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
+import { StatsComponent } from './pages/stats/stats.component';
 
 /* Angular material: https://material.angular.io/*/
-import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from '@angular/material';
-import { StatsComponent } from './pages/stats/stats.component';
+import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule, MatCardModule } from '@angular/material';
 
 /* Chart js */
 import { ChartsModule } from '../../node_modules/ng2-charts';
 import { MacroDonoughtChartComponent } from './charts/macro-doughnut-chart/macro-doughnut-chart.component';
 import { DateTrackingChartComponent } from './charts/date-tracking-chart/date-tracking-chart.component';
+import { StatboxComponent } from './statbox/statbox.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     FooterComponent,
-    HeaderComponent,
     StatsComponent,
     MacroDonoughtChartComponent,
     DateTrackingChartComponent,
+    StatboxComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +40,7 @@ import { DateTrackingChartComponent } from './charts/date-tracking-chart/date-tr
     MatListModule,
     MatButtonModule,
     MatIconModule,
+    MatCardModule,
     ChartsModule
   ],
   providers: [

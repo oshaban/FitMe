@@ -2,8 +2,6 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatCheckboxModule } from '@angular/material/checkbox';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -14,6 +12,10 @@ import { HeaderComponent } from './header/header.component';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from '@angular/material';
 import { StatsComponent } from './pages/stats/stats.component';
 
+/* Chart js */
+import { ChartsModule } from '../../node_modules/ng2-charts';
+import { MacroDonoughtChartComponent } from './charts/macro-doughnut-chart/macro-doughnut-chart.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +23,7 @@ import { StatsComponent } from './pages/stats/stats.component';
     FooterComponent,
     HeaderComponent,
     StatsComponent,
+    MacroDonoughtChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { StatsComponent } from './pages/stats/stats.component';
     MatSidenavModule,
     MatListModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    ChartsModule
   ],
   providers: [
     Title,

@@ -1,2 +1,23 @@
-<p>Home Component</p>
-<p>To do: Home will be the dashboard and have sub-components showing different things in it</p>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-12 test">
+            <h2>Welcome Back {{name}}</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h5>Your Macro Split is:</h5>
+            <app-macro-doughnut-chart></app-macro-doughnut-chart>
+        </div>
+    </div>
+
+    <button class="btn-primary"  (click)="getUsers()">Click me</button>
+
+    <ul>
+        <li *ngFor="let user of loadedUsers">{{user.name}}</li>
+    </ul>
+
+</div>

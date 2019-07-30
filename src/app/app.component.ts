@@ -18,5 +18,4 @@ export class AppComponent {
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle); // Sets title of HTML document
   }
-
 }

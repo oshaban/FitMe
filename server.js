@@ -1,32 +1,23 @@
 /* 
-    This is our main Node.js back-end server
+    Node.js back-end server
 */
 
-// Loads modules
-require('dotenv').config() //Loads vars from .env file into environment variables
+// Creates an express application
 const express = require('express'); // Load Express package
 const app = express(); // Creates an express application
-const helmet = require('helmet'); // Secures express applications
-const compression = require('compression'); // Nodejs compression middle-ware
-const cors = require('cors'); // Cors middleware
 
-// Load config settings and middleware:
-app.use(express.json()); // Middleware to parse incoming JSON HTTP requests
-app.use(compression());
-app.use(helmet());
-app.use(cors());
+// Load start-up modules
+const loadConfig = require('./server/startup/config'); // For loading middle-ware
+const loadRoutes = require('./server/startup/routes') // For loading routes
+const loadDb = require('./server/startup/db') // For loading database
 
-// Loads routers
-const api = require('./server/api')
+// Run start-up modules
+loadConfig(express,app); // For loading middle-ware
+loadRoutes(app); // For loading routes
+loadDb(); // For loading database
 
-// Loads routers
-app.use('/api/home',api);
-
-// Set port 
+// Set port; Note: Use dotenv package to set env vars
 const port = process.env.PORT || 3500;
-    // Uses dotenv package to set env vars
 
 // Runs the backend server
-const server = app.listen(port, ()=> {
-    console.log(`Back-end server running on: ${port}`)
-});
+const server = app.listen(port, ()=> {console.log(`Back-end server running on: ${port}`)});

@@ -2,6 +2,9 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { HttpClientModule } from '@angular/common/http'; // Used for APIs
+
+/* Components */
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -15,6 +18,7 @@ import { StatsComponent } from './pages/stats/stats.component';
 /* Chart js */
 import { ChartsModule } from '../../node_modules/ng2-charts';
 import { MacroDonoughtChartComponent } from './charts/macro-doughnut-chart/macro-doughnut-chart.component';
+import { DateTrackingChartComponent } from './charts/date-tracking-chart/date-tracking-chart.component';
 
 @NgModule({
   declarations: [
@@ -24,10 +28,12 @@ import { MacroDonoughtChartComponent } from './charts/macro-doughnut-chart/macro
     HeaderComponent,
     StatsComponent,
     MacroDonoughtChartComponent,
+    DateTrackingChartComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,

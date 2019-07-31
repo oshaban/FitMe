@@ -48,17 +48,6 @@ export class DateTrackingChartComponent implements OnInit {
     annotation: {
       annotations: [
         {
-          type: 'line',
-          mode: 'vertical',
-          scaleID: 'x-axis-0',
-          value: 'March',
-          borderColor: 'orange',
-          borderWidth: 2,
-          label: {
-            enabled: true,
-            fontColor: 'orange',
-            content: 'LineAnno'
-          }
         },
       ],
     },

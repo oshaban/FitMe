@@ -9,23 +9,28 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class ProfileComponent implements OnInit {
 
+  errormsg = 'Error';
+
   userDetailsForm = this.fb.group({
     username : ['', [
         Validators.required,
         Validators.minLength(5),
         Validators.maxLength(20),
+        Validators.pattern('[a-zA-Z0-9]*')
       ]
     ],
     firstname : ['', [
       Validators.required,
-      Validators.minLength(4),
+      Validators.minLength(3),
       Validators.maxLength(20),
+      Validators.pattern('[a-zA-z]*'),
       ]
     ],
     lastname : ['', [
       Validators.required,
-      Validators.minLength(4),
+      Validators.minLength(3),
       Validators.maxLength(20),
+      Validators.pattern('[a-zA-z]*'),
       ]
     ],
     password : ['', [

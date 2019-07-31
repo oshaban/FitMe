@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row section-title">
+        <div class="col-12">
+            <h2>Update Your Profile</h2>
+        </div>
+    </div>
+
+    <div class="row section-title">
+        <div class="col-12">
+            <p>To get the most accurate fitness plan, please make sure that your fitness profile below is up to date.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-8" class="flex-container">
+
+            <form [formGroup]="userDetailsForm">
+
+                <mat-form-field>
+                    <input matInput placeholder="User Name" formControlName="username" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="First Name" formControlName="firstname" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Last Name" formControlName="lastname" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Password" formControlName="password" required>
+                </mat-form-field>
+
+                <button class="submit-btn"  mat-raised-button type="submit">gg</button>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>

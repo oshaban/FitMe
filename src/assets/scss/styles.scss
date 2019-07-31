@@ -5,17 +5,22 @@
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 
 .mat-toolbar.mat-primary {
-    background: #303852;
-}
-
-.mat-toolbar.mat-primary {
-    background: #303852;
+    background: #00aaff;
 }
 
 h2, h3 {
-    color: #00aaff;
+    color: rgb(51,51,51);
 }
 
 .mat-card h1 {
     color: rgb(51,51,51);
+}
+
+.mat-button:hover {
+   background: white;
+}
+
+.mat-raised-button {
+    background: #00aaff;
+    color: white;
 }

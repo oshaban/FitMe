@@ -1,0 +1,25 @@
+.section-title {
+    margin-top: 2rem;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .flex-container > * {
+    width: 100%;
+  }
+
+.mat-select-underline {
+  transform: perspective(1px)
+}
+
+form {
+  margin-left: 1rem;
+}
+
+mat-form-field {
+  display: block;
+  width: 20rem;
+}

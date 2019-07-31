@@ -1,5 +1,5 @@
 <!-- Container for application header -->
-<mat-toolbar color="primary">
+<mat-toolbar class=".navbar-fixed-top" color="primary">
     <mat-toolbar-row>
       <button mat-icon-button>
         <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
@@ -14,29 +14,29 @@
 
 </mat-toolbar>
 
-<!-- Container for side bar and main content -->
+<!-- Container for application side bar and main content -->
 <mat-sidenav-container>
 
-    <!-- Contains side bar -->
-    <mat-sidenav #sidenav>
-      <mat-nav-list>
-  
-        <a mat-list-item [routerLink]="'/'"> Dashboard </a>
-        <a mat-list-item [routerLink]="'/profile'"> My Profile </a>
-        <a mat-list-item [routerLink]="'/checkin'"> Check-in </a>
-        <a mat-list-item [routerLink]="'/stats'"> My Stats </a>
-        <a mat-list-item (click)="sidenav.toggle()">Close</a>
-  
-      </mat-nav-list>
-    </mat-sidenav>
+    <!-- Contains application side bar -->
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
 
-    <!-- Contains the main view for application -->
-    <mat-sidenav-content>
-      <div style="height: 88vh;">
-        <router-outlet></router-outlet> <!-- Displays depending on URL -->
-      </div>
-    </mat-sidenav-content>
+      <a mat-list-item [routerLink]="'/'" (click)="sidenav.toggle()" > Dashboard </a>
+      <a mat-list-item [routerLink]="'/profile'" (click)="sidenav.toggle()"> My Profile </a>
+      <a mat-list-item [routerLink]="'/checkin'" (click)="sidenav.toggle()" > Check-in </a>
+      <a mat-list-item [routerLink]="'/stats'" (click)="sidenav.toggle()"> My Stats </a>
+      <a mat-list-item (click)="sidenav.toggle()">Close</a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Contains application main content -->
+  <mat-sidenav-content>
+
+    <div style="height: 88vh;">
+      <router-outlet></router-outlet> <!-- Displays a page depending on URL -->
+    </div>
+
+  </mat-sidenav-content>
 
 </mat-sidenav-container>
-
-<app-footer></app-footer> <!-- Shows footer on each page -->

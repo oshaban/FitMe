@@ -8,11 +8,18 @@ import { HttpClientModule } from '@angular/common/http'; // Used for APIs
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
-import { FooterComponent } from './footer/footer.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { StatsComponent } from './pages/stats/stats.component';
 
 /* Angular material: https://material.angular.io/*/
-import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule, MatCardModule } from '@angular/material';
+import {
+  MatToolbarModule,
+  MatIconModule,
+  MatSidenavModule,
+  MatListModule,
+  MatButtonModule,
+  MatCardModule,
+  MatInputModule } from '@angular/material';
 
 /* Chart js */
 import { ChartsModule } from '../../node_modules/ng2-charts';
@@ -20,12 +27,16 @@ import { MacroDonoughtChartComponent } from './charts/macro-doughnut-chart/macro
 import { DateTrackingChartComponent } from './charts/date-tracking-chart/date-tracking-chart.component';
 import { StatboxComponent } from './statbox/statbox.component';
 
+/* Forms */
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    FooterComponent,
     StatsComponent,
+    ProfileComponent,
     MacroDonoughtChartComponent,
     DateTrackingChartComponent,
     StatboxComponent,
@@ -41,7 +52,10 @@ import { StatboxComponent } from './statbox/statbox.component';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
-    ChartsModule
+    ChartsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [
     Title,

@@ -13,8 +13,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class ProfileComponent implements OnInit {
 
   /* Initializing forms */
-  userDetailsForm: FormGroup;
-  secondFormGroup: FormGroup;
+  userDetailsGroup: FormGroup;
+  fitnessInfoGroup: FormGroup;
 
   // Error messages for user validation
     // Can access in profile.component.html by: *ngFor="let validation of userValidationMessage.<username>
@@ -55,7 +55,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
 
     /* Defining structure of first reactive forms */
-    this.userDetailsForm = this.formBuilder.group({
+    this.userDetailsGroup = this.formBuilder.group({
       username : ['', [
         Validators.required,
         Validators.minLength(5),
@@ -83,17 +83,27 @@ export class ProfileComponent implements OnInit {
         Validators.maxLength(25),
         ]
       ],
-      confirmPassword : ['', [
+    });
+
+    /* Defining structure of second reactive forms */
+    this.fitnessInfoGroup = this.formBuilder.group({
+      startingweight : ['', [
         Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(20),
+        Validators.min(10),
+        Validators.max(500),
+        Validators.pattern('[0-9]*')
+        ]
+      ],
+      gender : ['', [
+        Validators.required,
+        ]
+      ],
+      activitylevel : ['', [
+        Validators.required,
         ]
       ],
     });
 
-    /* Defining structure of second reactive forms */
-    this.secondFormGroup = this.formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
-  }
-}
+
+  } // End ngOnInit
+} // End class ProfileComponent

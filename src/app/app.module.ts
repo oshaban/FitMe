@@ -19,9 +19,10 @@ import {
   MatListModule,
   MatButtonModule,
   MatCardModule,
-  MatInputModule } from '@angular/material';
-
-import {MatStepperModule} from '@angular/material/stepper';
+  MatInputModule,
+} from '@angular/material';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatStepperModule } from '@angular/material/stepper';
 
 /* Chart js */
 import { ChartsModule } from '../../node_modules/ng2-charts';
@@ -62,7 +63,8 @@ import { LoginComponent } from './pages/login/login.component';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatRadioModule,
   ],
   providers: [
     Title,

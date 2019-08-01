@@ -9,6 +9,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class SignupComponent implements OnInit {
 
+  // Reactive form template using form builder
   userDetailsForm = this.fb.group({
     username : ['', [
         Validators.required,

@@ -4,12 +4,12 @@
     <div class="row">
         <div class="flex-container main-signup mx-auto">
 
-            <mat-horizontal-stepper [linear]="true" #stepper>
+            <mat-horizontal-stepper [linear]="false" #stepper>
 
                 <!-- START First stepper -->
-                <mat-step [stepControl]="userDetailsForm">
+                <mat-step [stepControl]="userDetailsGroup">
                     
-                    <form [formGroup]="userDetailsForm">
+                    <form [formGroup]="userDetailsGroup">
                     
                     <ng-template matStepLabel>Account Information</ng-template>
                     
@@ -19,7 +19,7 @@
                     <mat-form-field>
                         <input matInput placeholder="User Name" formControlName="username" required>
                         <mat-error *ngFor="let validation of userValidationMessage.username">
-                            <p *ngIf="userDetailsForm.get('username').hasError(validation.type) && ( userDetailsForm.get('username').dirty ) ">{{validation.message}} </p>
+                            <p *ngIf="userDetailsGroup.get('username').hasError(validation.type) && ( userDetailsGroup.get('username').dirty ) ">{{validation.message}} </p>
                         </mat-error>
                     </mat-form-field>
 
@@ -27,7 +27,7 @@
                     <mat-form-field>
                         <input matInput placeholder="First Name" formControlName="firstname" required>
                         <mat-error *ngFor="let validation of userValidationMessage.firstname">
-                            <p *ngIf="userDetailsForm.get('firstname').hasError(validation.type) && ( userDetailsForm.get('firstname').dirty )">{{validation.message}} </p>
+                            <p *ngIf="userDetailsGroup.get('firstname').hasError(validation.type) && ( userDetailsGroup.get('firstname').dirty )">{{validation.message}} </p>
                         </mat-error>
                     </mat-form-field>
 
@@ -35,7 +35,7 @@
                     <mat-form-field>
                         <input matInput placeholder="Last Name" formControlName="lastname" required>
                         <mat-error *ngFor="let validation of userValidationMessage.lastname">
-                            <p *ngIf="userDetailsForm.get('lastname').hasError(validation.type) && ( userDetailsForm.get('lastname').dirty )">{{validation.message}} </p>
+                            <p *ngIf="userDetailsGroup.get('lastname').hasError(validation.type) && ( userDetailsGroup.get('lastname').dirty )">{{validation.message}} </p>
                         </mat-error>
                     </mat-form-field>
     
@@ -43,15 +43,7 @@
                     <mat-form-field>
                         <input matInput placeholder="Password" formControlName="password" [type]="'password'" required>
                         <mat-error *ngFor="let validation of userValidationMessage.password">
-                            <p *ngIf="userDetailsForm.get('password').hasError(validation.type) && ( userDetailsForm.get('password').dirty )">{{validation.message}} </p>
-                        </mat-error>
-                    </mat-form-field>
-    
-                    <!-- Confirm Password input field control -->
-                    <mat-form-field>
-                        <input matInput placeholder="Password" formControlName="confirmPassword" [type]="'password'" required>
-                        <mat-error *ngFor="let validation of userValidationMessage.confirmPassword">
-                            <p *ngIf="userDetailsForm.get('confirmPassword').hasError(validation.type) && ( userDetailsForm.get('confirmPassword').dirty )">{{validation.message}} </p>
+                            <p *ngIf="userDetailsGroup.get('password').hasError(validation.type) && ( userDetailsGroup.get('password').dirty )">{{validation.message}} </p>
                         </mat-error>
                     </mat-form-field>
 
@@ -67,17 +59,40 @@
                 <!-- END First stepper -->
                 
                 <!-- START Second stepper -->
-                <mat-step [stepControl]="secondFormGroup">
+                <mat-step [stepControl]="fitnessInfoGroup">
 
-                    <form [formGroup]="secondFormGroup">
+                    <form [formGroup]="fitnessInfoGroup">
 
-                    <ng-template matStepLabel>Fitness Profile Information</ng-template>
+                    <ng-template matStepLabel>Fitness Information</ng-template>
                     
                     <!-- START Input Field Controls -->
-
+                
+                    <!-- Starting weight input field control -->
                     <mat-form-field>
-                        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+                        <input matInput placeholder="Starting weight" formControlName="startingweight"required>
+                        <span matSuffix style="margin-right: 1rem">lbs</span>
                     </mat-form-field>
+
+                    <!-- Starting weight input field control -->
+                    <div class="radio-form-field">
+                        <label>Gender:</label>
+                        <mat-radio-group formControlName="gender">
+                            <mat-radio-button value="male">Male</mat-radio-button>
+                            <mat-radio-button value="female">Female</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+                    <!-- Starting weight input field control -->
+                    <div class="radio-form-field">
+                        <label class="label-activity">How would you describe your activity level?</label>
+                        <mat-radio-group class="radio-group-activity" formControlName="activitylevel">
+                            <mat-radio-button class="btn-activity" value="1.2">Sedentary: Little or no exercise (desk job)</mat-radio-button>
+                            <mat-radio-button class="btn-activity" value="1.375">Lightly active: Light Exercise or sports 1-3 days/week</mat-radio-button>
+                            <mat-radio-button class="btn-activity" value="1.55">Moderately Active: Moderate Exercise or sports 6-7 days/week</mat-radio-button>
+                            <mat-radio-button class="btn-activity" value="1.725">Very Active: Hard Exercise every day</mat-radio-button>
+                            <mat-radio-button class="btn-activity" value="1.9">Extra Active: Hard Exercise 2 or more time per day</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
 
                     <!-- END Input Field Controls -->
 
@@ -95,7 +110,7 @@
         </div>
     </div>
 
-    <p>Form value: {{ userDetailsForm.value | json }}</p>
-    <p>Form value: {{ secondFormGroup.value | json }}</p>
+    <p>Form value: {{ userDetailsGroup.value | json }}</p>
+    <p>Form value: {{ fitnessInfoGroup.value | json }}</p>
 
 </div>

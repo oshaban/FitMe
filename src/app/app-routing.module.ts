@@ -5,6 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { StatsComponent } from './pages/stats/stats.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { LoginComponent } from './pages/login/login.component';
 
 // Registering components in router:
 const routes: Routes = [
@@ -19,6 +21,14 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent
+  },
+  {
+    path: 'signup',
+    component: SignupComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   { path: '**', component: HomeComponent } /* Wild-card route */
 

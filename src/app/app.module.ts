@@ -30,6 +30,8 @@ import { StatboxComponent } from './statbox/statbox.component';
 /* Forms */
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SignupComponent } from './pages/signup/signup.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MacroDonoughtChartComponent,
     DateTrackingChartComponent,
     StatboxComponent,
+    SignupComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

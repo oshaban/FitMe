@@ -1,3 +1,49 @@
 https://angular-templates.io/tutorials/about/angular-forms-and-validations
 
 https://www.myfitnesspal.com/account/change_goals_guided
+
+User Details
+Input Name	Input Type	Input Validations	Validation Type
+User name	Text	1. Not Empty	1. Required
+		2. Must contain only numbers	2. Pattern validation
+		3. Between 0 - 500	3. Custom Validation
+Email	Text	1. Not empty	1. Required
+		2. Valid email	2. Pattern validation
+Password	Password	1. Not empty	1. Required
+		2. At least 5 chars	2. Minlength 5
+Confirm password	password	1. Not Empty	1. Required
+		2. Equal to password	2. Custom validation
+
+Fitness Profile Details
+Input Name	Input Type	Input Validations	Validation Type
+Start Weight	Text	1. Not Empty	1. Required
+		2. Must contain only numbers	2. Pattern validation
+		3. Between 0 - 500	3. Number validation
+Gender	Button (M/F)	1. Not Empty	1. Required
+Height	Dropdown (ft/inches)	1. Not Empty	
+DOB			
+Activity			
+
+User = {
+	_id: 1234,
+	Username: abc,
+	Email: abc@gmail.com
+	Password: asdf,
+	Fitnessprofile : {
+		Start Weight: {weight: 100, timestamp: 7/7/19},
+		Gender: M,
+		Height: 72,
+		DOB: 7/7/19,
+		ActivityMultiplier: 1.2
+	}
+}
+
+Weight = {
+	_id: **Reference a user ID
+	Weights: [
+	{weight: 100, timestamp: 7/7/19},
+	{weight: 100, timestamp: 7/6/19},
+	] 
+}
+
+https://www.k-state.edu/paccats/Contents/PA/PDF/Physical%20Activity%20and%20Controlling%20Weight.pdf

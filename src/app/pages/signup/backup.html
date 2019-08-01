@@ -1,0 +1,57 @@
+<div class="row">
+
+        <div class="col" class="flex-container main-signup mx-auto">
+            
+            <h4 >Create your account</h4>
+
+            <!-- User Form Group -->
+            <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmit()">
+
+                <!-- User Name input field control -->
+                <mat-form-field>
+                    <input matInput placeholder="User Name" formControlName="username" required>
+                    <mat-error *ngFor="let validation of userValidationMessage.username">
+                        <p *ngIf="userDetailsForm.get('username').hasError(validation.type) && ( userDetailsForm.get('username').dirty ) ">{{validation.message}} </p>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- First Name input field control -->
+                <mat-form-field>
+                    <input matInput placeholder="First Name" formControlName="firstname" required>
+                    <mat-error *ngFor="let validation of userValidationMessage.firstname">
+                        <p *ngIf="userDetailsForm.get('firstname').hasError(validation.type) && ( userDetailsForm.get('firstname').dirty )">{{validation.message}} </p>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Last Name input field control -->
+                <mat-form-field>
+                    <input matInput placeholder="Last Name" formControlName="lastname" required>
+                    <mat-error *ngFor="let validation of userValidationMessage.lastname">
+                        <p *ngIf="userDetailsForm.get('lastname').hasError(validation.type) && ( userDetailsForm.get('lastname').dirty )">{{validation.message}} </p>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Password input field control -->
+                <mat-form-field>
+                    <input matInput placeholder="Password" formControlName="password" [type]="'password'" required>
+                    <mat-error *ngFor="let validation of userValidationMessage.password">
+                        <p *ngIf="userDetailsForm.get('password').hasError(validation.type) && ( userDetailsForm.get('password').dirty )">{{validation.message}} </p>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Confirm Password input field control -->
+                <mat-form-field>
+                    <input matInput placeholder="Password" formControlName="confirmPassword" [type]="'password'" required>
+                    <mat-error *ngFor="let validation of userValidationMessage.confirmPassword">
+                        <p *ngIf="userDetailsForm.get('confirmPassword').hasError(validation.type) && ( userDetailsForm.get('confirmPassword').dirty )">{{validation.message}} </p>
+                    </mat-error>
+                </mat-form-field>
+
+                <button [disabled]="!userDetailsForm.valid"  class="submit-btn"  mat-raised-button type="submit">Sign Up</button>
+
+            </form>
+
+            <p>Form Value: {{ userDetailsForm.value | json}}</p> <!-- Displays real time value of form, uses json pipe to transform object of objects -->
+        
+        </div>
+    </div>

@@ -21,6 +21,8 @@ import {
   MatCardModule,
   MatInputModule } from '@angular/material';
 
+import {MatStepperModule} from '@angular/material/stepper';
+
 /* Chart js */
 import { ChartsModule } from '../../node_modules/ng2-charts';
 import { MacroDonoughtChartComponent } from './charts/macro-doughnut-chart/macro-doughnut-chart.component';
@@ -59,7 +61,8 @@ import { LoginComponent } from './pages/login/login.component';
     ChartsModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatStepperModule
   ],
   providers: [
     Title,

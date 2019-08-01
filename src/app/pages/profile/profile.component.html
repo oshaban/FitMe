@@ -1,70 +1,42 @@
-<div class="container">
-    <div class="row section-title">
-        <div class="col-12">
-            <h2>Update Your Profile</h2>
-        </div>
-    </div>
 
-    <div class="row section-title">
-        <div class="col-12">
-            <p>To get the most accurate fitness plan, please make sure that your fitness profile below is up to date.</p>
-        </div>
-    </div>
+<div class="container">
 
     <div class="row">
-        <div class="col-8" class="flex-container">
+        <div class="flex-container main-signup mx-auto">
 
-            <!-- User Form Group -->
-            <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmit()">
+            <mat-horizontal-stepper [linear]="1" #stepper>
 
-                <!-- User Name input field control -->
-                <mat-form-field>
-                    <input matInput placeholder="User Name" formControlName="username" required>
-                    <mat-error *ngFor="let validation of userValidationMessage.username">
-                        <p *ngIf="userDetailsForm.get('username').hasError(validation.type) && ( userDetailsForm.get('username').dirty ) ">{{validation.message}} </p>
-                    </mat-error>
-                </mat-form-field>
+                <mat-step [stepControl]="firstFormGroup">
+                    <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Account Information</ng-template>
+                    <mat-form-field>
+                        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                    </form>
+                </mat-step>
+                
+                <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Fitness Profile Information</ng-template>
+                    <mat-form-field>
+                        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button>Submit</button>
+                    </div>
+                    </form>
+                </mat-step>
+                
+            </mat-horizontal-stepper>
 
-                <!-- First Name input field control -->
-                <mat-form-field>
-                    <input matInput placeholder="First Name" formControlName="firstname" required>
-                    <mat-error *ngFor="let validation of userValidationMessage.firstname">
-                        <p *ngIf="userDetailsForm.get('firstname').hasError(validation.type) && ( userDetailsForm.get('firstname').dirty )">{{validation.message}} </p>
-                    </mat-error>
-                </mat-form-field>
-
-                <!-- Last Name input field control -->
-                <mat-form-field>
-                    <input matInput placeholder="Last Name" formControlName="lastname" required>
-                    <mat-error *ngFor="let validation of userValidationMessage.lastname">
-                        <p *ngIf="userDetailsForm.get('lastname').hasError(validation.type) && ( userDetailsForm.get('lastname').dirty )">{{validation.message}} </p>
-                    </mat-error>
-                </mat-form-field>
-
-                <!-- Password input field control -->
-                <mat-form-field>
-                    <input matInput placeholder="Password" formControlName="password" [type]="'password'" required>
-                    <mat-error *ngFor="let validation of userValidationMessage.password">
-                        <p *ngIf="userDetailsForm.get('password').hasError(validation.type) && ( userDetailsForm.get('password').dirty )">{{validation.message}} </p>
-                    </mat-error>
-                </mat-form-field>
-
-                <!-- Confirm Password input field control -->
-                <mat-form-field>
-                    <input matInput placeholder="Password" formControlName="confirmPassword" [type]="'password'" required>
-                    <mat-error *ngFor="let validation of userValidationMessage.confirmPassword">
-                        <p *ngIf="userDetailsForm.get('confirmPassword').hasError(validation.type) && ( userDetailsForm.get('confirmPassword').dirty )">{{validation.message}} </p>
-                    </mat-error>
-                </mat-form-field>
-
-                <button class="submit-btn"  mat-raised-button type="submit">Sign Up</button>
-
-            </form>
-
-            <p>Form Value: {{ userDetailsForm.value | json}}</p> <!-- Displays real time value of form, uses json pipe to transform object of objects -->
-        
-        
         </div>
     </div>
+
+    <p>Form value: {{ firstFormGroup.value | json }}</p>
+    <p>Form value: {{ secondFormGroup.value | json }}</p>
 
 </div>

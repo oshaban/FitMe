@@ -60,7 +60,7 @@
                 <!-- START Second stepper -->
                 <mat-step [stepControl]="fitnessInfoGroup">
 
-                    <form [formGroup]="fitnessInfoGroup">
+                    <form [formGroup]="fitnessInfoGroup" (ngSubmit)="onSubmit()">
 
                         <ng-template matStepLabel>Fitness Information</ng-template>
                         
@@ -159,9 +159,16 @@
 
                         <div class="signup-section">
                             <button class="toggle" mat-button matStepperPrevious>Back</button>
-                            <button [disabled]="!fitnessInfoGroup.valid" class="submit-btn"  mat-raised-button type="submit" style="margin-left: 1rem">Submit</button>
+                            
+                            <!-- Submit button -->
+                            <button
+                                
+                                class="submit-btn"
+                                mat-raised-button type="submit" 
+                                style="margin-left: 1rem">Submit</button>
                         </div>
-                        
+                        <!-- TO DO: [disabled]="!fitnessInfoGroup.valid" -->
+
                     </form>
 
                 </mat-step>
@@ -175,6 +182,7 @@
     <!-- Displays from values by piping to JSON -->
     <p>Form value: {{ userDetailsGroup.value | json }}</p>
     <p>Form value: {{ fitnessInfoGroup.value | json }}</p>
+    <p>Form value: {{ formData }}</p>
 
 </div>
     

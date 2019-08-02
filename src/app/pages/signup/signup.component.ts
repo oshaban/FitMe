@@ -12,12 +12,26 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
 
-  /* Initializing forms */
+  /**
+   * Form for user registration information
+   */
   userDetailsGroup: FormGroup;
+
+  /**
+   * Form for user fitness profile information
+   */
   fitnessInfoGroup: FormGroup;
 
-  // Error messages for user validation
-    // Can access in profile.component.html by: *ngFor="let validation of userValidationMessage.<username>
+  /**
+   * Stores user information which will be sent to back-end for sign up
+   */
+  formData;
+
+  /**
+   * Error messages for form validation
+   *  Can be accessed in profile.component.html by: *ngFor="let validation of userValidationMessage.<username>
+   */
+
   userValidationMessage = {
     username: [
       { type: 'required', message: 'Username is required' },
@@ -116,7 +130,16 @@ export class SignupComponent implements OnInit {
       ],
       trainingstyle : ['', Validators.required ],
     });
-
-
   } // End ngOnInit
+
+  /**
+   * Once form is filled out and user submits
+   */
+  private onSubmit() {
+    // this.formData = this.userDetailsGroup.value.stringify();
+
+    this.formData = JSON.stringify(this.userDetailsGroup.value);
+
+  }
+
 } // End class ProfileComponent

@@ -20,15 +20,8 @@ export class UsersService {
 
   constructor(
     private http: HttpClient // Injects HTTPClient instance
-
   ) { }
 
-    // Uses http.get() to load data from API end point
-      // Users specifies how the JSON shape looks like
-      // This returns an observable, that we .subscribe() to
-    getAllUsers() {
-      return this.http.get('http://localhost:3500/api/users/');
-      //https://jsonplaceholder.typicode.com/users
-    }
+  
 
 }

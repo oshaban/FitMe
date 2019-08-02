@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { UserFormData } from './userFormData';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserFormData } from '../../core/userFormData';
 import { UsernameValidator } from './username.validator'; // Checks if username is taken
 import { SignupService } from '../../core/signup.service';
 

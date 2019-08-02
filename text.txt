@@ -27,7 +27,8 @@ Activity
 User = {
 	_id: 1234,
 	Username: abc,
-	Email: abc@gmail.com
+	firstname: jim,
+	lastname: bill,
 	Password: asdf,
 	Fitnessprofile : {
 		Start Weight: {weight: 100, timestamp: 7/7/19},

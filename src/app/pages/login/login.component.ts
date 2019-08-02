@@ -9,16 +9,15 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
 
-  userDetailsForm = this.fb.group({
-    username : ['', [
-        Validators.required,
-      ]
-    ],
-    password : ['', [
-      Validators.required,
-      ]
-    ],
-  });
+  /**
+   * Form for user login
+   */
+  userDetailsGroup: FormGroup;
+
+  /**
+   * Message to display if invalid form
+   */
+  formMessage: string;
 
   // Error messages for user validation
     // Can access in profile.component.html by: *ngFor="let validation of userValidationMessage.<username>
@@ -29,18 +28,32 @@ export class LoginComponent implements OnInit {
     password: [
       { type: 'required', message: 'Password is required' },
     ],
-
-
   };
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+
+    // Defines user login form
+    this.userDetailsGroup = this.fb.group({
+      username : ['', [
+          Validators.required,
+        ]
+      ],
+      password : ['', [
+        Validators.required,
+        ]
+      ],
+    });
   }
 
   onSubmit() {
-    if (this.userDetailsForm.valid) {
-      console.log(this.userDetailsForm.value);
+    if (this.userDetailsGroup.valid) {
+      // Send to HTTP
+
+      
+    } else {
+      this.formMessage = "Invalid";
     }
   }
 

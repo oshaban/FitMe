@@ -11,23 +11,32 @@ import { Observable } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 
-  name = 'Lorem';
+  /**
+   * Title of page
+   */
   pageTitle = 'Dashboard';
 
-  loadedUsers = []; // Stores loaded users
+  /**
+   * Stores loaded users
+   */
+  loadedUsers = [];
+
 
   private userFetchObs: Observable<any>;
 
-
+  /**
+   * @param title Injects title service into component
+   * @param usersService Injects userservice to interact with API
+   */
   constructor(
-    private title: Title, // Injects Title service into component
-    private usersService: UsersService // Injects UsersService into component
+    private title: Title,
+    private usersService: UsersService
     ) {
       this.getUsers();
     }
 
   getUsers() {
-
+/*
     this.userFetchObs = this.usersService.getAllUsers(); // This returns an observable
 
     // Subscribe to the observable
@@ -43,7 +52,7 @@ export class HomeComponent implements OnInit {
         }
 
       }, (errorData) => { console.log(errorData); }
-    );
+    ); */
 
   }
 

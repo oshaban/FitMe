@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 // Importing components to register in router:
 import { HomeComponent } from './pages/home/home.component';
 import { StatsComponent } from './pages/stats/stats.component';
-import { ProfileComponent } from './pages/profile/profile.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 
@@ -17,10 +16,6 @@ const routes: Routes = [
   {
     path: 'stats',
     component: StatsComponent
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent
   },
   {
     path: 'signup',

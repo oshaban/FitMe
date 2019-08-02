@@ -18,6 +18,7 @@ export class UserDataService {
     password: 'string',
     fitnessProfile: {
         startWeight: { weight: 120, date: new Date(2019, 1, 1) },
+        goal: {goalType: 'Gain', perWeek: 0.5},
         gender: 'F',
         height: 72,
         birthDay: new Date(2019, 1, 1),
@@ -33,31 +34,33 @@ export class UserDataService {
       {date: new Date(2019, 8, 3), value: 170 }
     ]
   };
+
+
   /**
    * Stores a users latest Weight
    * Used in getCurrentWeight()
    */
-  latestWeight: {date: Date, value: number};
+  private latestWeight: {date: Date, value: number};
 
   /**
    * Stores a users TDEE
    */
-  BMR: number;
+  private BMR: number;
 
   /**
    * Stores a users weight in KG
    */
-  wtinkg: number;
+  private wtinkg: number;
 
   /**
    * Stores a users height in CM
    */
-  htincm: number;
+  private htincm: number;
 
   /**
    * Stores a users age in years
    */
-  ageInYrs: number;
+  private ageInYrs: number;
 
   /**
    * Returns an object with {date:.., value:..} form
@@ -74,9 +77,9 @@ export class UserDataService {
   }
 
   /**
-   * Uses the Harris-Benedict formula to calculate a users TDEE
+   * Returns a users TDEE; Calculated using Harris-Benedict formula
    */
-  public getTDEE() {
+  public getUserTDEE() {
 
     this.wtinkg = 54.5;
     this.htincm = 167.6;
@@ -90,6 +93,13 @@ export class UserDataService {
 
     return Math.floor(this.BMR * this.userData.fitnessProfile.activityMultiplier);
 
+  }
+
+  /**
+   * Returns a users goal in format {goalType: number, perWeek: number}
+   */
+  public getUserGoal() {
+    return this.userData.fitnessProfile.goal;
   }
 
   constructor() { }

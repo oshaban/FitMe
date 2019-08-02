@@ -23,17 +23,17 @@
         <div class="col-md-4">
             <app-statbox
                 [title]="'Your Goal'"
-                [subtitle]="'Gain per week'"
-                [numDisplay]="currentWeight"
+                [subtitle]="userGoal.goalType + ' per week'"
+                [numDisplay]="userGoal.perWeek"
                 [unit]="'lbs'" >
             </app-statbox>
         </div>
 
         <div class="col-md-4">
             <app-statbox
-                [title]="'Current TDEE'"
-                [subtitle]="'-'"
-                [numDisplay]="currentTDEE"
+                [title]="'Your Calories'"
+                [subtitle]="'To meet your goal'"
+                [numDisplay]="userTDEE"
                 [unit]="'cal'" >
             </app-statbox>
         </div>

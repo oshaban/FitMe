@@ -30,22 +30,29 @@ export class HomeComponent implements OnInit {
   currentDate: string;
 
   /**
-   * Stores date of current weight
+   * User goal in object format
+   * goalType is either 'gain' or 'lose'
+   * perWeek is amount of pounds user wants to gain/loose per week
    */
-  currentTDEE: number;
+  userGoal: {goalType: string, perWeek: number};
 
   /**
-   * Stores user protien intake
+   * User TDEE
+   */
+  userTDEE: number;
+
+  /**
+   * User protien intake
    */
   userProtien: number;
 
   /**
-   * Stores user fat intake
+   * User fat intake
    */
   userFat: number;
 
   /**
-   * Stores user carb intake
+   * User carb intake
    */
   userCarb: number;
 
@@ -71,9 +78,10 @@ export class HomeComponent implements OnInit {
     this.currentDate = this.userDataService.getCurrentWeight().date.toLocaleDateString('en-US');
 
     // Dashboard 2
+    this.userGoal = this.userDataService.getUserGoal();
 
     // Dashboard 3
-    this.currentTDEE = this.userDataService.getTDEE();
+    this.userTDEE = this.userDataService.getUserTDEE();
 
     // Donought-chart data
     this.userProtien = 200;

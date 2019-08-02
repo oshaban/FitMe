@@ -7,7 +7,8 @@
         </div>
     </div>
 
-    <!-- Displays 3 stat-boxes: Data is passed in through service -->
+    <!-- Displays three statboxes -->
+        <!-- Each statbox has data passed in via property binding -->
     <div class="row">
         <div class="col-md-4">
             <app-statbox
@@ -40,12 +41,13 @@
 
     <div class="row">
 
+        <!-- Displays doughnut chart -->
         <div class="col-md-6">
             <h6>Your Macronutrient split is:</h6>
             <app-macro-doughnut-chart
-                [protein]="100"
-                [fat]="200"
-                [carb]="300"
+                [protein]="userProtien"
+                [fat]="userFat"
+                [carb]="userCarb"
             ></app-macro-doughnut-chart>
         </div>
 

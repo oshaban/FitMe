@@ -13,8 +13,6 @@ import { MultiDataSet, Label } from 'ng2-charts';
 })
 export class MacroDonoughtChartComponent implements OnInit {
 
-  private numtest: number;
-
   /**
    * Protein input for graph
    */
@@ -38,9 +36,7 @@ export class MacroDonoughtChartComponent implements OnInit {
   /**
    * Data to be graphed
    */
-  public doughnutChartData: MultiDataSet = [
-    [10, 20, 30],
-  ];
+  public doughnutChartData: MultiDataSet;
 
   /**
    * Chart type is doughnut
@@ -50,7 +46,12 @@ export class MacroDonoughtChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.numtest = 10;
+
+    // Sets chart data to be graphed
+    this.doughnutChartData = [
+      [this.protein, this.fat, this.carb],
+    ];
+
   }
 
  // Chart events

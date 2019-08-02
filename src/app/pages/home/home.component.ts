@@ -90,7 +90,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.title.setTitle(this.pageTitle); // Sets page title
 
-    // Update dashboard components data
+    // Updates dashboard components data
 
     // Dashboard 1
     this.currentWeight = 105;

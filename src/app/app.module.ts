@@ -20,9 +20,11 @@ import {
   MatButtonModule,
   MatCardModule,
   MatInputModule,
+  MatNativeDateModule,
 } from '@angular/material';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 /* Chart js */
 import { ChartsModule } from '../../node_modules/ng2-charts';
@@ -65,9 +67,12 @@ import { LoginComponent } from './pages/login/login.component';
     ReactiveFormsModule,
     MatStepperModule,
     MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     Title,
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })

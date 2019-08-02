@@ -1,50 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+/**
+ * @title Signup Component
+ */
 
 @Component({
   selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  templateUrl: 'signup.component.html',
+  styleUrls: ['signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
 
-  // Reactive form template using form builder
-  userDetailsForm = this.fb.group({
-    username : ['', [
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(20),
-        Validators.pattern('[a-zA-Z0-9]*')
-      ]
-    ],
-    firstname : ['', [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(20),
-      Validators.pattern('[a-zA-z]*'),
-      ]
-    ],
-    lastname : ['', [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(20),
-      Validators.pattern('[a-zA-z]*'),
-      ]
-    ],
-    password : ['', [
-      Validators.required,
-      Validators.minLength(8),
-      Validators.maxLength(25),
-      ]
-    ],
-    confirmPassword : ['', [
-      Validators.required,
-      Validators.minLength(8),
-      Validators.maxLength(20),
-      ]
-    ],
-  });
+  /* Initializing forms */
+  userDetailsGroup: FormGroup;
+  fitnessInfoGroup: FormGroup;
 
   // Error messages for user validation
     // Can access in profile.component.html by: *ngFor="let validation of userValidationMessage.<username>
@@ -78,18 +48,70 @@ export class SignupComponent implements OnInit {
       { type: 'required', message: 'Confirm password is required' },
       { type: 'areEqual', message: 'Password mismatch' }
     ],
-
   };
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-  }
 
-  onSubmit() {
-    if (this.userDetailsForm.valid) {
-      console.log(this.userDetailsForm.value);
-    }
-  }
+    /* Defining structure of first reactive forms */
+    this.userDetailsGroup = this.formBuilder.group({
+      username : ['', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(20),
+        Validators.pattern('[a-zA-Z0-9]*')
+        ]
+      ],
+      firstname : ['', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
+        Validators.pattern('[a-zA-z]*'),
+        ]
+      ],
+      lastname : ['', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
+        Validators.pattern('[a-zA-z]*'),
+        ]
+      ],
+      password : ['', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(25),
+        ]
+      ],
+    });
 
-}
+    /* Defining structure of second reactive forms */
+    this.fitnessInfoGroup = this.formBuilder.group({
+      startingweight : ['', [
+        Validators.required,
+        Validators.min(10),
+        Validators.max(500),
+        Validators.pattern('[0-9]*')
+        ]
+      ],
+      height: ['', [
+        Validators.required,
+        ]
+      ],
+      gender : ['', [
+        Validators.required,
+        ]
+      ],
+      activitylevel : ['', [
+        Validators.required,
+        ]
+      ],
+      DOB : ['', [
+        Validators.required,
+        ]
+      ],
+    });
+
+
+  } // End ngOnInit
+} // End class ProfileComponent

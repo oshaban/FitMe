@@ -102,6 +102,10 @@ export class ProfileComponent implements OnInit {
         Validators.required,
         ]
       ],
+      DOB : ['', [
+        Validators.required,
+        ]
+      ],
     });
 
 

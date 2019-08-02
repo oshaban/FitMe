@@ -73,7 +73,7 @@
                         <span matSuffix style="margin-right: 1rem">lbs</span>
                     </mat-form-field>
 
-                    <!-- Starting weight input field control -->
+                    <!-- Starting gender input field control -->
                     <div class="radio-form-field">
                         <label>Gender:</label>
                         <mat-radio-group formControlName="gender">
@@ -82,7 +82,18 @@
                         </mat-radio-group>
                     </div>
 
-                    <!-- Starting weight input field control -->
+                    <!-- Starting birth input field control -->
+                    <div class="birth-field">
+                        <h6>Date of birth</h6>
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="DOB">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <p class="subtext">Don't worry, this isn't public.</p>
+                    </div>
+
+                    <!-- Starting activity level input field control -->
                     <div class="radio-form-field">
                         <label class="label-activity">How would you describe your activity level?</label>
                         <mat-radio-group class="radio-group-activity" formControlName="activitylevel">

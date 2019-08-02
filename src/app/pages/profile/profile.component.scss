@@ -50,10 +50,6 @@ mat-radio-button {
   background-color: #00aaff;
 }
 
-.radio-form-field {
-  margin-top: 2rem;
-}
-
 .label-activity {
   display: block;
 }
@@ -64,4 +60,9 @@ mat-radio-group.radio-group-activity {
 
 mat-radio-button.btn-activity {
   display: block;
+}
+
+p.subtext {
+  margin-top: 0rem;
+  font-size: 0.8rem;
 }

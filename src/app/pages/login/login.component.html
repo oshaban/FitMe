@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container login-box">
 
     <div class="row">
 
@@ -33,10 +33,10 @@
             <footer class="login-footer">
                 <p>Not Registered? <a [routerLink]="['/signup']">Sign Up</a></p>
             </footer>
-
-            <p>Form Value: {{ userDetailsForm.value | json}}</p> <!-- Displays real time value of form, uses json pipe to transform object of objects -->
-        
+            
         </div>
+        
     </div>
-    
+    <p>Form Value: {{ userDetailsForm.value | json}}</p> <!-- Displays real time value of form, uses json pipe to transform object of objects -->
+
 </div>

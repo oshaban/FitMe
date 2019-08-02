@@ -26,6 +26,11 @@ export class StatboxComponent implements OnInit {
    */
   @Input() numDisplay: number;
 
+  /**
+   * Unit of measurement for statbox number
+   */
+  @Input() unit: string;
+
   constructor() { }
 
   ngOnInit() {

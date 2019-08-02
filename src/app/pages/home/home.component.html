@@ -14,7 +14,9 @@
             <app-statbox
                 [title]="'Current Weight'"
                 [subtitle]="'Weight as of ' + currentDate "
-                [numDisplay]="currentWeight" >
+                [numDisplay]="currentWeight" 
+                [unit]="'lbs'"
+                >
             </app-statbox>
         </div>
 
@@ -22,7 +24,8 @@
             <app-statbox
                 [title]="'Your Goal'"
                 [subtitle]="'Gain per week'"
-                [numDisplay]="currentWeight" >
+                [numDisplay]="currentWeight"
+                [unit]="'lbs'" >
             </app-statbox>
         </div>
 
@@ -30,7 +33,8 @@
             <app-statbox
                 [title]="'Current TDEE'"
                 [subtitle]="'-'"
-                [numDisplay]="currentTDEE" >
+                [numDisplay]="currentTDEE"
+                [unit]="'cal'" >
             </app-statbox>
         </div>
     </div>

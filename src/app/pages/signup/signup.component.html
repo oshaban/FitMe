@@ -3,7 +3,7 @@
     <div class="row">
         <div class="flex-container main-signup mx-auto login-box-container">
 
-            <mat-horizontal-stepper [linear]="false" #stepper>
+            <mat-horizontal-stepper [linear]="true" #stepper>
 
                 <!-- START First stepper -->
                 <mat-step [stepControl]="userDetailsGroup">
@@ -72,6 +72,11 @@
                             <mat-form-field>
                                 <input matInput placeholder="What is your starting weight?" formControlName="startingweight"required>
                                 <span matSuffix style="margin-right: 1rem">lbs</span>
+                            
+                                <mat-error *ngFor="let validation of fitnessValidationMessage.startingweight">
+                                    <p *ngIf="fitnessInfoGroup.get('startingweight').hasError(validation.type) && ( fitnessInfoGroup.get('startingweight').dirty ) ">{{validation.message}} </p>
+                                </mat-error>
+
                             </mat-form-field>
                         </div>
 
@@ -162,12 +167,11 @@
                             
                             <!-- Submit button -->
                             <button
-                                
+                                [disabled]="!fitnessInfoGroup.valid"
                                 class="submit-btn"
                                 mat-raised-button type="submit" 
                                 style="margin-left: 1rem">Submit</button>
                         </div>
-                        <!-- TO DO: [disabled]="!fitnessInfoGroup.valid" -->
 
                     </form>
 
@@ -182,7 +186,7 @@
     <!-- Displays from values by piping to JSON -->
     <p>Form value: {{ userDetailsGroup.value | json }}</p>
     <p>Form value: {{ fitnessInfoGroup.value | json }}</p>
-    <p>Form value: {{ formData }}</p>
+    <p>Form value: {{ formData | json }}</p>
 
 </div>
     

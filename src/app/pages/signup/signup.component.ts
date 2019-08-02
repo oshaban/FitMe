@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { UserFormData } from './userFormData';
+import { UsernameValidator } from './username.validator'; // Checks if username is taken
+import { SignupService } from '../../core/signup.service';
 
 /**
  * @title Signup Component
@@ -23,15 +26,14 @@ export class SignupComponent implements OnInit {
   fitnessInfoGroup: FormGroup;
 
   /**
-   * Stores user information which will be sent to back-end for sign up
+   * Stores user information which is sent to the back-end for user signup
    */
-  formData;
+  formData: UserFormData;
 
   /**
    * Error messages for form validation
    *  Can be accessed in profile.component.html by: *ngFor="let validation of userValidationMessage.<username>
    */
-
   userValidationMessage = {
     username: [
       { type: 'required', message: 'Username is required' },
@@ -56,15 +58,27 @@ export class SignupComponent implements OnInit {
       { type: 'required', message: 'Password is required' },
       { type: 'minlength', message: 'Password must be at least 8 characters long' },
       { type: 'maxlength', message: 'Password cannot be more than 25 characters long' },
-      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number' }
-    ],
-    confirmPassword: [
-      { type: 'required', message: 'Confirm password is required' },
-      { type: 'areEqual', message: 'Password mismatch' }
     ],
   };
 
-  constructor(private formBuilder: FormBuilder) {}
+  fitnessValidationMessage = {
+    startingweight: [
+      { type: 'required', message: 'Weight is required' },
+      { type: 'min', message: 'Weight must be greater than 10 pounds' },
+      { type: 'max', message: 'Weight must be less than 500 pounds' },
+      { type: 'pattern', message: 'Weight can only contain numbers' }
+    ],
+  };
+
+  /**
+   * Stores todays date
+   */
+  todayDate: Date;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private signupService: SignupService
+    ) {}
 
   ngOnInit() {
 
@@ -74,7 +88,8 @@ export class SignupComponent implements OnInit {
         Validators.required,
         Validators.minLength(5),
         Validators.maxLength(20),
-        Validators.pattern('[a-zA-Z0-9]*')
+        Validators.pattern('[a-zA-Z0-9]*'),
+        UsernameValidator.validUsername,
         ]
       ],
       firstname : ['', [
@@ -130,16 +145,39 @@ export class SignupComponent implements OnInit {
       ],
       trainingstyle : ['', Validators.required ],
     });
+
+    this.todayDate = new Date();
+
   } // End ngOnInit
 
   /**
-   * Once form is filled out and user submits
+   * Called on submit event of form
    */
   private onSubmit() {
-    // this.formData = this.userDetailsGroup.value.stringify();
 
-    this.formData = JSON.stringify(this.userDetailsGroup.value);
+    // Create form data to submit to back-end
+    this.formData = {
+      username: this.userDetailsGroup.value.username,
+      firstname: this.userDetailsGroup.value.firstname,
+      lastname: this.userDetailsGroup.value.lastname,
+      password: this.userDetailsGroup.value.password,
+      fitnessProfile: {
+        startWeight: { weight: this.fitnessInfoGroup.value.startingweight, date: this.todayDate },
+        gender: this.fitnessInfoGroup.value.gender,
+        height: (this.fitnessInfoGroup.value.heightfeet * 12) + this.fitnessInfoGroup.value.heightinches,
+        birthDay: this.fitnessInfoGroup.value.DOB,
+        activityMultiplier: this.fitnessInfoGroup.value.activitylevel
+      }
+    };
 
-  }
+    console.log( this.formData );
+    console.log(JSON.stringify(this.formData));
+
+    // Call service to send POST request to back-end
+    this.signupService.createUser( this.formData ).subscribe(
+      resData => { console.log(resData);
+    });
+
+  } // End onSubmit()
 
 } // End class ProfileComponent

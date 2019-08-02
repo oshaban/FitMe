@@ -94,7 +94,11 @@ export class SignupComponent implements OnInit {
         Validators.pattern('[0-9]*')
         ]
       ],
-      height: ['', [
+      heightfeet: ['', [
+        Validators.required,
+        ]
+      ],
+      heightinches: ['', [
         Validators.required,
         ]
       ],
@@ -110,6 +114,7 @@ export class SignupComponent implements OnInit {
         Validators.required,
         ]
       ],
+      trainingstyle : ['', Validators.required ],
     });
 
 

@@ -21,6 +21,7 @@ import {
   MatCardModule,
   MatInputModule,
   MatNativeDateModule,
+  MatSelectModule,
 } from '@angular/material';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -69,6 +70,7 @@ import { LoginComponent } from './pages/login/login.component';
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSelectModule,
   ],
   providers: [
     Title,

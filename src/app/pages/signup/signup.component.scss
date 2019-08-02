@@ -30,6 +30,9 @@ mat-form-field {
 
   margin-top: 1rem;
 }
+  mat-form-field.height-field {
+    display: inline-block;
+  }
 
 ::ng-deep .mat-form-field-flex {
   background: rgb(245, 248, 250);

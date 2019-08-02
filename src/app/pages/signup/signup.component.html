@@ -75,15 +75,42 @@
                             </mat-form-field>
                         </div>
 
-                        <!-- Starting height input field control -->
+                         <!-- Starting height input field control -->
                         <div class="signup-section">
                             <h6 class="field-title">Height</h6>
-                            <mat-form-field>
-                                <input matInput placeholder="What is your height?" formControlName="height"required>
-                                <span matSuffix style="margin-right: 1rem">lbs</span>
+
+                            <mat-form-field class="height-field">
+                                <mat-label>Feet</mat-label>
+                                <mat-select formControlName="heightfeet">
+                                    <mat-option value="1">1 ft</mat-option>
+                                    <mat-option value="2">2 ft</mat-option>
+                                    <mat-option value="3">3 ft</mat-option>
+                                    <mat-option value="4">4 ft</mat-option>
+                                    <mat-option value="5">5 ft</mat-option>
+                                    <mat-option value="6">6 ft</mat-option>
+                                    <mat-option value="7">7 ft</mat-option>
+                                    <mat-option value="8">8 ft</mat-option>
+                                </mat-select>
                             </mat-form-field>
+
+                            <mat-form-field class="height-field">
+                                <mat-label>Inches</mat-label>
+                                <mat-select formControlName="heightinches">
+                                    <mat-option value="1">1 in</mat-option>
+                                    <mat-option value="2">2 in</mat-option>
+                                    <mat-option value="3">3 in</mat-option>
+                                    <mat-option value="4">4 in</mat-option>
+                                    <mat-option value="5">5 in</mat-option>
+                                    <mat-option value="6">6 in</mat-option>
+                                    <mat-option value="7">7 in</mat-option>
+                                    <mat-option value="8">8 in</mat-option>
+                                    <mat-option value="9">9 in</mat-option>
+                                    <mat-option value="10">10 in</mat-option>
+                                    <mat-option value="11">11 in</mat-option>
+                                </mat-select>
+                            </mat-form-field>                            
                         </div>
-       
+      
                         <!-- Starting gender input field control -->
                         <div class="radio-form-field signup-section">
                             <label class="field-title" style="display: block">Gender</label>
@@ -116,11 +143,23 @@
                             </mat-radio-group>
                         </div>
 
+                        <div class="signup-section">
+                            <h6 class="field-title">Training Style</h6>
+                            <mat-form-field>
+                                <mat-select placeholder="What is your training style?" formControlName="trainingstyle">
+                                    <mat-option value="GeneralFitness">General Fitness</mat-option>
+                                    <mat-option value="Weightlifting">Weightlifting</mat-option>
+                                    <mat-option value="Cardio">Cardio</mat-option>
+                                    <mat-option value="None">None</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
                         <!-- END Input Field Controls -->
 
                         <div class="signup-section">
                             <button class="toggle" mat-button matStepperPrevious>Back</button>
-                            <button class="submit-btn"  mat-raised-button type="submit" style="margin-left: 1rem">Submit</button>
+                            <button [disabled]="!fitnessInfoGroup.valid" class="submit-btn"  mat-raised-button type="submit" style="margin-left: 1rem">Submit</button>
                         </div>
                         
                     </form>
@@ -133,6 +172,7 @@
         </div>
     </div>
 
+    <!-- Displays from values by piping to JSON -->
     <p>Form value: {{ userDetailsGroup.value | json }}</p>
     <p>Form value: {{ fitnessInfoGroup.value | json }}</p>
 

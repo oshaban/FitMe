@@ -12,5 +12,6 @@ export interface UserFormData {
         height: number;
         birthDay: Date;
         activityMultiplier: number;
+        goal: { goalType: string, perWeek: number};
     };
 }

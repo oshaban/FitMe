@@ -35,6 +35,7 @@ export class UserDataService {
     ]
   };
 
+  // Private data
 
   /**
    * Stores a users latest Weight
@@ -61,6 +62,10 @@ export class UserDataService {
    * Stores a users age in years
    */
   private ageInYrs: number;
+
+
+  // Public data
+
 
   /**
    * Returns an object with {date:.., value:..} form

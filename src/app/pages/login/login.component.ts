@@ -51,9 +51,8 @@ export class LoginComponent implements OnInit {
     if (this.userDetailsGroup.valid) {
       // Send to HTTP
 
-      
     } else {
-      this.formMessage = "Invalid";
+      this.formMessage = 'Invalid';
     }
   }
 

@@ -75,6 +75,10 @@ export class SignupComponent implements OnInit {
    */
   todayDate: Date;
 
+  /**
+   * @param formBuilder Used to create userDetailsGroup and fitnessInfoGroup forms
+   * @param signupService Used to send form data to server
+   */
   constructor(
     private formBuilder: FormBuilder,
     private signupService: SignupService
@@ -144,6 +148,7 @@ export class SignupComponent implements OnInit {
         ]
       ],
       trainingstyle : ['', Validators.required ],
+      goal : ['', Validators.required ],
     });
 
     this.todayDate = new Date();
@@ -166,7 +171,8 @@ export class SignupComponent implements OnInit {
         gender: this.fitnessInfoGroup.value.gender,
         height: (this.fitnessInfoGroup.value.heightfeet * 12) + this.fitnessInfoGroup.value.heightinches,
         birthDay: this.fitnessInfoGroup.value.DOB,
-        activityMultiplier: this.fitnessInfoGroup.value.activitylevel
+        activityMultiplier: this.fitnessInfoGroup.value.activitylevel,
+        goal: this.fitnessInfoGroup.value.goal,
       }
     };
 

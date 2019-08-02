@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser'; // For setting page title
-import { UsersService } from 'src/app/core/users.service';
-import { UpdateDashboardService } from 'src/app/core/update-dashboard.service';
-import { Observable } from 'rxjs';
+import { UserDataService } from '../../core/user-data.service';
 
 @Component({
   selector: 'app-home',
@@ -27,9 +25,9 @@ export class HomeComponent implements OnInit {
   currentWeight: number;
 
   /**
-   * Stores date of current weight
+   * Stores date of current weight in string mm/dd/yyyy
    */
-  currentDate: Date;
+  currentDate: string;
 
   /**
    * Stores date of current weight
@@ -51,41 +49,17 @@ export class HomeComponent implements OnInit {
    */
   userCarb: number;
 
-  private userFetchObs: Observable<any>;
-
   /**
    * @param title Injects title service into component
    * @param usersService Injects userservice to interact with API
-   * @param dashboardService: Sets necessary variables to update statbox display
+   * @param userDataService Used to get fitness data from the current user
    */
   constructor(
     private title: Title,
-    private usersService: UsersService,
-    private dashboardService: UpdateDashboardService,
+    private userDataService: UserDataService
     ) {
-      this.getUsers();
     }
 
-  getUsers() {
-/*
-    this.userFetchObs = this.usersService.getAllUsers(); // This returns an observable
-
-    // Subscribe to the observable
-    this.userFetchObs.subscribe(
-      (resData) => {
-        console.log(resData);
-
-        // Goes through each object in JSON
-        for (const key in resData) {
-          if (resData.hasOwnProperty(key)) {
-            this.loadedUsers.push(resData[key]); // Add the user to the loaded users
-          }
-        }
-
-      }, (errorData) => { console.log(errorData); }
-    ); */
-
-  }
 
   ngOnInit() {
     this.title.setTitle(this.pageTitle); // Sets page title
@@ -93,19 +67,13 @@ export class HomeComponent implements OnInit {
     // Updates dashboard components data
 
     // Dashboard 1
-    this.currentWeight = 105;
-    this.currentDate = new Date(2019, 5);
-    this.currentTDEE = 3000;
+    this.currentWeight = this.userDataService.getCurrentWeight().value;
+    this.currentDate = this.userDataService.getCurrentWeight().date.toLocaleDateString('en-US');
 
     // Dashboard 2
-    this.currentWeight = 105;
-    this.currentDate = new Date(2019, 5);
-    this.currentTDEE = 3000;
 
     // Dashboard 3
-    this.currentWeight = 105;
-    this.currentDate = new Date(2019, 5);
-    this.currentTDEE = 3000;
+    this.currentTDEE = this.userDataService.getTDEE();
 
     // Donought-chart data
     this.userProtien = 200;

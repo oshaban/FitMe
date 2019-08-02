@@ -20,7 +20,8 @@
 
         <div class="col-md-4">
             <app-statbox
-                [title]="'You Gained'"
+                [title]="'Your Goal'"
+                [subtitle]="'Gain per week'"
                 [numDisplay]="currentWeight" >
             </app-statbox>
         </div>
@@ -28,6 +29,7 @@
         <div class="col-md-4">
             <app-statbox
                 [title]="'Current TDEE'"
+                [subtitle]="'-'"
                 [numDisplay]="currentTDEE" >
             </app-statbox>
         </div>

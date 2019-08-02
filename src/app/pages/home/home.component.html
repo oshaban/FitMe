@@ -12,22 +12,22 @@
         <div class="col-md-4">
             <app-statbox
                 [title]="'Current Weight'"
-                [subtitle]="'Weight as of 8/2/19'"
-                [numDisplay]="105.0" >
+                [subtitle]="'Weight as of ' + currentDate "
+                [numDisplay]="currentWeight" >
             </app-statbox>
         </div>
 
         <div class="col-md-4">
             <app-statbox
                 [title]="'You Gained'"
-                [numDisplay]="105.0" >
+                [numDisplay]="currentWeight" >
             </app-statbox>
         </div>
 
         <div class="col-md-4">
             <app-statbox
                 [title]="'Current TDEE'"
-                [numDisplay]="105.0" >
+                [numDisplay]="currentTDEE" >
             </app-statbox>
         </div>
     </div>
@@ -42,7 +42,11 @@
 
         <div class="col-md-6">
             <h6>Your Macronutrient split is:</h6>
-            <app-macro-doughnut-chart></app-macro-doughnut-chart>
+            <app-macro-doughnut-chart
+                [protein]="100"
+                [fat]="200"
+                [carb]="300"
+            ></app-macro-doughnut-chart>
         </div>
 
     </div>

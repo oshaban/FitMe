@@ -38,8 +38,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 
+/* Table */
+import { MatTableModule } from '@angular/material/table';
+
 /* Font Awesome */
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MacrotableComponent } from './charts/macrotable/macrotable.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +55,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     StatboxComponent,
     SignupComponent,
     LoginComponent,
+    MacrotableComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +77,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatTableModule
   ],
   providers: [
     Title,

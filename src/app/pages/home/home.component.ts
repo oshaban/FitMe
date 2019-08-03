@@ -15,9 +15,9 @@ export class HomeComponent implements OnInit {
   pageTitle = 'Dashboard';
 
   /**
-   * Stores loaded users
+   * Stores data for statboxes
    */
-  loadedUsers = [];
+  StatBoxData = [];
 
   /**
    * Stores current weight value
@@ -73,9 +73,26 @@ export class HomeComponent implements OnInit {
 
     // Updates dashboard components data
 
-    // Dashboard 1
-    this.currentWeight = this.userDataService.getCurrentWeight().value;
-    this.currentDate = this.userDataService.getCurrentWeight().date.toLocaleDateString('en-US');
+    this.StatBoxData = [
+      {
+        title: 'Current Weight',
+        subtitle: 'Weight as of ' + this.userDataService.getCurrentWeight().date.toLocaleDateString('en-US'),
+        numDisplay: this.userDataService.getCurrentWeight().value,
+        unit: 'lbs'
+      },
+      {
+        title: 'Your Goal',
+        subtitle: this.userDataService.getUserGoal().goalType + ' per week',
+        numDisplay: this.userDataService.getUserGoal().perWeek,
+        unit: 'lbs'
+      },
+      {
+        title: 'Your Calories',
+        subtitle: 'To meet your goal',
+        numDisplay: this.userDataService.getUserTDEE(),
+        unit: 'cal'
+      },
+    ];
 
     // Dashboard 2
     this.userGoal = this.userDataService.getUserGoal();

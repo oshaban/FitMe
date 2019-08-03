@@ -23,3 +23,9 @@
 .numberDisplay h1,h5 {
   display: inline-block;
 }
+
+a {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%; width: 100%;
+}

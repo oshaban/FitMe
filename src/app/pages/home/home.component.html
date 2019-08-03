@@ -7,34 +7,16 @@
         </div>
     </div>
 
-    <!-- Displays three statboxes -->
+    <!-- Displays statboxes -->
         <!-- Each statbox has data passed in via property binding -->
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" *ngFor="let statbox of StatBoxData">
             <app-statbox
-                [title]="'Current Weight'"
-                [subtitle]="'Weight as of ' + currentDate "
-                [numDisplay]="currentWeight" 
-                [unit]="'lbs'"
+                [title]="statbox.title"
+                [subtitle]="statbox.subtitle"
+                [numDisplay]="statbox.numDisplay" 
+                [unit]="statbox.unit"
                 >
-            </app-statbox>
-        </div>
-
-        <div class="col-md-4">
-            <app-statbox
-                [title]="'Your Goal'"
-                [subtitle]="userGoal.goalType + ' per week'"
-                [numDisplay]="userGoal.perWeek"
-                [unit]="'lbs'" >
-            </app-statbox>
-        </div>
-
-        <div class="col-md-4">
-            <app-statbox
-                [title]="'Your Calories'"
-                [subtitle]="'To meet your goal'"
-                [numDisplay]="userTDEE"
-                [unit]="'cal'" >
             </app-statbox>
         </div>
     </div>
@@ -51,8 +33,5 @@
         </div>
     </div>
 
-    <ul>
-        <li *ngFor="let user of loadedUsers">{{user.name}}</li>
-    </ul>
 
 </div> <!-- End container -->

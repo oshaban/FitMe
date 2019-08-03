@@ -6,8 +6,19 @@
     width: 150px;
 }
 
-
 .mat-sidenav {
     background: rgb(245, 248, 250);
 }
 
+
+.login-button, .signup-button {
+    font-size: .95rem;
+}
+
+.login-button {
+    margin-right: 1.2rem;
+}
+
+.login-button:hover {
+    text-decoration: none;
+}

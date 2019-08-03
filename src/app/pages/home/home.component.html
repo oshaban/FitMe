@@ -16,29 +16,24 @@
                 [subtitle]="statbox.subtitle"
                 [numDisplay]="statbox.numDisplay" 
                 [unit]="statbox.unit"
-                [iconInput]="statbox.icon"
-                >
+                [iconInput]="statbox.icon" >
             </app-statbox>
         </div>
     </div>
 
-    <div class="row">
-        <!-- Displays doughnut chart -->
-        <div class="col-md-6 mx-auto" style="margin-top: 5rem">
-            <h2>Your Calorie Split</h2>
-            <app-macro-doughnut-chart
-                [protein]="userProtien"
-                [fat]="userFat"
-                [carb]="userCarb"
-            ></app-macro-doughnut-chart>
+    <!-- Page title -->
+    <div class="row section-title">
+        <div class="col-12">
+            <h2 class="stat">Your Calorie Split</h2>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row macroStatBox">
         <div class="col-12">
-            <app-macrotable></app-macrotable>
+            <app-macro-stat-box></app-macro-stat-box>
         </div>
     </div>
+
 
 
 </div> <!-- End container -->

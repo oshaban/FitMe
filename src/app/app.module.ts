@@ -44,6 +44,7 @@ import { MatTableModule } from '@angular/material/table';
 /* Font Awesome */
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MacrotableComponent } from './charts/macrotable/macrotable.component';
+import { MacroStatBoxComponent } from './charts/macro-stat-box/macro-stat-box.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { MacrotableComponent } from './charts/macrotable/macrotable.component';
     SignupComponent,
     LoginComponent,
     MacrotableComponent,
+    MacroStatBoxComponent,
   ],
   imports: [
     BrowserModule,

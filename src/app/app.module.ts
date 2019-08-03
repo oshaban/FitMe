@@ -32,6 +32,10 @@ import { MacroDonoughtChartComponent } from './charts/macro-doughnut-chart/macro
 import { DateTrackingChartComponent } from './charts/date-tracking-chart/date-tracking-chart.component';
 import { StatboxComponent } from './statbox/statbox.component';
 
+/* Ngx Charts */
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
+
 /* Forms */
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -80,7 +84,8 @@ import { MacroStatBoxComponent } from './charts/macro-stat-box/macro-stat-box.co
     MatNativeDateModule,
     MatSelectModule,
     FontAwesomeModule,
-    MatTableModule
+    MatTableModule,
+    NgxChartsModule
   ],
   providers: [
     Title,

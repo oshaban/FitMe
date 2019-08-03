@@ -4,23 +4,48 @@
 
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 
-.mat-toolbar.mat-primary {
-    background: #00aaff;
+@import url('https://fonts.googleapis.com/css?family=Muli:400,600&display=swap');
+
+p, h1, h2, h3, h4, h5, h6, a {
+    font-family: 'Muli', sans-serif;
+    font-weight: 400;
+    color: #060809;
 }
 
-h2, h3 {
-    color: rgb(51,51,51);
+h1, h2 {
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 30px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.mat-toolbar.mat-primary {
+    background: #fff;
+    box-shadow: 0 2px 20px 0 rgba(0,0,0,.08);
+}
+
+.mat-sidenav-container {
+    background: rgba(245, 245, 245, 0.6);
 }
 
 .mat-card h1 {
     color: rgb(51,51,51);
+    
+}
+
+.mat-button {
+    color: white;
+    background-color: #0f72e5;
 }
 
 .mat-button:hover {
-   background: white;
+    color: white;
+   background: #0b68d3;
+   text-decoration: none!important;
 }
 
 .mat-raised-button {
     background: #00aaff;
     color: white;
 }
+

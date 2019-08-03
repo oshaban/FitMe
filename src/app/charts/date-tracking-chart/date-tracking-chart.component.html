@@ -1,6 +1,8 @@
-<div class="flex">
-    <div class="flex-item">
+<div class="container">
+
+    <div class="row">
       
+      <!-- To DO -->
         <ngx-charts-line-chart
           [view]="view"
           [scheme]="colorScheme"
@@ -20,9 +22,11 @@
           (deactivate)="deactivate($event)" >
         </ngx-charts-line-chart>
 
-        <!--  -->
-        {{multi | json}}
+    </div>
 
+    <div class="row">
+      <!-- Data -->
+      {{multi2 | json}}
     </div>
 
 </div>

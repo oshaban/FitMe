@@ -13,6 +13,10 @@ import { UserDataService } from '../../core/user-data.service';
 
 export class DateTrackingChartComponent implements OnInit {
 
+  // TO DO: We need to have a way to initalize multi2 before it is in ngOnInit
+  // Since the graph is created before then
+  multi2: any[] = [];
+
   multi: any[] = [
     {
       name: 'Weight',
@@ -45,7 +49,7 @@ export class DateTrackingChartComponent implements OnInit {
 
   view: any[] = [700, 400];
   colorScheme = {
-    domain: ['#007bff', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#007bff']
   };
   gradient = false;
   showXAxis = true;
@@ -64,6 +68,12 @@ export class DateTrackingChartComponent implements OnInit {
 
   ngOnInit() {
     // this.testData = this.userDataService.getWeights();
+
+    // Generate dates
+    for (let index = 1; index < 20; index++) {
+      this.multi2.push( {value: index, date: new Date(2019, 1, index) } );
+    }
+
   }
 
 }

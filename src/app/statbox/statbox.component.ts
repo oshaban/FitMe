@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { faChartLine } from '@fortawesome/free-solid-svg-icons';
+import { faChartLine, faChartPie, faChartBar, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * @title Used to display statboxes on dashboard
@@ -13,7 +13,10 @@ import { faChartLine } from '@fortawesome/free-solid-svg-icons';
 })
 export class StatboxComponent implements OnInit {
 
-  faChartLine = faChartLine;
+  /**
+   * Sets the font-awesome icon for the statbox
+   */
+  faChartIcon: IconDefinition;
 
   /**
    * Title for statbox
@@ -35,9 +38,26 @@ export class StatboxComponent implements OnInit {
    */
   @Input() unit: string;
 
+  /**
+   * Displays icon for statbox
+   * faChartLine, faChartPie
+   */
+  @Input() iconInput: string;
+
   constructor() { }
 
   ngOnInit() {
-  }
+
+    if (this.iconInput === 'faChartLine') {
+      this.faChartIcon = faChartLine;
+    } else if (this.iconInput === 'faChartPie') {
+      this.faChartIcon = faChartPie;
+    } else if (this.iconInput === 'faChartBar') {
+      this.faChartIcon = faChartBar;
+    } else { // Default icon to show
+      this.faChartIcon = faChartPie;
+    }
+
+  } // End ngOnInit()
 
 }

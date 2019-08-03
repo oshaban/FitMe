@@ -16,24 +16,17 @@
                 [subtitle]="statbox.subtitle"
                 [numDisplay]="statbox.numDisplay" 
                 [unit]="statbox.unit"
-                [iconInput]="statbox.icon" >
+                [iconInput]="statbox.icon"
+                [routerLink]="statbox.routerLink" >
             </app-statbox>
         </div>
     </div>
 
-    <!-- Page title -->
-    <div class="row section-title">
-        <div class="col-12">
-            <h2 class="stat">Your Calorie Split</h2>
-        </div>
-    </div>
-
+    <!-- Displays component based on which statbox is clicked -->
     <div class="row macroStatBox">
         <div class="col-12">
-            <app-macro-stat-box></app-macro-stat-box>
+            <router-outlet></router-outlet> 
         </div>
     </div>
-
-
 
 </div> <!-- End container -->

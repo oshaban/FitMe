@@ -79,21 +79,24 @@ export class HomeComponent implements OnInit {
         subtitle: 'Weight as of ' + this.userDataService.getCurrentWeight().date.toLocaleDateString('en-US'),
         numDisplay: this.userDataService.getCurrentWeight().value,
         unit: 'lbs',
-        icon: 'faChartLine'
+        icon: 'faChartLine',
+        routerLink: 'weight'
       },
       {
         title: 'Your Goal',
         subtitle: this.userDataService.getUserGoal().goalType + ' per week',
         numDisplay: this.userDataService.getUserGoal().perWeek,
         unit: 'lbs',
-        icon: 'faChartBar'
+        icon: 'faChartBar',
+        routerLink: 'goals'
       },
       {
         title: 'Your Calories',
         subtitle: 'To meet your goal',
         numDisplay: this.userDataService.getUserTDEE(),
         unit: 'cal',
-        icon: 'faChartPie'
+        icon: 'faChartPie',
+        routerLink: 'calories'
       },
     ];
 

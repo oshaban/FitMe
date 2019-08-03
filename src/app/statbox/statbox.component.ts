@@ -44,6 +44,11 @@ export class StatboxComponent implements OnInit {
    */
   @Input() iconInput: string;
 
+  /**
+   * Sets the routerLink for when the statbox is clicked
+   */
+  @Input() routerLink: string;
+
   constructor() { }
 
   ngOnInit() {

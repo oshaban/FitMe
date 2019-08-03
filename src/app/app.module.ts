@@ -49,6 +49,8 @@ import { MatTableModule } from '@angular/material/table';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MacrotableComponent } from './charts/macrotable/macrotable.component';
 import { MacroStatBoxComponent } from './charts/macro-stat-box/macro-stat-box.component';
+import { GoalChartComponent } from './charts/goal-chart/goal-chart.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { MacroStatBoxComponent } from './charts/macro-stat-box/macro-stat-box.co
     LoginComponent,
     MacrotableComponent,
     MacroStatBoxComponent,
+    GoalChartComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

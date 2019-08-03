@@ -6,12 +6,20 @@ import { HomeComponent } from './pages/home/home.component';
 import { StatsComponent } from './pages/stats/stats.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
+import { MacroStatBoxComponent } from './charts/macro-stat-box/macro-stat-box.component';
+import { DateTrackingChartComponent } from './charts/date-tracking-chart/date-tracking-chart.component';
+import { GoalChartComponent } from './charts/goal-chart/goal-chart.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 // Registering components in router:
 const routes: Routes = [
   {
-    path: '',
-    component: HomeComponent
+    path: '', component: HomeComponent,
+    children: [
+      {path: 'weight', component: DateTrackingChartComponent },
+      {path: 'calories', component: MacroStatBoxComponent },
+      {path: 'goals', component: GoalChartComponent },
+    ]
   },
   {
     path: 'stats',
@@ -25,7 +33,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
-  { path: '**', component: HomeComponent } /* Wild-card route */
+  { path: '**', component: PageNotFoundComponent } /* Wild-card route */
 
 ];
 

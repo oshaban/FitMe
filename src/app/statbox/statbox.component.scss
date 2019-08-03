@@ -1,16 +1,3 @@
-.example-card {
-    max-width: 400px;
-  }
-  
-  .example-header-image {
-    background-image: url('https://image.flaticon.com/icons/svg/1694/1694106.svg');
-    background-size: cover;
-  }
-
-  img {
-    width: 80%;
-  }
-
 .mat-card-image:first-child {
     margin-top: 15px;
     margin-right: 20px;
@@ -28,4 +15,9 @@ a {
   position: absolute;
   top: 0; left: 0;
   height: 100%; width: 100%;
+}
+
+.statimg {
+  width: 100%;
+  padding-top: 2rem;
 }

@@ -107,5 +107,12 @@ export class UserDataService {
     return this.userData.fitnessProfile.goal;
   }
 
+  /**
+   * Returns all the weights of a user
+   */
+  public getWeights() {
+    return this.userWeightData.weight;
+  }
+
   constructor() { }
 }

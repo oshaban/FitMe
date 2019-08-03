@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { faChartLine } from '@fortawesome/free-solid-svg-icons';
+
 /**
  * @title Used to display statboxes on dashboard
  */
@@ -10,6 +12,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./statbox.component.scss']
 })
 export class StatboxComponent implements OnInit {
+
+  faChartLine = faChartLine;
 
   /**
    * Title for statbox

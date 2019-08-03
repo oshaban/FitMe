@@ -38,6 +38,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 
+/* Font Awesome */
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +72,7 @@ import { LoginComponent } from './pages/login/login.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    FontAwesomeModule
   ],
   providers: [
     Title,

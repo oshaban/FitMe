@@ -39,7 +39,7 @@ export class UserDataService {
       { value: 150, name: new Date(2019, 8, 1).toISOString() },
       { value: 160, name: new Date(2019, 8, 2).toISOString() },
       { value: 170, name: new Date(2019, 8, 3).toISOString() },
-      { value: 180, name: new Date(2019, 8, 4).toISOString() },
+      { value: 160, name: new Date(2019, 8, 4).toISOString() },
     ]
   };
 
@@ -47,7 +47,7 @@ export class UserDataService {
    * Stores a users latest Weight
    * Used in getCurrentWeight()
    */
-  private latestWeight: {date: Date, value: number};
+  private latestWeight: {value: number, name: string};
 
   /**
    * Stores a users TDEE
@@ -78,15 +78,12 @@ export class UserDataService {
    */
   public getCurrentWeight() {
 
-/*     // latestWeight is an object with {date:.., value:..} form
-   this.latestWeight = this.userWeightData.weight.reduce( function(r, a) {
-      
-      return r.date > a.date ? r : a;
+    // latestWeight is an object with {name:.., value:..} form
+    this.latestWeight = this.userWeightData.weight.reduce( function(r, a) {
+      return r.name > a.name ? r : a;
     });
 
-   return this.latestWeight; */
-
-   return {date: new Date(2019, 8, 1), value: 150}
+    return this.latestWeight;
 
   }
 

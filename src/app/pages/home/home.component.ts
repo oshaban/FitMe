@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
     this.StatBoxData = [
       {
         title: 'Current Weight',
-        subtitle: 'Weight as of ' + this.userDataService.getCurrentWeight().date.toLocaleDateString('en-US'),
+        subtitle: 'Weight as of ' + this.userDataService.getCurrentWeight().name.substring(0, 10),
         numDisplay: this.userDataService.getCurrentWeight().value,
         unit: 'lbs',
         icon: 'faChartLine',

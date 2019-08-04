@@ -80,7 +80,7 @@ export class HomeComponent implements OnInit {
         numDisplay: this.userDataService.getCurrentWeight().value,
         unit: 'lbs',
         icon: 'faChartLine',
-        routerLink: 'weight'
+        routerLink: ''
       },
       {
         title: 'Your Goal',

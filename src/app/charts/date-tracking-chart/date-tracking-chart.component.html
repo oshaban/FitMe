@@ -1,32 +1,38 @@
 <div class="container">
 
-    <div class="row">
-      
-      <!-- To DO -->
-        <ngx-charts-line-chart
-          [view]="view"
-          [scheme]="colorScheme"
-          [results]="multi"
-          [gradient]="gradient"
-          [xAxis]="showXAxis"
-          [yAxis]="showYAxis"
-          [showXAxisLabel]="showXAxisLabel"
-          [showYAxisLabel]="showYAxisLabel"
-          [xAxisLabel]="xAxisLabel"
-          [yAxisLabel]="yAxisLabel"
-          [autoScale]="autoScale"
-          [timeline]="timeline"
-          [showGridLines]="showGridLines"
-          (select)="select($event)"
-          (activate)="activate($event)"
-          (deactivate)="deactivate($event)" >
-        </ngx-charts-line-chart>
+  <div class="row section-title">
+      <div class="col-12">
+          <h2 class="stat">Your Weight</h2>
+      </div>
+  </div>
 
+  <div class="row graphdisplay">
+    <div class="col-8 mx-auto">
+    <!-- To DO -->
+      <ngx-charts-line-chart
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="multi"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [autoScale]="autoScale"
+        [timeline]="timeline"
+        [showGridLines]="showGridLines"
+        (select)="select($event)"
+        (activate)="activate($event)"
+        (deactivate)="deactivate($event)" >
+      </ngx-charts-line-chart>
     </div>
+  </div>
 
-    <div class="row">
-      <!-- Data -->
-      {{multi2 | json}}
-    </div>
+  <div class="row">
+    <!-- Data -->
+    {{multi2 | json}}
+  </div>
 
 </div>

@@ -14,9 +14,12 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 // Registering components in router:
 const routes: Routes = [
   {
-    path: '', component: HomeComponent,
+    path: '', redirectTo: '/dashboard', pathMatch: 'full'
+  },
+  {
+    path: 'dashboard', component: HomeComponent,
     children: [
-      {path: 'weight', component: DateTrackingChartComponent },
+      {path: '', component: DateTrackingChartComponent },
       {path: 'calories', component: MacroStatBoxComponent },
       {path: 'goals', component: GoalChartComponent },
     ]

@@ -1,0 +1,85 @@
+h2 {
+    text-align: center;
+}
+
+h2.stat {
+    text-align: left;
+}
+
+.section-title {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.formSection-container {
+    padding: 2rem 2rem 2rem 2rem;
+    margin-top: 2rem;
+    border: 0;
+    border-radius: 0.5rem;
+    box-shadow: 0.2rem 0.4rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
+    background-color: white;
+  }
+  
+  .mat-select-underline {
+    transform: perspective(1px);
+  }
+  
+  form {
+    margin-left: 1rem;
+  }
+  
+  mat-form-field {
+    margin-top: 1rem;
+  }
+  
+  ::ng-deep .mat-form-field-flex {
+    background: rgb(245, 248, 250);
+  }
+  
+  ::ng-deep .mat-form-field-infix {
+    margin-left: 0.5rem;
+  }
+  
+  .mat-form-field--no-underline .mat-input-underline {
+    background-color: transparent;
+  }
+  
+  
+  ::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #00aaff;
+  }
+  
+  ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: #00aaff;
+  }
+  
+  .label-activity {
+    display: block;
+  }
+  
+  mat-radio-group.radio-group-activity {
+  display: inline-block;
+  }
+  
+  mat-radio-button.btn-activity {
+  display: block;
+  }
+  
+  .field-title {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .signup-section {
+    margin-top: 2rem;
+  }
+  
+  button.toggle {
+    border: 0.07rem;
+    border-color: #00aaff;
+    border-style: solid;
+  } 
+
+.graphSection {
+    margin-top: 2rem;
+}

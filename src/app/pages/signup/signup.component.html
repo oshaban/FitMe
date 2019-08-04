@@ -10,48 +10,48 @@
                     
                     <form [formGroup]="userDetailsGroup">
                     
-                    <ng-template matStepLabel>Account Information</ng-template>
-                    
-                    <!-- START Input Field Controls -->
+                        <ng-template matStepLabel>Account Information</ng-template>
+                        
+                        <!-- START Input Field Controls -->
 
-                    <!-- User Name input field control -->
-                    <mat-form-field>
-                        <input matInput placeholder="User Name" formControlName="username" required>
-                        <mat-error *ngFor="let validation of userValidationMessage.username">
-                            <p *ngIf="userDetailsGroup.get('username').hasError(validation.type) && ( userDetailsGroup.get('username').dirty ) ">{{validation.message}} </p>
-                        </mat-error>
-                    </mat-form-field>
+                        <!-- User Name input field control -->
+                        <mat-form-field>
+                            <input matInput placeholder="User Name" formControlName="username" required>
+                            <mat-error *ngFor="let validation of userValidationMessage.username">
+                                <p *ngIf="userDetailsGroup.get('username').hasError(validation.type) && ( userDetailsGroup.get('username').dirty ) ">{{validation.message}} </p>
+                            </mat-error>
+                        </mat-form-field>
 
-                    <!-- First Name input field control -->
-                    <mat-form-field>
-                        <input matInput placeholder="First Name" formControlName="firstname" required>
-                        <mat-error *ngFor="let validation of userValidationMessage.firstname">
-                            <p *ngIf="userDetailsGroup.get('firstname').hasError(validation.type) && ( userDetailsGroup.get('firstname').dirty )">{{validation.message}} </p>
-                        </mat-error>
-                    </mat-form-field>
+                        <!-- First Name input field control -->
+                        <mat-form-field>
+                            <input matInput placeholder="First Name" formControlName="firstname" required>
+                            <mat-error *ngFor="let validation of userValidationMessage.firstname">
+                                <p *ngIf="userDetailsGroup.get('firstname').hasError(validation.type) && ( userDetailsGroup.get('firstname').dirty )">{{validation.message}} </p>
+                            </mat-error>
+                        </mat-form-field>
 
-                    <!-- Last Name input field control -->
-                    <mat-form-field>
-                        <input matInput placeholder="Last Name" formControlName="lastname" required>
-                        <mat-error *ngFor="let validation of userValidationMessage.lastname">
-                            <p *ngIf="userDetailsGroup.get('lastname').hasError(validation.type) && ( userDetailsGroup.get('lastname').dirty )">{{validation.message}} </p>
-                        </mat-error>
-                    </mat-form-field>
-    
-                    <!-- Password input field control -->
-                    <mat-form-field>
-                        <input matInput placeholder="Password" formControlName="password" [type]="'password'" required>
-                        <mat-error *ngFor="let validation of userValidationMessage.password">
-                            <p *ngIf="userDetailsGroup.get('password').hasError(validation.type) && ( userDetailsGroup.get('password').dirty )">{{validation.message}} </p>
-                        </mat-error>
-                    </mat-form-field>
+                        <!-- Last Name input field control -->
+                        <mat-form-field>
+                            <input matInput placeholder="Last Name" formControlName="lastname" required>
+                            <mat-error *ngFor="let validation of userValidationMessage.lastname">
+                                <p *ngIf="userDetailsGroup.get('lastname').hasError(validation.type) && ( userDetailsGroup.get('lastname').dirty )">{{validation.message}} </p>
+                            </mat-error>
+                        </mat-form-field>
+        
+                        <!-- Password input field control -->
+                        <mat-form-field>
+                            <input matInput placeholder="Password" formControlName="password" [type]="'password'" required>
+                            <mat-error *ngFor="let validation of userValidationMessage.password">
+                                <p *ngIf="userDetailsGroup.get('password').hasError(validation.type) && ( userDetailsGroup.get('password').dirty )">{{validation.message}} </p>
+                            </mat-error>
+                        </mat-form-field>
 
-                    <!-- END Input Field Controls -->
+                        <!-- END Input Field Controls -->
 
-                    <!-- Form buttons: Will not move onto next stepper until all valid info -->
-                    <div>
-                        <button class="toggle" mat-button matStepperNext>Next</button>
-                    </div>
+                        <!-- Form buttons: Will not move onto next stepper until all valid info -->
+                        <div>
+                            <button class="toggle" mat-button matStepperNext>Next</button>
+                        </div>
 
                     </form>
                 </mat-step>

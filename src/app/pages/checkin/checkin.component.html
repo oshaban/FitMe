@@ -1,0 +1,54 @@
+<div class="container">
+
+        <!-- Page title -->
+        <div class="row section-title">
+            <div class="col-12">
+                <h2 class="stat">Check In</h2>
+            </div>
+        </div>
+
+        <div class="row blurb">
+            <div class="col-12">
+                <p>Update your weight to get the most accurate fitness analysis!</p>
+            </div>
+        </div>
+
+        <div class="formSection-container">
+
+            <form class="row" [formGroup]="updateWeightGroup" (ngSubmit)="onSubmit()"> <!-- Start form -->
+
+                <div class="weightInput col-6">
+                    <mat-form-field>
+                        <input matInput placeholder="Weight?" formControlName="weightControl" required>
+                        <span matSuffix style="margin-right: 1rem">lbs</span>
+                    </mat-form-field>
+                </div> <!-- End weightInput -->
+
+                <div class="dateInput col-6">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="dateControl">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div> <!-- End dateInput -->
+
+
+                <!-- Submit button -->
+                <button
+                [disabled]="!updateWeightGroup.valid"
+                class="submit-btn"
+                mat-raised-button type="submit" 
+                style="margin-left: 1rem">Submit</button>
+
+            </form> <!-- End form -->
+
+        </div> <!-- End formSection -->
+    
+        <div class="row graphSection">
+            <div class="col-12">
+                <app-date-tracking-chart></app-date-tracking-chart>
+            </div>
+        </div>
+    
+    
+    </div> <!-- End container -->

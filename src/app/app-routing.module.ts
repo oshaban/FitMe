@@ -10,6 +10,7 @@ import { MacroStatBoxComponent } from './charts/macro-stat-box/macro-stat-box.co
 import { DateTrackingChartComponent } from './charts/date-tracking-chart/date-tracking-chart.component';
 import { GoalChartComponent } from './charts/goal-chart/goal-chart.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { CheckinComponent } from './pages/checkin/checkin.component';
 
 // Registering components in router:
 const routes: Routes = [
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'checkin',
+    component: CheckinComponent
   },
   { path: '**', component: PageNotFoundComponent } /* Wild-card route */
 

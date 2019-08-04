@@ -51,6 +51,7 @@ import { MacrotableComponent } from './charts/macrotable/macrotable.component';
 import { MacroStatBoxComponent } from './charts/macro-stat-box/macro-stat-box.component';
 import { GoalChartComponent } from './charts/goal-chart/goal-chart.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { CheckinComponent } from './pages/checkin/checkin.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     MacroStatBoxComponent,
     GoalChartComponent,
     PageNotFoundComponent,
+    CheckinComponent,
   ],
   imports: [
     BrowserModule,

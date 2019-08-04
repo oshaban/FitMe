@@ -11,6 +11,9 @@ import { Injectable } from '@angular/core';
 
 export class UserDataService {
 
+  /**
+   * Test document for user data
+    */
   private userData =  {
     username: 'string',
     firstname: 'string',
@@ -27,6 +30,9 @@ export class UserDataService {
     }
   };
 
+  /**
+   * Multiset for the graph
+    */
   multi: any[] = [
     {
       name: 'Weight',
@@ -55,7 +61,10 @@ export class UserDataService {
     },
   ];
 
-  multiTest: any[] = [];
+  /**
+   * Attempting to map userWeightData to a multiset
+   */
+  private MultiData: any[];
 
   /**
    * Format of data that is fetched from DB
@@ -107,6 +116,7 @@ export class UserDataService {
 
     // latestWeight is an object with {date:.., value:..} form
    this.latestWeight = this.userWeightData.weight.reduce( function(r, a) {
+      
       return r.date > a.date ? r : a;
     });
 
@@ -145,14 +155,14 @@ export class UserDataService {
    */
   public getWeights() {
 
-    this.multiTest = [
+    this.MultiData = [
       {
         name: 'Weight',
         series: this.userWeightData.weight
       }
     ];
 
-    console.log(this.multiTest);
+    console.log(this.MultiData);
     console.log(this.multi);
     return this.multi;
     // return this.multi;
@@ -165,14 +175,14 @@ export class UserDataService {
 
   public datatoMulti() {
 
-    this.multiTest = [
+    this.MultiData = [
       {
         name: 'Weight',
         series: this.userWeightData.weight
       }
     ];
 
-    console.log(this.multiTest);
+    console.log(this.multi);
     console.log(this.getWeights());
 
 

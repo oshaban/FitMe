@@ -27,7 +27,6 @@ export class MacroStatBoxComponent implements OnInit {
   /**
    * Stores a users macros: {protein: .., fat: .., carbs: ..}
    */
-
   private userMacros;
 
   /**

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserFormData } from '../../core/userFormData';
 import { UsernameValidator } from './username.validator'; // Checks if username is taken
+import { DateValidator } from './date.validator'; // Checks if user entered date is valid
 import { SignupService } from '../../core/signup.service';
 
 /**
@@ -145,6 +146,7 @@ export class SignupComponent implements OnInit {
       ],
       DOB : ['', [
         Validators.required,
+        DateValidator.validDate,
         ]
       ],
       trainingstyle : ['', Validators.required ],

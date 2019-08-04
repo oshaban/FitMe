@@ -113,8 +113,4 @@ export class HomeComponent implements OnInit {
 
   }
 
-  test() {
-    this.userDataService.datatoMulti();
-  }
-
 }

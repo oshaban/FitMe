@@ -39,7 +39,7 @@ export class DateTrackingChartComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.weightData = this.userDataService.getWeights();
+    this.weightData = this.userDataService.getWeightsMulti();
   }
 
 }

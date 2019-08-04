@@ -13,7 +13,7 @@ export class UserDataService {
 
   /**
    * Test document for user data
-    */
+   */
   private userData =  {
     username: 'string',
     firstname: 'string',
@@ -31,51 +31,15 @@ export class UserDataService {
   };
 
   /**
-   * Multiset for the graph
-    */
-  multi: any[] = [
-    {
-      name: 'Weight',
-      series: [
-        {
-          value: 150,
-          name: new Date(2019, 8, 1).toISOString(),
-        },
-        {
-          value: 200,
-          name: new Date(2019, 8, 2).toISOString(),
-        },
-        {
-          value: 200,
-          name: new Date(2019, 8, 3).toISOString(),
-        },
-        {
-          value: 200,
-          name: new Date(2019, 8, 4).toISOString(),
-        },
-        {
-          value: 200,
-          name: new Date(2019, 8, 5).toISOString(),
-        }
-      ]
-    },
-  ];
-
-  /**
-   * Attempting to map userWeightData to a multiset
-   */
-  private MultiData: any[];
-
-  /**
    * Format of data that is fetched from DB
    */
   private userWeightData =  {
     _id: 899,
     weight: [
-      { value: 150, date: new Date(2019, 8, 1) },
-      { value: 160, date: new Date(2019, 8, 2) },
-      { value: 170, date: new Date(2019, 8, 3) },
-      { value: 180, date: new Date(2019, 8, 4) },
+      { value: 150, name: new Date(2019, 8, 1).toISOString() },
+      { value: 160, name: new Date(2019, 8, 2).toISOString() },
+      { value: 170, name: new Date(2019, 8, 3).toISOString() },
+      { value: 180, name: new Date(2019, 8, 4).toISOString() },
     ]
   };
 
@@ -114,13 +78,15 @@ export class UserDataService {
    */
   public getCurrentWeight() {
 
-    // latestWeight is an object with {date:.., value:..} form
+/*     // latestWeight is an object with {date:.., value:..} form
    this.latestWeight = this.userWeightData.weight.reduce( function(r, a) {
       
       return r.date > a.date ? r : a;
     });
 
-   return this.latestWeight;
+   return this.latestWeight; */
+
+   return {date: new Date(2019, 8, 1), value: 150}
 
   }
 
@@ -151,41 +117,20 @@ export class UserDataService {
   }
 
   /**
-   * Returns all the weights of a user
+   * Returns all the weights of a user in a multi-set format for graphing
    */
-  public getWeights() {
+  public getWeightsMulti() {
 
-    this.MultiData = [
+    return  [
       {
         name: 'Weight',
         series: this.userWeightData.weight
       }
     ];
-
-    console.log(this.MultiData);
-    console.log(this.multi);
-    return this.multi;
-    // return this.multi;
   }
 
   public getUserMacros() {
     return this.userData.fitnessProfile.macros;
-  }
-
-
-  public datatoMulti() {
-
-    this.MultiData = [
-      {
-        name: 'Weight',
-        series: this.userWeightData.weight
-      }
-    ];
-
-    console.log(this.multi);
-    console.log(this.getWeights());
-
-
   }
 
   constructor() { }

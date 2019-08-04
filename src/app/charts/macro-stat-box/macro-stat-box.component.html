@@ -9,15 +9,19 @@
     <!-- Displays doughnut chart -->
     <div class="col-md-6 mx-auto">
         <app-macro-doughnut-chart
-            [protein]="10"
-            [fat]="20"
-            [carb]="30"
+            [protein]="userProtein"
+            [fat]="userFat"
+            [carbs]="userCarb"
         ></app-macro-doughnut-chart>
     </div>
 
     <!-- Displays macro table -->
     <div class="col md-6 mx-auto">
-        <app-macrotable></app-macrotable>
+        <app-macrotable
+            [protein]="userProtein"
+            [fat]="userFat"
+            [carbs]="userCarb"
+        ></app-macrotable>
     </div>
 
 </div>

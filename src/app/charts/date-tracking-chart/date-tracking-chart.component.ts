@@ -1,7 +1,3 @@
-/*
-FROM: https://valor-software.com/ng2-charts/#LineChart
-*/
-
 import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../../core/user-data.service';
 
@@ -13,40 +9,12 @@ import { UserDataService } from '../../core/user-data.service';
 
 export class DateTrackingChartComponent implements OnInit {
 
-  // TO DO: We need to have a way to initalize multi2 before it is in ngOnInit
-  // Since the graph is created before then
-  multi2: any[] = [];
-
-  multi: any[] = [
-    {
-      name: 'Weight',
-      series: [
-        {
-          value: 150,
-          name: '2016-09-19T23:07:09.324Z'
-        },
-        {
-          value: 200,
-          name: '2016-09-14T19:19:47.323Z'
-        },
-        {
-          value: 200,
-          name: '2016-09-14T13:42:47.347Z'
-        },
-        {
-          value: 200,
-          name: '2016-09-23T04:14:51.090Z'
-        },
-        {
-          value: 200,
-          name: '2016-09-18T18:52:42.292Z'
-        }
-      ]
-    },
-  ];
+  /**
+   * Stores a users weight to be plotted
+   */
+  weightData: any[] = [];
 
   // Chart Options
-
   view: any[] = [700, 400];
   colorScheme = {
     domain: ['#007bff']
@@ -62,18 +30,16 @@ export class DateTrackingChartComponent implements OnInit {
   timeline = true;
   showGridLines = true;
 
+  /**
+   *
+   * @param userDataService Used to fetch a users weight data
+   */
   constructor(
     private userDataService: UserDataService,
-  ) { }
+  ) {}
 
   ngOnInit() {
-    // this.testData = this.userDataService.getWeights();
-
-    // Generate dates
-    for (let index = 1; index < 20; index++) {
-      this.multi2.push( {value: index, date: new Date(2019, 1, index) } );
-    }
-
+    this.weightData = this.userDataService.getWeights();
   }
 
 }

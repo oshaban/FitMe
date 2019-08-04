@@ -23,8 +23,37 @@ export class UserDataService {
         height: 72,
         birthDay: new Date(2019, 1, 1),
         activityMultiplier: 1,
+        macros: {protein: 200, fat: 60, carbs: 400},
     }
   };
+
+  multi: any[] = [
+    {
+      name: 'Weight',
+      series: [
+        {
+          value: 150,
+          name: '2016-09-19T23:07:09.324Z'
+        },
+        {
+          value: 200,
+          name: '2016-09-14T19:19:47.323Z'
+        },
+        {
+          value: 200,
+          name: '2016-09-14T13:42:47.347Z'
+        },
+        {
+          value: 200,
+          name: '2016-09-23T04:14:51.090Z'
+        },
+        {
+          value: 200,
+          name: '2016-09-18T18:52:42.292Z'
+        }
+      ]
+    },
+  ];
 
   private userWeightData =  {
     _id: 899,
@@ -111,7 +140,11 @@ export class UserDataService {
    * Returns all the weights of a user
    */
   public getWeights() {
-    return this.userWeightData.weight;
+    return this.multi;
+  }
+
+  public getUserMacros() {
+    return this.userData.fitnessProfile.macros;
   }
 
   constructor() { }

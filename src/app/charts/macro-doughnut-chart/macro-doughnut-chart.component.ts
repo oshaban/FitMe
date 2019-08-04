@@ -21,7 +21,7 @@ export class MacroDonoughtChartComponent implements OnInit {
   /**
    * Carb input for graph
    */
-  @Input() carb: number;
+  @Input() carbs: number;
 
   /**
    * Fat input for graph
@@ -49,7 +49,7 @@ export class MacroDonoughtChartComponent implements OnInit {
 
     // Sets chart data to be graphed
     this.doughnutChartData = [
-      [this.protein, this.fat, this.carb],
+      [this.protein, this.fat, this.carbs],
     ];
 
   }

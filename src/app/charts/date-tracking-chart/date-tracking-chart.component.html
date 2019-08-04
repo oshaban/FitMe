@@ -1,18 +1,21 @@
 <div class="container">
 
+  <!-- Section title -->
   <div class="row section-title">
       <div class="col-12">
           <h2 class="stat">Your Weight</h2>
       </div>
   </div>
 
-  <div class="row graphdisplay">
-    <div class="col-8 mx-auto">
-    <!-- To DO -->
+  <!-- Display graph
+    *Only show once the data is loaded -->
+  <div class="row graphdisplay" *ngIf="weightData">
+    
+    <div class="col-8 mx-auto" >
       <ngx-charts-line-chart
         [view]="view"
         [scheme]="colorScheme"
-        [results]="multi"
+        [results]="weightData"
         [gradient]="gradient"
         [xAxis]="showXAxis"
         [yAxis]="showYAxis"
@@ -28,11 +31,9 @@
         (deactivate)="deactivate($event)" >
       </ngx-charts-line-chart>
     </div>
-  </div>
 
-  <div class="row">
-    <!-- Data -->
-    {{multi2 | json}}
-  </div>
+    {{weightData | json}}
+    
+  </div> 
 
 </div>

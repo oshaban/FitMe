@@ -19,16 +19,6 @@ router.get('/', async function(req,res) {
 });
 
 // GET /api/weights/me
-    // Body response: Returns to current user
-    // Requires client to send JWT to server
-router.get('/me', function(req,res) {
-    res.send('test');
-
-    // TO DO
-    
-});
-
-// GET /api/weights/me
     // Body response: Returns weight of current user
     // End point is only available to authenticated users
 router.get('/me', auth, async function(req,res) {
@@ -40,5 +30,7 @@ router.get('/me', auth, async function(req,res) {
     }
 
 });
+
+
 
 module.exports = router // Exports router 

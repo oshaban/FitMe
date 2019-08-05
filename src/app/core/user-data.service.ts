@@ -39,7 +39,13 @@ export class UserDataService {
       { value: 150, name: new Date(2019, 8, 1).toISOString() },
       { value: 160, name: new Date(2019, 8, 2).toISOString() },
       { value: 170, name: new Date(2019, 8, 3).toISOString() },
-      { value: 160, name: new Date(2019, 8, 4).toISOString() },
+      { value: 160, name: new Date(2019, 8, 5).toISOString() },
+      { value: 160, name: new Date(2019, 8, 6).toISOString() },
+      { value: 160, name: new Date(2019, 8, 8).toISOString() },
+      { value: 160, name: new Date(2019, 8, 9).toISOString() },
+      { value: 160, name: new Date(2019, 8, 10).toISOString() },
+      { value: 160, name: new Date(2019, 8, 11).toISOString() },
+      { value: 160, name: new Date(2019, 8, 12).toISOString() },
     ]
   };
 
@@ -69,6 +75,10 @@ export class UserDataService {
    */
   private ageInYrs: number;
 
+  /**
+   * Stores if a date was found in the server
+   */
+  private found: boolean;
 
   // Public data
 
@@ -114,6 +124,13 @@ export class UserDataService {
   }
 
   /**
+   * Returns a users weights in {value:.., name:..} format
+   */
+  public getUserWeights() {
+    return this.userWeightData.weight;
+  }
+
+  /**
    * Returns all the weights of a user in a multi-set format for graphing
    */
   public getWeightsMulti() {
@@ -128,6 +145,36 @@ export class UserDataService {
 
   public getUserMacros() {
     return this.userData.fitnessProfile.macros;
+  }
+
+  /**
+   *
+   * @param arg Object to update weight in database server
+   */
+
+  public addWeight(arg: {value: number, name: string}) {
+    console.log(arg.value);
+    console.log(arg.name);
+
+    // Assume date is not found
+    this.found = false;
+
+    // tslint:disable-next-line: prefer-for-of
+    for (let index = 0; index < this.userWeightData.weight.length; index++) {
+      if ( this.userWeightData.weight[index].name ===  arg.name) {
+        // Matching date found, update the weight
+        this.found = true;
+        this.userWeightData.weight[index].value = arg.value;
+      }
+    } // End for
+
+    // If the date doesn't exist, then add the new entry
+    if (this.found === false) {
+      this.userWeightData.weight.push(arg);
+    }
+
+    // To fix live updating graph
+
   }
 
   constructor() { }

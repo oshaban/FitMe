@@ -18,8 +18,24 @@ export class CheckinComponent implements OnInit {
   private updateWeightGroup: FormGroup;
 
   /**
+   * Stores form submission for user weight input
+   */
+  private weightInput: number;
+
+  /**
+   * Stores form submission for user date input
+   */
+  private dateInput: Date;
+
+  /**
+   * Stores a users weights from the server
+   */
+  private userWeight: {value: number, name: string}[];
+
+  /**
    *
    * @param userDataService Used to fetch user data and update user data
+   * @param formBuilder Used to create form for user weight submission
    */
   constructor(
     private userDataService: UserDataService,
@@ -49,7 +65,17 @@ export class CheckinComponent implements OnInit {
    */
   private onSubmit() {
 
-    // TO DO
+    this.userDataService.getUserWeights();
+
+    // Get values from form submission
+    this.dateInput = this.updateWeightGroup.value.dateControl;
+    this.weightInput = this.updateWeightGroup.value.weightControl;
+
+    // Check if the weight entry for the given date exists
+    this.userWeight = this.userDataService.getUserWeights();
+
+    // Adds a weight to the server it it doesn't exist, otherwise updates an existing entry
+    this.userDataService.addWeight({value: this.weightInput, name: this.dateInput.toISOString()});
 
   }
 

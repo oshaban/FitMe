@@ -4,11 +4,12 @@
 
 const express = require('express'); // Loads express
 const router = express.Router(); // Creates a router 
-const {User} = require('../models/userSchema'); // Loads User collection
-const {Weight} = require('../models/weightSchema'); // Loads Weight collection
+const { User } = require('../models/userSchema'); // Loads User collection
+const { Weight } = require('../models/weightSchema'); // Loads Weight collection
 
 const Joi = require('@hapi/joi'); // For HTTP request body validation
 const bcrypt = require('bcryptjs'); // Used to hash passwords
+const auth = require('../middleware/auth'); // Middleware for auth
 const fitFunctions = require('../lib') // Used to calculate user fitness profile
 
 // GET /api/users
@@ -16,17 +17,21 @@ const fitFunctions = require('../lib') // Used to calculate user fitness profile
 router.get('/', async function(req,res) {
     // Returns all users, excluding the password
     const allUserDocs = await User.find().select({password: 0});
+    console.log(process.env.JWTPRIVATEKEY);
     res.send(allUserDocs);
 });
 
 // GET /api/users/me
     // Body response: Returns to current user
-    // Requires client to send JWT to server
-router.get('/me', function(req,res) {
-    res.send('test');
+    // End point is only available to authenticated users
+router.get('/me', auth, async function(req,res) {
+    try {
+        const user = await User.findById(req.user._id).select({password: 0});
+        res.send(user);
+    } catch(error) {
+        console.log(error);
+    }
 
-    // TO DO
-    
 });
 
 // POST /api/users/
@@ -43,7 +48,6 @@ router.post('/', async function(req,res) {
     try{
         //Check if user is already registered
         let user = await User.findOne({username: req.body.username}); //user is null if not registered
-
         if(user) return res.status(400).send('User already registered');
 
         // If user is not registered, generate fitness profile:

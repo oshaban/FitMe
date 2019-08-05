@@ -21,3 +21,4 @@ const port = process.env.PORT || 3500;
 
 // Runs the backend server
 const server = app.listen(port, ()=> {console.log(`Back-end server running on: ${port}`)});
+module.exports = server; // Exports server object for integration testing

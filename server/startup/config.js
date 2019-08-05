@@ -5,6 +5,7 @@ const result = require('dotenv').config() //Loads vars from .env file into envir
 const helmet = require('helmet'); // Secures express applications
 const compression = require('compression'); // Nodejs compression middle-ware
 const cors = require('cors'); // Cors middleware
+const morgan = require('morgan'); // Logs HTTP requests
 
 function config(express, app) {
     
@@ -19,6 +20,12 @@ function config(express, app) {
     app.use(compression());
     app.use(helmet());
     app.use(cors());
+
+    // Only use morgan in dev environment
+    if(process.env.NODE_ENV === 'development') {
+        app.use(morgan('tiny'));
+    }
+
 }
 
 module.exports = config

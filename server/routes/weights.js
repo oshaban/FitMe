@@ -28,4 +28,17 @@ router.get('/me', function(req,res) {
     
 });
 
+// GET /api/weights/me
+    // Body response: Returns weight of current user
+    // End point is only available to authenticated users
+router.get('/me', auth, async function(req,res) {
+    try {
+        const weight = await Weight.findOne({user: req.user._id}); // Gets all the weights of user with user._id
+        res.send(weight);
+    } catch(error) {
+        console.log(error);
+    }
+
+});
+
 module.exports = router // Exports router 

@@ -8,8 +8,7 @@ const {User} = require('../models/userSchema'); // Loads User collection
 const {Weight} = require('../models/weightSchema'); // Loads Weight collection
 
 const Joi = require('@hapi/joi'); // For HTTP request body validation
-//const bcrypt = require('bcrypt'); // Used to hash passwords
-    //TO DO
+const bcrypt = require('bcryptjs'); // Used to hash passwords
 const fitFunctions = require('../lib') // Used to calculate user fitness profile
 
 // GET /api/users
@@ -37,7 +36,7 @@ router.post('/', async function(req,res) {
     // Check if the HTTP request body is valid
     if( !validateUser(req.body) ) {
         // Invalid input
-        res.status(400).send('Bad Request');
+        return res.status(400).send('Bad Request');
     }
 
     // Check if user is already registered
@@ -72,9 +71,9 @@ router.post('/', async function(req,res) {
             }
         });
 
-        // TO DO: Hash password ; requires Bcrypt
-        //const salt = await bcrypt.genSalt(10); // Generates a salt
-        //user.password = await bcrypt.hash(user.password,salt);
+        // Hash password 
+        const salt = await bcrypt.genSalt(10); // Generates a salt
+        user.password = await bcrypt.hash(user.password,salt);
 
         // Save user document to DB
         const resultUser = await user.save();

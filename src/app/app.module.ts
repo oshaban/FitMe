@@ -52,6 +52,7 @@ import { MacroStatBoxComponent } from './charts/macro-stat-box/macro-stat-box.co
 import { GoalChartComponent } from './charts/goal-chart/goal-chart.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { CheckinComponent } from './pages/checkin/checkin.component';
+import { WeighttableComponent } from './charts/weighttable/weighttable.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { CheckinComponent } from './pages/checkin/checkin.component';
     GoalChartComponent,
     PageNotFoundComponent,
     CheckinComponent,
+    WeighttableComponent,
   ],
   imports: [
     BrowserModule,

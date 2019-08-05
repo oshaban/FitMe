@@ -1,33 +1,36 @@
+/**
+ * Stores test data to mock server data 
+ */
 
 module.exports = [
 {
-    id: 1,
-    name: "Leanne Graham",
-    username: "Bret",
-    email: "Sincere@april.biz",
-    goals: {
-        lat: "-37.3159",
-        lng: "81.1496"
-    },
-    macros: {
-        protein: 200,
-        fat: 65,
-        carbs = 400
+    username: 'test123',
+    firstname: 'Bill',
+    lastname: 'Doe',
+    password: 'test',
+    fitnessProfile: {
+        startWeight: {weight: 123, date: new Date()},
+        goal: 11,
+        gender: 'M',
+        height: 72,
+        birthDay: new Date(),
+        activityMultiplier: 1,
+        macros: {protein: 200, fat: 30, carbs: 50}
     }
 },
 {
-    id: 1,
-    name: "Leanne Graham",
-    username: "Bret",
-    email: "Sincere@april.biz",
-    goals: {
-        lat: "-37.3159",
-        lng: "81.1496"
-    },
-    macros: {
-        protein: 200,
-        fat: 65,
-        carbs = 400
+    username: 'test123',
+    firstname: 'Bill',
+    lastname: 'Doe',
+    password: 'test',
+    fitnessProfile: {
+        startWeight: {weight: 123, date: new Date()},
+        goal: 1,
+        gender: 'M',
+        height: 72,
+        birthDay: new Date(),
+        activityMultiplier: 1,
+        macros: {protein: 200, fat: 30, carbs: 50}
     }
 },
 ]

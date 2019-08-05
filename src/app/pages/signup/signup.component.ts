@@ -130,10 +130,14 @@ export class SignupComponent implements OnInit {
       ],
       heightfeet: ['', [
         Validators.required,
+        Validators.min(1),
+        Validators.max(10)
         ]
       ],
       heightinches: ['', [
         Validators.required,
+        Validators.min(0),
+        Validators.max(12)
         ]
       ],
       gender : ['', [

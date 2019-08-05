@@ -58,6 +58,8 @@ export class CheckinComponent implements OnInit {
         ]
       ]
     });
+
+    this.userWeight = this.userDataService.getUserWeights();
   }
 
   /**

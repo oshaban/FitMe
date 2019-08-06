@@ -49,9 +49,9 @@ describe('lib.js', ()=>{
 
     describe('getCals()', ()=>{
         
-        it('should return calories using M profile if fitnessProfile is M', async()=> {
+        it('should return TDEE using M profile if fitnessProfile is M', async()=> {
             
-            const cals = fit.getCals(mockUserM.fitnessProfile);
+            const cals = fit.getTDEE(mockUserM.fitnessProfile);
 
             let baseCals = 66
             + (13.7 * mockUserM.fitnessProfile.startWeight)
@@ -64,13 +64,13 @@ describe('lib.js', ()=>{
 
             let result = tdee + caloricSurplus;
 
-            expect(result).toBe(cals);
+            expect(tdee).toBe(cals);
 
         });
 
-        it('should return calories using F profile if fitnessProfile is F', async()=> {
+        it('should return TDEE using F profile if fitnessProfile is F', async()=> {
             
-            const cals = fit.getCals(mockUserF.fitnessProfile);
+            const cals = fit.getTDEE(mockUserF.fitnessProfile);
 
             let baseCals = 665
             + (9.6 * mockUserF.fitnessProfile.startWeight)
@@ -78,12 +78,8 @@ describe('lib.js', ()=>{
             + (4.7 * fit.getAge(mockUserF.fitnessProfile.birthDay) );
 
             let tdee = (baseCals * mockUserF.fitnessProfile.activityMultiplier);
-            
-            let caloricSurplus = 200
 
-            let result = tdee + caloricSurplus;
-
-            expect(result).toBe(cals);
+            expect(tdee).toBe(cals);
 
         });
 

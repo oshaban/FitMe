@@ -196,6 +196,12 @@ describe('/api/users', ()=>{
             expect(res.status).toBe(400);
         });
 
+        it('should return a 400 if goal is not -1, -0.5, 0, 0.5, 1', async()=> {
+            mockUser.fitnessProfile.goal = 2;
+            const res = await exec();
+            expect(res.status).toBe(400);
+        });
+
         // Success cases
         it('should return 400 if user is already registered', async()=> {
             const res1 = await exec(); // Save mockUser to DB

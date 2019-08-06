@@ -137,7 +137,7 @@ function validateUser(user) {
             gender: Joi.string().valid('M','F').required(),
             birthDay: Joi.date().required(),
             activityMultiplier: Joi.number().required(),
-            goal: Joi.number().required(),
+            goal: Joi.number().valid(-1,-0.5,0,0.5,1).required(),
         }
     });
     

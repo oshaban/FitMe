@@ -17,14 +17,12 @@ function getAge(birthday) {
 }
 
 /**
- * Generates the number of calories based on input fitnessProfile
+ * Generates TDEE based on fitness profile
  * @param { {startWeight: number, height: number, gender: string, birthDay: Date, activityMultiplier: number, goal: number} fitnessProfile 
  */
-function getCals(fitnessProfile) {
+function getTDEE(fitnessProfile) {
 
     let baseCals;
-
-    console.log(fitnessProfile.gender);
 
     // https://www.k-state.edu/paccats/Contents/PA/PDF/Physical%20Activity%20and%20Controlling%20Weight.pdf
     if(fitnessProfile.gender === "M") {
@@ -34,10 +32,46 @@ function getCals(fitnessProfile) {
     }
 
     const TDEE = (baseCals * fitnessProfile.activityMultiplier);
+    
+    return TDEE;
+}
 
-    const caloricSurplus = 200;
+/**
+ * Generates recommended calories based on fitness profile
+ * @param { {startWeight: number, height: number, gender: string, birthDay: Date, activityMultiplier: number, goal: number} fitnessProfile 
+ */
+function getCals(fitnessProfile) {
 
-    return TDEE + caloricSurplus;
+    let tdee = getTDEE(fitnessProfile)
+
+    let caloricSurplus = 0;
+    // Calculate caloric surplus based on fitnessProfile goal
+    switch (fitnessProfile.goal) {
+        case 1:
+            caloricSurplus = 200;
+            break;
+        
+        case 0.5:
+            caloricSurplus = 100;
+            break;
+
+        case 0:
+            caloricSurplus = 0
+            break;
+
+        case -0.5:
+            caloricSurplus = -100;
+            break;
+
+        case -1:
+            caloricSurplus = -200;
+            break;
+    
+        default:
+            break;
+    }
+
+    return tdee + caloricSurplus;
 
 }
 
@@ -55,5 +89,6 @@ function getMacros(fitnessProfile) {
 module.exports = {
     getCals,
     getMacros,
-    getAge
+    getAge,
+    getTDEE
 }

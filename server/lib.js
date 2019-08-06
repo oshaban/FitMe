@@ -21,7 +21,7 @@ function getAge(birthday) {
  * @param { {startWeight: number, goal: number, gender: string, height: number, birthday: string, activityMultiplier: number } } fitnessProfile 
  */
 function getCals(fitnessProfile) {
-    console.log(fitnessProfile);
+    // console.log(fitnessProfile);
 
     let baseCals = 0;
 

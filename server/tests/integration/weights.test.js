@@ -84,11 +84,12 @@ describe('/api/weights', ()=>{
     
     }); // End GET /me tests
 
-    describe('POST /', ()=>{
+    describe('POST /me', ()=>{
 
         let mockUser;
         let mockReq;
         let token;
+        let user;
 
         // Set data to POST to server
         beforeEach(async ()=> {
@@ -111,15 +112,34 @@ describe('/api/weights', ()=>{
             };
 
             // Save test user to DB before each test, and generate a token to send with request
-            const user = new User(mockUser);
+            user = new User(mockUser);
             token = user.generateAuthToken();
 
             // Populate test user DB with user
             await user.save();
 
+            // Test weight
+            mockWeight = {
+                user: user._id,
+                weight: [{
+                    value: mockUser.fitnessProfile.startWeight.weight,
+                    name: mockUser.fitnessProfile.startWeight.date,
+                }]
+            }
+
+            // Populate test weight DB with weight
+            weight = new Weight(mockWeight);
+            await weight.save();
+
             // Test request to /api/weights/me
             mockReq = {
                 weight: "150",
+                date: "2000-08-05T12:54:48.944Z",
+            }
+
+            // Test request to /api/weights/me
+            mockReq2 = {
+                weight: "160",
                 date: "2000-08-05T12:54:48.944Z",
             }
 
@@ -155,7 +175,51 @@ describe('/api/weights', ()=>{
             expect(res.status).toBe(400);
         });
 
+        it('should save the weight in database if valid weight', async()=> {
+
+            const res = await request(server)
+                .post('/api/weights/me')
+                .set('x-auth-token', token)
+                .send(mockReq);
+
+            const queryWeight = await Weight.findOne( {user: user._id} );
+            // Gets weight document from for user
+
+            // Finds sub-document containing the exact weight object
+            let obj = queryWeight.weight.find(o => o.value == mockReq.weight );
+            // console.log(obj);
+            // console.log(queryWeight.weight);
+
+            expect(res.status).toBe(200);
+            expect(obj).not.toBeNull();
+
+        });
+
         // TO DO
+        it('should not create a new weight document if the date exists already', async()=> {
+
+            // 1st POST with mockReq as request data
+            const res1 = await request(server)
+                .post('/api/weights/me')
+                .set('x-auth-token', token)
+                .send(mockReq);
+
+            // 2nd POST request with mockReq as request data
+            const res2 = await request(server)
+                .post('/api/weights/me')
+                .set('x-auth-token', token)
+                .send(mockReq2);
+
+            // weights array in document should remain size 2 (one for initial weight, one for 1st POST request)
+
+            const queryWeight = await Weight.findOne( {user: user._id} );
+            // Gets weight document from for user
+
+            expect(res1.status).toBe(200);
+            expect(res2.status).toBe(200);
+            expect(queryWeight.weight.length).toBe(2);
+
+        });
     
     }); // End POST /me tests
     

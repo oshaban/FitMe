@@ -27,7 +27,7 @@ router.get('/', async function(req,res) {
     // End point is only available to authenticated users
 router.get('/me', auth, async function(req,res) {
     try {
-        const weight = await Weight.findOne({user: req.user._id}); // Gets all the weights of user with user._id
+        const weight = await Weight.findOne({user: req.user._id}) // Gets all the weights of user with user._id
         res.send(weight);
     } catch(error) {
         res.status(500).send('Something failed');
@@ -51,13 +51,28 @@ router.post('/me', auth, async function(req,res) {
             // req.user is added by auth middle-ware
         const weightDoc = await Weight.findOne({user: req.user._id});
 
-        // Check if the weight on the given date exists
-            // If weight exists, update existing date
+        // Convert req.body.date to date object
+        dateEntry = new Date(req.body.date);
 
-        // Otherwise add new weight to the document
-        weightDoc.weight.push(
-            {value: req.body.weight, name: req.body.date}
-        )
+        // Check if the weight on the given date exists
+        let index = weightDoc.weight.findIndex(function(obj) {
+            if( obj.name.getFullYear() === dateEntry.getFullYear() &&
+                obj.name.getMonth() === dateEntry.getMonth() &&
+                obj.name.getDate() === dateEntry.getDate()
+            ) return true
+        }); // Searches weightDoc to find index of existing date
+
+        if(index != -1) {
+            // Weight on the given date exists, update existing date
+            weightDoc.weight[index].value = req.body.weight;
+            await weightDoc.save();
+        } else{
+            // Otherwise add new weight to the document
+            weightDoc.weight.push({
+                value: req.body.weight,
+                name: req.body.date
+            });
+        }
 
         // Save document
         const resultWeight = await weightDoc.save();

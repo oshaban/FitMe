@@ -10,7 +10,7 @@ const { Weight } = require('../models/weightSchema'); // Loads Weight collection
 const Joi = require('@hapi/joi'); // For HTTP request body validation
 const bcrypt = require('bcryptjs'); // Used to hash passwords
 const auth = require('../middleware/auth'); // Middleware for auth
-const fitFunctions = require('../lib') // Used to calculate user fitness profile
+const fit = require('../lib') // Used to calculate user fitness profile
 
 // GET /api/users
     // Body response: Returns all users from the 'Users' collection
@@ -55,8 +55,8 @@ router.post('/', async function(req,res) {
         if(user) return res.status(400).send('User already registered');
 
         // If user is not registered, generate fitness profile:
-        const calories = fitFunctions.getCals(req.body.fitnessProfile);
-        const macros = fitFunctions.getMacros(req.body.fitnessProfile);
+        const calories = fit.getCals(req.body.fitnessProfile);
+        const macros = fit.getMacros(req.body.fitnessProfile);
 
         // Stores today's date for today's weight
         const today = new Date();
@@ -74,7 +74,7 @@ router.post('/', async function(req,res) {
                 height: req.body.fitnessProfile.height,
                 birthDay: req.body.fitnessProfile.birthDay,
                 activityMultiplier: req.body.fitnessProfile.activityMultiplier,
-                recommendedCalories: 10,
+                recommendedCalories: calories,
                 macros: macros
             }
         });
@@ -159,12 +159,12 @@ function validateUser(user) {
 	"lastname":"Doe",
 	"password":"testpass",
 	"fitnessProfile":{
-		"startWeight": "81",
-		"goal": "1",
+        "startWeight": "81",
+        "height": 182,
 		"gender":"M",
-		"height": 182,
 		"birthDay":"2000-08-05T12:54:48.944Z",
-		"activityMultiplier": "1"
+        "activityMultiplier": "1",
+        "goal": "1",
 	}
 } */
 

@@ -18,18 +18,19 @@ function getAge(birthday) {
 
 /**
  * Generates the number of calories based on input fitnessProfile
- * @param { {startWeight: number, goal: number, gender: string, height: number, birthday: string, activityMultiplier: number } } fitnessProfile 
+ * @param { {startWeight: number, height: number, gender: string, birthDay: Date, activityMultiplier: number, goal: number} fitnessProfile 
  */
 function getCals(fitnessProfile) {
-    // console.log(fitnessProfile);
 
-    let baseCals = 0;
+    let baseCals;
+
+    console.log(fitnessProfile.gender);
 
     // https://www.k-state.edu/paccats/Contents/PA/PDF/Physical%20Activity%20and%20Controlling%20Weight.pdf
     if(fitnessProfile.gender === "M") {
-        baseCals = 66 + (13.7 * fitnessProfile.weight) + (5 * fitnessProfile.height) + (6.8 * getAge(fitnessProfile.DOB));
+        baseCals = 66 + (13.7 * fitnessProfile.startWeight) + (5 * fitnessProfile.height) + (6.8 * getAge(fitnessProfile.birthDay));
     } else {
-        baseCals= 665 + (9.6 * fitnessProfile.weight) + (1.8 * fitnessProfile.height) + (4.7 * getAge(fitnessProfile.DOB));
+        baseCals= 665 + (9.6 * fitnessProfile.startWeight) + (1.8 * fitnessProfile.height) + (4.7 * getAge(fitnessProfile.birthDay));
     }
 
     const TDEE = (baseCals * fitnessProfile.activityMultiplier);
@@ -53,5 +54,6 @@ function getMacros(fitnessProfile) {
 
 module.exports = {
     getCals,
-    getMacros
+    getMacros,
+    getAge
 }

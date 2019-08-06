@@ -231,7 +231,7 @@ describe('/api/users', ()=>{
             const queryUser = await User.findOne({username: mockUser.username}); // User DB query
             const queryWeight = await Weight.findOne({user: queryUser._id}); // Weight DB query
 
-            console.log('test ' + queryWeight)
+            // console.log('test ' + queryWeight)
             expect(res.status).toBe(200);
             expect(queryWeight).not.toBeNull();
             expect(queryWeight).toHaveProperty('user');

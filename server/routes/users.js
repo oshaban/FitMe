@@ -15,10 +15,14 @@ const fitFunctions = require('../lib') // Used to calculate user fitness profile
 // GET /api/users
     // Body response: Returns all users from the 'Users' collection
 router.get('/', async function(req,res) {
-    // Returns all users, excluding the password
-    const allUserDocs = await User.find().select({password: 0});
-    console.log(process.env.JWTPRIVATEKEY);
-    res.send(allUserDocs);
+    try{
+        // Returns all users, excluding the password
+        const allUserDocs = await User.find().select({password: 0});
+        // console.log(process.env.JWTPRIVATEKEY);
+        res.send(allUserDocs);
+    } catch(error) {
+        res.status(500).send('Something failed');
+    }
 });
 
 // GET /api/users/me
@@ -81,7 +85,7 @@ router.post('/', async function(req,res) {
 
         // Save user document to DB
         const resultUser = await user.save();
-        console.log(resultUser);
+        // console.log(resultUser);
 
         // Save initial weight to DB
         weight = new Weight({
@@ -93,7 +97,7 @@ router.post('/', async function(req,res) {
 
         // Save weight document to DB
         const resultWeight = await weight.save();
-        console.log(resultWeight); 
+        // console.log(resultWeight); 
 
         // Create a JWT for auth
         const token = user.generateAuthToken(); 
@@ -114,9 +118,8 @@ router.post('/', async function(req,res) {
 
 
 /**
- * @param {
- * } user User object from HTTP request body
  * Returns true if valid request body, otherwise returns false
+ * @param {*} user User object from HTTP request body
  */
 function validateUser(user) {
 
@@ -151,10 +154,10 @@ function validateUser(user) {
 
 // Sample POST request format
 /* {
-	"username":"test23",
-	"firstname":"Bbbb",
+	"username":"testing123",
+	"firstname":"John",
 	"lastname":"Doe",
-	"password":"test",
+	"password":"testpass",
 	"fitnessProfile":{
 		"startWeight": "81",
 		"goal": "1",

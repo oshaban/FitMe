@@ -4,8 +4,8 @@
 
 const express = require('express'); // Loads express
 const router = express.Router(); // Creates a router 
-const {User} = require('../models/userSchema'); // Loads User collection
-const {Weight} = require('../models/weightSchema'); // Loads Weight collection
+const { User } = require('../models/userSchema'); // Loads User collection
+const { Weight } = require('../models/weightSchema'); // Loads Weight collection
 
 const Joi = require('@hapi/joi'); // For HTTP request body validation
 
@@ -13,8 +13,12 @@ const Joi = require('@hapi/joi'); // For HTTP request body validation
     // Body response: Returns all weights from 'Weights' collection
 router.get('/', async function(req,res) {
     
-    const weights = await Weight.find(); // Finds all user weights
-    res.send(weights);
+    try{
+        const weights = await Weight.find(); // Finds all user weights
+        res.send(weights);
+    } catch(error) {
+        res.status(500).send('Something failed');
+    }
 
 });
 
@@ -26,11 +30,80 @@ router.get('/me', auth, async function(req,res) {
         const weight = await Weight.findOne({user: req.user._id}); // Gets all the weights of user with user._id
         res.send(weight);
     } catch(error) {
-        console.log(error);
+        res.status(500).send('Something failed');
     }
 
 });
 
+// POST /api/weights/me
+    // Adds weight to weights array in DB
+router.post('/me', auth, async function(req,res) {
+
+    // Check if the HTTP request body is valid
+    if( !validateWeight(req.body) ) {
+        // Invalid input
+        return res.status(400).send('Bad Request');
+    }
+
+    try{
+
+        // Find existing weight document for the user
+            // req.user is added by auth middle-ware
+        const weightDoc = await Weight.findOne({user: req.user._id});
+
+        // Check if the weight on the given date exists
+            // If weight exists, update existing date
+
+        // Otherwise add new weight to the document
+        weightDoc.weight.push(
+            {value: req.body.weight, name: req.body.date}
+        )
+
+        // Save document
+        const resultWeight = await weightDoc.save();
+
+        // Sends document back to front-end
+        res.send(resultWeight);
+
+
+    } catch(error) {
+        res.status(500).send('Something failed');
+    }
+        
+});
+
+
+/**
+ * Returns true if valid request body, otherwise returns false
+ * @param {*} user 
+ */
+function validateWeight(weight) {
+
+    /**
+     * Defines shape of HTTP request body. Used for Joi validation.
+     */
+    const weightInputSchema = Joi.object().keys({
+        weight: Joi.number().min(10).max(500).required(),
+        date: Joi.date().required(),
+    });
+    
+    const result = Joi.validate(weight,weightInputSchema); // result.error === null -> input is valid
+
+    if(result.error === null) {
+        return true
+    } else {
+        // console.log(result.error); // Log the error
+        return false
+    }
+
+}
+
+// Sample POST request format
+/* {
+	"weight":"150",
+	"date":"2000-08-05T12:54:48.944Z",
+	}
+} */
 
 
 module.exports = router // Exports router 

@@ -29,7 +29,7 @@ router.get('/me', auth, async function(req,res) {
         const user = await User.findById(req.user._id).select({password: 0});
         res.send(user);
     } catch(error) {
-        console.log(error);
+        res.status(500).send('Something failed');
     }
 
 });
@@ -107,7 +107,7 @@ router.post('/', async function(req,res) {
             });
 
     } catch(error) {
-        console.log(error);
+        res.status(500).send('Something failed');
     }
       
 });

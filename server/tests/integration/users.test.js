@@ -47,7 +47,7 @@ describe('/api/users', ()=>{
         it('should return the user if client is logged in', async()=> {
             
             const user = new User(mockUser);
-            const token = user.generateAuthToken()
+            const token = user.generateAuthToken();
 
             // Populate test database:
             await user.save();

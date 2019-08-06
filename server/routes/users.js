@@ -125,13 +125,13 @@ function validateUser(user) {
      */
     const userInputSchema = Joi.object().keys({
         username: Joi.string().min(5).max(20).alphanum().required(),
-        firstname: Joi.string().min(3).max(20).regex(/[a-zA-z]*/).required(),
-        lastname: Joi.string().min(3).max(20).regex(/[a-zA-z]*/).required(),
+        firstname: Joi.string().min(3).max(20).regex(/^[A-Za-z]+$/).required(),
+        lastname: Joi.string().min(3).max(20).regex(/^[A-Za-z]+$/).required(),
         password: Joi.string().min(8).max(25).required(),
         fitnessProfile : {
             startWeight: Joi.number().min(10).max(500).required(),
             height: Joi.number().min(1).max(1000).required(),
-            gender: Joi.string().required(),
+            gender: Joi.string().valid('M','F').required(),
             birthDay: Joi.date().required(),
             activityMultiplier: Joi.number().required(),
             goal: Joi.number().required(),
@@ -143,7 +143,7 @@ function validateUser(user) {
     if(result.error === null) {
         return true
     } else {
-        console.log(result.error); // Log the error
+        // console.log(result.error); // Log the error
         return false
     }
 

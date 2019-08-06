@@ -196,7 +196,49 @@ describe('/api/users', ()=>{
             expect(res.status).toBe(400);
         });
 
-        // TO DO write success cases
+        // Success cases
+        it('should return 400 if user is already registered', async()=> {
+            const res1 = await exec(); // Save mockUser to DB
+            const res2 = await exec(); // Try to save mockUser to DB again
+
+            expect(res1.status).toBe(200);
+            expect(res2.status).toBe(400);
+        });
+
+        it('should return 400 if user is already registered', async()=> {
+            const res1 = await exec(); // Save mockUser to DB
+            const res2 = await exec(); // Try to save mockUser to DB again
+
+            expect(res1.status).toBe(200);
+            expect(res2.status).toBe(400);
+        });
+
+        it('should save the user document to the database if valid ', async()=> {
+            const res = await exec(); // Save mockUser to DB
+
+            const query = await User.findOne({username: mockUser.username});
+
+            expect(res.status).toBe(200);
+            expect(query).not.toBeNull();
+            expect(query).toHaveProperty('_id');
+            expect(query.fitnessProfile).toHaveProperty('macros');
+            expect(query.fitnessProfile).toHaveProperty('recommendedCalories');
+        });
+
+        it('should save the starting weight in the weight database', async()=> {
+            const res = await exec(); // Save mockUser to DB
+
+            const queryUser = await User.findOne({username: mockUser.username}); // User DB query
+            const queryWeight = await Weight.findOne({user: queryUser._id}); // Weight DB query
+
+            console.log('test ' + queryWeight)
+            expect(res.status).toBe(200);
+            expect(queryWeight).not.toBeNull();
+            expect(queryWeight).toHaveProperty('user');
+            expect(queryWeight.user).toStrictEqual(queryUser._id);
+            expect(queryWeight.weight[0].value).toStrictEqual(queryUser.fitnessProfile.startWeight.weight);
+            
+        });
     
     });
 

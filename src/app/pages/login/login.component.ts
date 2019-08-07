@@ -64,10 +64,10 @@ export class LoginComponent implements OnInit {
         username: this.userDetailsGroup.value.username,
         password: this.userDetailsGroup.value.password
       }).subscribe( (resData) => {
-        // If successful login, go to dashboard
 
-        // console.log(resData)
-        this.router.navigateByUrl('/dashboard');
+        console.log('login component success!');
+        // If successful login, go to dashboard
+        // this.router.navigateByUrl('/dashboard');
       }, (err) => {
         // If err during login, show err message
 

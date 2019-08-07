@@ -56,7 +56,7 @@ export class AuthenticationService {
   /** Sets jwt token in HTTP headers request  */
   private httpOptions = {
     headers: new HttpHeaders({
-      'x-auth-token': `${this.getToken()}`
+      'x-auth-token': `Bearer ${this.getToken()}`
     })
   };
 
@@ -107,25 +107,25 @@ export class AuthenticationService {
     }
   }
 
-  /** POST: logs in a user
-   * Returns an observable. After subscribing response data is type UserResData.
-   * Observe full response and get x-auth-token header; this is exposed on back-end.
-   * Body is a string of the x-auth-token
+  /** POST: logs in a user by POST to /api/auth
+   * Returns an observable of type Token.
+   * Observe full response and get token from body: {token: ...}
    */
-  logInUser(userLoginData: UserFormLogin): Observable<any> {
+  logInUser(userLoginData: UserFormLogin): Observable<Token> {
 
-    return this.http.post<Token>(this.userLoginuri, userLoginData, {observe: 'response'}).pipe(
-        tap( resData => {
+    return this.http.post<Token>(this.userLoginuri, userLoginData).pipe(
+      tap( resData => {
+        console.log('Token in auth logInUser: ' + resData.token);
+        // If login is successful, a token is returned
+        if (resData.token) {
+          console.log('Success token: ' + resData.token);
+          this.saveToken(resData.token);
+        }
 
-          // If login is successful, a token is returned
-          if (resData.body.token) {
-            this.saveToken(resData.body.token);
-          }
+      })
+    );
 
-        } )
-      );
-
-  } // End addUser
+  } // End logInUser
 
   /** POST: saves a new user in the database
    * Returns an observable. After subscribing response data is type UserResData.

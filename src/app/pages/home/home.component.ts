@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser'; // For setting page title
 import { UserDataService } from '../../core/user-data.service';
+import { WeightsDataService } from 'src/app/core/weights-data.service';
+import { UserGetData } from 'src/app/interfaces/userRes';
+import { WeightsGetData } from 'src/app/interfaces/weightsRes';
+
+
 
 @Component({
   selector: 'app-home',
@@ -9,19 +14,25 @@ import { UserDataService } from '../../core/user-data.service';
 })
 export class HomeComponent implements OnInit {
 
-  /**
-   * Title of page
-   */
+  /** Title of page */
   pageTitle = 'Dashboard';
 
-  /**
-   * Stores data for statboxes
-   */
+  /** Stores data fetched from back-end */
+  userData: UserGetData;
+
+  /** Stores data fetched from back-end */
+  userWeights: WeightsGetData;
+
+  /** User Data Initially not available */
+  userDataAvail = false;
+
+  /** User Weight Initially not available */
+  userWeightAvail = false;
+
+  /** Stores data for statboxes */
   StatBoxData = [];
 
-  /**
-   * Stores current weight value
-   */
+  /** Stores current weight value */
   currentWeight: number;
 
   /**
@@ -34,11 +45,9 @@ export class HomeComponent implements OnInit {
    * goalType is either 'gain' or 'lose'
    * perWeek is amount of pounds user wants to gain/loose per week
    */
-  userGoal: {goalType: string, perWeek: number};
+  userGoal: number;
 
-  /**
-   * User TDEE
-   */
+  /** User TDEE */
   userTDEE: number;
 
   /**
@@ -63,13 +72,35 @@ export class HomeComponent implements OnInit {
    */
   constructor(
     private title: Title,
-    private userDataService: UserDataService
+    private userDataService: UserDataService,
+    private weightsDataService: WeightsDataService,
     ) {
     }
 
 
   ngOnInit() {
-    this.title.setTitle(this.pageTitle); // Sets page title
+    // Set page title
+    this.title.setTitle(this.pageTitle);
+
+    // Fetch data from back-end
+    this.weightsDataService.getWeights().subscribe( (resData: WeightsGetData) => {
+      // console.log(resData);
+      this.userWeights = resData;
+
+      if (this.userWeights) { this.userWeightAvail = true; }
+
+    });
+
+    this.userDataService.getUser().subscribe( (resData: UserGetData) => {
+      // console.log(resData);
+      this.userData = {...resData}; // Clone the resData object
+      this.userTDEE = this.userData.fitnessProfile.recommendedCalories;
+
+      if (this.userData) { this.userDataAvail = true; }
+
+      console.log(this.userTDEE);
+
+    });
 
     // Updates dashboard components data
 
@@ -93,7 +124,7 @@ export class HomeComponent implements OnInit {
       {
         title: 'Your Calories',
         subtitle: 'To meet your goal',
-        numDisplay: this.userDataService.getUserTDEE(),
+        numDisplay: this.userTDEE,
         unit: 'cal',
         icon: 'faChartPie',
         routerLink: 'calories'
@@ -101,16 +132,16 @@ export class HomeComponent implements OnInit {
     ];
 
     // Dashboard 2
-    this.userGoal = this.userDataService.getUserGoal();
+    this.userGoal = 1;
 
     // Dashboard 3
-    this.userTDEE = this.userDataService.getUserTDEE();
-
+    // this.userTDEE = 100;
+    console.log(this.userTDEE);
     // Donought-chart data
     this.userProtien = 200;
     this.userFat = 60;
     this.userCarb = 400;
 
-  }
+  } // End ngOnInit
 
 }

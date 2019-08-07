@@ -11,6 +11,7 @@ import { DateTrackingChartComponent } from './charts/date-tracking-chart/date-tr
 import { GoalChartComponent } from './charts/goal-chart/goal-chart.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { CheckinComponent } from './pages/checkin/checkin.component';
+import { UserResolverService } from './core/user-resolver.service';
 
 // Registering components in router:
 const routes: Routes = [
@@ -18,7 +19,7 @@ const routes: Routes = [
     path: '', redirectTo: '/dashboard', pathMatch: 'full'
   },
   {
-    path: 'dashboard', component: HomeComponent,
+    path: 'dashboard', component: HomeComponent, resolve: [UserResolverService],
     children: [
       {path: '', component: DateTrackingChartComponent },
       {path: 'calories', component: MacroStatBoxComponent },

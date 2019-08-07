@@ -1,15 +1,53 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { UserFormData } from './userFormData';
+import { UserGetData } from '../interfaces/userRes';
+
 
 /**
- * @title User Fitness Data Service
- * Used to get fitness data from the current user
+ * @title User Data Service
+ * Used to interact with /api/users/me
  */
+
+/**
+ * Sets authorization token for endpoint
+ */
+const httpOptions = {
+  headers: new HttpHeaders({
+    'x-auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDRhMGQ2NWM3N2I1MjQxZjRlNTEzMTMiLCJpYXQiOjE1NjUxMzQxODF9.JvZsGOHbRlULB7Fd3Whe6hZwvrf_Kwfny23ZMKUSTn8'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserDataService {
+
+  /** Endpoint for users */
+  private useruri = 'http://localhost:3500/api/users/me';
+
+  /**
+   * @param http Injected HTTP client used to send requests to back-end
+   */
+  constructor(private http: HttpClient) { }
+
+  /** POST: saves a new user in the database
+   * Returns an observable. After subscribing response data is type UserResData.
+   */
+  addUser(user: UserFormData): Observable<any> {
+    return this.http.post<UserGetData>(this.useruri, user, httpOptions);
+  }
+
+  // TO DO fix UserGetData above
+
+  /** GET: gets current user from database
+   * Returns an observable. After subscribing response data is type UserGetData.
+   */
+  getUser(): Observable<any> {
+    return this.http.get<UserGetData>(this.useruri, httpOptions);
+  }
 
   /**
    * Test document for user data
@@ -98,25 +136,6 @@ export class UserDataService {
   }
 
   /**
-   * Returns a users TDEE; Calculated using Harris-Benedict formula
-   */
-  public getUserTDEE() {
-
-    this.wtinkg = 54.5;
-    this.htincm = 167.6;
-    this.ageInYrs = 30;
-
-    if (this.userData.fitnessProfile.gender === 'M') {
-      this.BMR = 66 + (13.7 * this.wtinkg) + (5 * this.htincm) - (6.8 * this.ageInYrs);
-    } else {
-      this.BMR = 665 + (9.6 * this.wtinkg) + (1.8 * this.htincm) - (4.7 * this.ageInYrs);
-    }
-
-    return Math.floor(this.BMR * this.userData.fitnessProfile.activityMultiplier);
-
-  }
-
-  /**
    * Returns a users goal in format {goalType: number, perWeek: number}
    */
   public getUserGoal() {
@@ -177,6 +196,5 @@ export class UserDataService {
 
   }
 
-  constructor() { }
 
 }

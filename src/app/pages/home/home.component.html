@@ -1,5 +1,5 @@
-<div class="container">
-
+<div class="container" *ngIf="userDataAvail && userWeightAvail">
+    <!-- Only show once userData and userWeights loaded *ngIf="userDataAvail && userWeightAvail" -->
     <!-- Page title -->
     <div class="row section-title">
         <div class="col-12">
@@ -27,6 +27,10 @@
         <div class="col-12">
             <router-outlet></router-outlet> 
         </div>
+    </div>
+
+    <div>
+        {{userWeights | json}}
     </div>
 
 </div> <!-- End container -->

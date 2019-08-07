@@ -146,7 +146,7 @@ function validateUser(user) {
     if(result.error === null) {
         return true
     } else {
-        // console.log(result.error); // Log the error
+        console.log(result.error); // Log the error
         return false
     }
 

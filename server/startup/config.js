@@ -19,7 +19,10 @@ function config(express, app) {
     app.use(express.json()); // Middleware to parse incoming JSON HTTP requests
     app.use(compression());
     app.use(helmet());
-    app.use(cors());
+    app.use(cors({
+        exposedHeaders: ['x-auth-token'],
+    })); /* Exposes x-auth-token, so front end can get headers */
+    // https://stackoverflow.com/questions/50779681/headers-not-showing-in-fetch-response
 
     // Only use morgan in dev environment
     if(process.env.NODE_ENV === 'development') {

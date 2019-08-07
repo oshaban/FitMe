@@ -94,11 +94,10 @@ export class HomeComponent implements OnInit {
     this.userDataService.getUser().subscribe( (resData: UserGetData) => {
       // console.log(resData);
       this.userData = {...resData}; // Clone the resData object
-      this.userTDEE = this.userData.fitnessProfile.recommendedCalories;
 
       if (this.userData) { this.userDataAvail = true; }
 
-      console.log(this.userTDEE);
+      console.log(this.userData);
 
     });
 
@@ -135,8 +134,9 @@ export class HomeComponent implements OnInit {
     this.userGoal = 1;
 
     // Dashboard 3
-    // this.userTDEE = 100;
-    console.log(this.userTDEE);
+    
+    console.log(' test ' + this.userData);
+
     // Donought-chart data
     this.userProtien = 200;
     this.userFat = 60;

@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: 'dashboard', component: HomeComponent, resolve: [UserResolverService],
     children: [
-      {path: '', component: DateTrackingChartComponent },
+      {path: '', component: DateTrackingChartComponent, resolve: [UserResolverService] },
       {path: 'calories', component: MacroStatBoxComponent },
       {path: 'goals', component: GoalChartComponent },
     ]

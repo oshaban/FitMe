@@ -31,7 +31,7 @@ router.post('/', async function(req,res) {
 
         // Login is valid, generate auth token and send back to client
         const token = user.generateAuthToken();
-        res.send(token);
+        res.send({token: token});
 
     } catch(error) {
         console.log(error);

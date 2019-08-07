@@ -9,6 +9,10 @@
             <!-- User Form Group -->
             <form [formGroup]="userDetailsGroup" (ngSubmit)="onSubmit()">
 
+                <div class="invalid-container" *ngIf="invalidForm">
+                    <p class="invalid-message">Invalid username or password.</p>
+                </div>
+
                 <!-- User Name input field control -->
                 <mat-form-field>
                     <input matInput placeholder="User Name" formControlName="username" required>
@@ -37,6 +41,8 @@
         </div>
         
     </div>
-    <p>Form Value: {{ userDetailsGroup.value | json}}</p> <!-- Displays real time value of form, uses json pipe to transform object of objects -->
+
+    <!-- <p>Form Value: {{ userDetailsGroup.value | json}}</p> -->
+    <!-- DEBUGGING: Displays real time value of form, uses json pipe to transform object of objects -->
 
 </div>

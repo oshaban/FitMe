@@ -14,7 +14,7 @@ import { WeightsGetData } from '../interfaces/weightsRes';
  */
 const httpOptions = {
   headers: new HttpHeaders({
-    'x-auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDRhMGQ2NWM3N2I1MjQxZjRlNTEzMTMiLCJpYXQiOjE1NjUxMzQxODF9.JvZsGOHbRlULB7Fd3Whe6hZwvrf_Kwfny23ZMKUSTn8'
+    'x-auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDRhYjFmMzcwYjVjMDI3MmMzYzIyYTAiLCJpYXQiOjE1NjUxNzYzMDd9.BrV4cHKbLOB3EkiO-ptMFODS81EMV8lksVAB3o4oKos'
   })
 };
 

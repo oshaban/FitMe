@@ -2,10 +2,10 @@
  * Interface for POST response to /api/users/
  */
 export interface UserFormData {
-    _id: string;
     username: string;
     firstname: string;
     lastname: string;
+    password: string;
     fitnessProfile: {
         startWeight: number;
         goal: number;
@@ -13,6 +13,5 @@ export interface UserFormData {
         height: number;
         birthDay: Date;
         activityMultiplier: number;
-
     };
 }

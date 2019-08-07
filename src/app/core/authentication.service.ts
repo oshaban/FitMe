@@ -33,7 +33,6 @@ export interface TokenPayload {
   providedIn: 'root'
 })
 
-
 export class AuthenticationService {
 
   constructor(
@@ -50,8 +49,6 @@ export class AuthenticationService {
   /** Endpoint to login/auth user  */
   private userLoginuri = 'http://localhost:3500/api/auth';
 
-  /** Stores a users jwt token  */
-  private token: string;
 
   /** Sets jwt token in HTTP headers request  */
   private httpOptions = {
@@ -60,24 +57,21 @@ export class AuthenticationService {
     })
   };
 
-  /** Saves a users jwt  */
+  /** XSaves a users jwt  */
   private saveToken(token: string): void {
-    localStorage.setItem('mean-token', token);
-    this.token = token;
+    localStorage.setItem('token', token);
   }
 
-  /** Gets a users jwt  */
+  /** Gets a users jwt from local storage */
   private getToken(): string {
-    if (!this.token) {
-      this.token = localStorage.getItem('mean-token');
-    }
-    return this.token;
+    const storedToken: string = localStorage.getItem('token');
+    if (!storedToken) {throw new Error('no token found'); }
+    return storedToken;
   }
 
   /** Logs out a user by removing jwt  */
   public logout(): void {
-    this.token = '';
-    window.localStorage.removeItem('mean-token');
+    localStorage.removeItem('token');
     this.router.navigateByUrl('/login');
   }
 
@@ -100,18 +94,21 @@ export class AuthenticationService {
     console.log(user);
 
     // TO DO ; make jwt expire
-    if( user ) {
+    if ( user ) {
       return true;
     } else {
       return false;
     }
   }
 
-  /** POST: logs in a user by POST to /api/auth
+  /** XPOST: logs in a user by POST to /api/auth
    * Returns an observable of type Token.
    * Observe full response and get token from body: {token: ...}
    */
   logInUser(userLoginData: UserFormLogin): Observable<Token> {
+
+    // Clear out local storage
+    localStorage.removeItem('token');
 
     return this.http.post<Token>(this.userLoginuri, userLoginData).pipe(
       tap( resData => {
@@ -120,6 +117,8 @@ export class AuthenticationService {
         if (resData.token) {
           console.log('Success token: ' + resData.token);
           this.saveToken(resData.token);
+
+          console.log('Getting token: ' + this.getToken());
         }
 
       })
@@ -133,12 +132,18 @@ export class AuthenticationService {
    */
   createUser(userData: UserFormData): Observable<any> {
 
+    // Clear out local storage
+    localStorage.removeItem('token');
+
     return this.http.post<UserPostResData>(this.userCreateuri, userData, {observe: 'response'}).pipe(
         tap( resData => {
           // If valid POST response, get the x-auth-token and save it
-            console.log('Token from headers: ' + resData.headers.get('x-auth-token') );
-            this.saveToken( resData.headers.get('x-auth-token') );
-            console.log('Getting token from storage after saved' + this.getToken() );
+
+            const resHeaders = resData.headers.get('x-auth-token');
+            console.log(typeof(resHeaders));
+            console.log('Token from res headers: ' + resHeaders);
+            this.saveToken( resHeaders );
+            console.log('Getting token from storage after saved   ' + this.getToken() );
         })
       );
 

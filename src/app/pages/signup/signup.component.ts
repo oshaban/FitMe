@@ -183,9 +183,9 @@ export class SignupComponent implements OnInit {
     this.authenticationService.createUser(this.formData).subscribe(
       (resData) => {
         // If successful registration, go to dashboard
+        console.log('auth service createUser data: ' + resData);
 
-        // console.log(resData);
-        this.router.navigateByUrl('/dashboard');
+        // this.router.navigateByUrl('/dashboard'); // If successful registration, go to dashboard
 
       },
       (err) => {

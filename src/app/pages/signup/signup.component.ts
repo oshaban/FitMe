@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserFormData } from '../../core/userFormData';
 import { UsernameValidator } from './username.validator'; // Checks if username is taken
 import { DateValidator } from './date.validator'; // Checks if user entered date is valid
-import { SignupService } from '../../core/signup.service';
+import { AuthenticationService } from 'src/app/core/authentication.service';
+import { UserFormData } from 'src/app/interfaces/userForm';
+import { Router } from '@angular/router';
 
 /**
  * @title Signup Component
@@ -16,19 +17,13 @@ import { SignupService } from '../../core/signup.service';
 })
 export class SignupComponent implements OnInit {
 
-  /**
-   * Form for user registration information
-   */
+  /** Form for user registration information */
   userDetailsGroup: FormGroup;
 
-  /**
-   * Form for user fitness profile information
-   */
+  /** Form for user fitness profile information */
   fitnessInfoGroup: FormGroup;
 
-  /**
-   * Stores user information which is sent to the back-end for user signup
-   */
+  /** Stores user information which is sent to the back-end for user signup */
   formData: UserFormData;
 
   /**
@@ -71,18 +66,21 @@ export class SignupComponent implements OnInit {
     ],
   };
 
-  /**
-   * Stores todays date
-   */
+  /** Stores todays date */
   todayDate: Date;
+
+  /** Stores if username is taken  */
+  isUserTaken = false;
 
   /**
    * @param formBuilder Used to create userDetailsGroup and fitnessInfoGroup forms
-   * @param signupService Used to send form data to server
+   * @param authenticationService Used to create a user and send form data to server
+   * @param router Used to route the user to login after successful signup
    */
   constructor(
     private formBuilder: FormBuilder,
-    private signupService: SignupService
+    private authenticationService: AuthenticationService,
+    private router: Router,
     ) {}
 
   ngOnInit() {
@@ -161,9 +159,7 @@ export class SignupComponent implements OnInit {
 
   } // End ngOnInit
 
-  /**
-   * Called on submit event of form
-   */
+  /** Called on submit event of form */
   private onSubmit() {
 
     // Create form data to submit to back-end
@@ -173,22 +169,34 @@ export class SignupComponent implements OnInit {
       lastname: this.userDetailsGroup.value.lastname,
       password: this.userDetailsGroup.value.password,
       fitnessProfile: {
-        startWeight: { weight: this.fitnessInfoGroup.value.startingweight, date: this.todayDate },
+        startWeight: this.fitnessInfoGroup.value.startingweight,
         gender: this.fitnessInfoGroup.value.gender,
-        height: (this.fitnessInfoGroup.value.heightfeet * 12) + this.fitnessInfoGroup.value.heightinches,
+        height: ((this.fitnessInfoGroup.value.heightfeet * 12) + this.fitnessInfoGroup.value.heightinches),
         birthDay: this.fitnessInfoGroup.value.DOB,
         activityMultiplier: this.fitnessInfoGroup.value.activitylevel,
         goal: this.fitnessInfoGroup.value.goal,
       }
     };
 
-    console.log( this.formData );
-    console.log(JSON.stringify(this.formData));
+    // Send form data to back-end
 
-    // Call service to send POST request to back-end
-    this.signupService.createUser( this.formData ).subscribe(
-      resData => { console.log(resData);
-    });
+    this.authenticationService.createUser(this.formData).subscribe(
+      (resData) => {
+        // If successful registration, go to dashboard
+
+        // console.log(resData);
+        this.router.navigateByUrl('/dashboard');
+
+      },
+      (err) => {
+        // If err during registration
+
+        if (err.error === 'User already registered') {
+          this.isUserTaken = true; // Set isUserTaken to display message
+        }
+
+      }
+    );
 
   } // End onSubmit()
 

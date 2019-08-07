@@ -120,8 +120,8 @@
                         <div class="radio-form-field signup-section">
                             <label class="field-title" style="display: block">Gender</label>
                             <mat-radio-group formControlName="gender">
-                                <mat-radio-button value="male">Male</mat-radio-button>
-                                <mat-radio-button value="female" style="margin-left: 2rem">Female</mat-radio-button>
+                                <mat-radio-button value="M">Male</mat-radio-button>
+                                <mat-radio-button value="F" style="margin-left: 2rem">Female</mat-radio-button>
                             </mat-radio-group>
                         </div>
 
@@ -186,6 +186,10 @@
                                 style="margin-left: 1rem">Submit</button>
                         </div>
 
+                        <div class="signup-section" *ngIf="isUserTaken">
+                            <p class="usertaken">Username is already taken.</p>
+                        </div>
+
                     </form>
 
                 </mat-step>
@@ -197,8 +201,8 @@
     </div>
 
     <!-- Displays from values by piping to JSON -->
-    <p>Form value: {{ userDetailsGroup.value | json }}</p>
-    <p>Form value: {{ fitnessInfoGroup.value | json }}</p>
+    <!-- <p>Form value: {{ userDetailsGroup.value | json }}</p>
+    <p>Form value: {{ fitnessInfoGroup.value | json }}</p> -->
     <p>Form value: {{ formData | json }}</p>
 
 </div>

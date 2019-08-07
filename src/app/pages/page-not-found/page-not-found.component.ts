@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/core/authentication.service';
-import { UserFormData } from 'src/app/interfaces/userForm';
 
-const userTest = {
-    username: 'heklr6',
+/* const userTest = {
+    username: '14helerk',
     firstname: 'John',
     lastname: 'Doe',
     password: '8charpass',
@@ -15,7 +14,7 @@ const userTest = {
         birthDay: new Date(),
         activityMultiplier: 1,
     }
-};
+}; */
 
 const userLogin = {
   username: 'heklr6',
@@ -36,14 +35,18 @@ export class PageNotFoundComponent implements OnInit {
 
   ngOnInit() {
 
-    this.authenticationService.addUser(userTest).subscribe(
-      resData => {
+/*     this.authenticationService.createUser(userTest).subscribe(
+      (resData) => {
         console.log(resData);
+        console.log('sucess!');
+      },
+      (err) => {
+        console.log('err.error ' + err.error);
       }
     );
 
     this.authenticationService.logInUser(userLogin).subscribe();
-
+ */
   }
 
 } // End PageNotFoundComponent

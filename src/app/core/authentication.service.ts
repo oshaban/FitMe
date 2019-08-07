@@ -126,15 +126,15 @@ export class AuthenticationService {
    * Returns an observable. After subscribing response data is type UserResData.
    * Observe full response and get x-auth-token header; this is exposed on back-end.
    */
-  addUser(userData: UserFormData): Observable<any> {
+  createUser(userData: UserFormData): Observable<any> {
 
     return this.http.post<UserPostResData>(this.userCreateuri, userData, {observe: 'response'}).pipe(
         tap( resData => {
-          if ( resData.resData.headers.get('x-auth-token') ) {
+          // If valid POST response, get the x-auth-token and save it
+            console.log('Token from headers: ' + resData.headers.get('x-auth-token') );
             this.saveToken( resData.headers.get('x-auth-token') );
-          }
-          // console.log( resData.headers.get('x-auth-token') );
-        } )
+            console.log('Getting token from storage after saved' + this.getToken() );
+        })
       );
 
   } // End addUser

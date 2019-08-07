@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
         // If err during login, show err message
 
         // console.log(err);
-        this.invalidForm = true;
+        this.invalidForm = true; // Set login form invalid to display message
       });
 
     } // END if

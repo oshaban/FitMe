@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserFormData } from './userFormData';
+import { UserFormData } from '../interfaces/userForm';
 import { UserGetData } from '../interfaces/userRes';
 
 

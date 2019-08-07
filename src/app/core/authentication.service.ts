@@ -49,27 +49,24 @@ export class AuthenticationService {
   /** Endpoint to login/auth user  */
   private userLoginuri = 'http://localhost:3500/api/auth';
 
-
-  /** Sets jwt token in HTTP headers request  */
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'x-auth-token': `Bearer ${this.getToken()}`
-    })
-  };
-
   /** XSaves a users jwt  */
   private saveToken(token: string): void {
     localStorage.setItem('token', token);
   }
 
-  /** Gets a users jwt from local storage */
+  /** XGets a users jwt from local storage */
   private getToken(): string {
-    const storedToken: string = localStorage.getItem('token');
-    if (!storedToken) {throw new Error('no token found'); }
-    return storedToken;
+    try {
+      const storedToken: string = localStorage.getItem('token');
+      if (!storedToken) {throw new Error('no token found'); }
+      return storedToken;
+    } catch(err) {
+      console.log(err);
+    }
+
   }
 
-  /** Logs out a user by removing jwt  */
+  /** XLogs out a user by removing jwt  */
   public logout(): void {
     localStorage.removeItem('token');
     this.router.navigateByUrl('/login');
@@ -126,7 +123,7 @@ export class AuthenticationService {
 
   } // End logInUser
 
-  /** POST: saves a new user in the database
+  /** XPOST: saves a new user in the database
    * Returns an observable. After subscribing response data is type UserResData.
    * Observe full response and get x-auth-token header; this is exposed on back-end.
    */
@@ -153,8 +150,17 @@ export class AuthenticationService {
   /** GET: gets current user from database
    * Returns an observable. After subscribing response data is type UserGetData.
    */
-  getUser(): Observable<any> {
-    return this.http.get<UserGetData>(this.userMeuri, this.httpOptions);
+  getUser(): Observable<UserGetData> {
+
+    // Set httpOptions before get response
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'x-auth-token': `${this.getToken()}`
+      })
+    };
+
+    return this.http.get<UserGetData>(this.userMeuri, httpOptions);
+
   }
 
 }

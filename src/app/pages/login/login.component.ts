@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
 
         console.log('login component success!');
         // If successful login, go to dashboard
-        // this.router.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/dashboard');
       }, (err) => {
         // If err during login, show err message
 

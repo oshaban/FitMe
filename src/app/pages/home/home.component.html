@@ -1,4 +1,4 @@
-<div class="container" *ngIf="userDataAvail && userWeightAvail">
+<div class="container">
     <!-- Only show once userData and userWeights loaded *ngIf="userDataAvail && userWeightAvail" -->
     <!-- Page title -->
     <div class="row section-title">
@@ -31,6 +31,7 @@
 
     <div>
         {{userWeights | json}}
+        {{userData | json}}
     </div>
 
 </div> <!-- End container -->

@@ -4,6 +4,7 @@ import { UserDataService } from '../../core/user-data.service';
 import { WeightsDataService } from 'src/app/core/weights-data.service';
 import { UserGetData } from 'src/app/interfaces/userRes';
 import { WeightsGetData } from 'src/app/interfaces/weightsRes';
+import { AuthenticationService } from 'src/app/core/authentication.service';
 
 
 
@@ -74,8 +75,8 @@ export class HomeComponent implements OnInit {
     private title: Title,
     private userDataService: UserDataService,
     private weightsDataService: WeightsDataService,
-    ) {
-    }
+    private authenticationService: AuthenticationService,
+    ) {}
 
 
   ngOnInit() {
@@ -91,14 +92,9 @@ export class HomeComponent implements OnInit {
 
     });
 
-    this.userDataService.getUser().subscribe( (resData: UserGetData) => {
-      // console.log(resData);
-      this.userData = {...resData}; // Clone the resData object
-
-      if (this.userData) { this.userDataAvail = true; }
-
-      console.log(this.userData);
-
+    this.authenticationService.getUser().subscribe( (resData: UserGetData) => {
+      console.log(resData);
+      this.userData = resData;
     });
 
     // Updates dashboard components data
@@ -123,7 +119,7 @@ export class HomeComponent implements OnInit {
       {
         title: 'Your Calories',
         subtitle: 'To meet your goal',
-        numDisplay: this.userTDEE,
+        numDisplay: 100,
         unit: 'cal',
         icon: 'faChartPie',
         routerLink: 'calories'
@@ -134,8 +130,6 @@ export class HomeComponent implements OnInit {
     this.userGoal = 1;
 
     // Dashboard 3
-    
-    console.log(' test ' + this.userData);
 
     // Donought-chart data
     this.userProtien = 200;

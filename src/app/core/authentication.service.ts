@@ -9,12 +9,12 @@ import { UserPostResData } from '../interfaces/userPostRes';
 import { UserFormLogin } from '../interfaces/loginForm';
 
 
-/** What the register form expects  */
+/** Payload from jwt
+ * _id: user id for corresponding jwt
+ * iat: time jwt was issued at in ms
+ */
 export interface UserDetails {
   _id: string;
-  email: string;
-  name: string;
-  exp: number;
   iat: number;
 }
 /** Token recieved from /api/auth  */
@@ -78,25 +78,30 @@ export class AuthenticationService {
   public logout(): void {
     this.token = '';
     window.localStorage.removeItem('mean-token');
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/login');
   }
 
+  /** Gets details of user jwt payload  */
   public getUserDetails(): UserDetails {
     const token = this.getToken();
     let payload;
     if (token) {
-      payload = token.split('.')[1];
-      payload = window.atob(payload);
-      return JSON.parse(payload);
+      payload = token.split('.')[1]; // Gets payload from jwt
+      payload = window.atob(payload); // Decodes payload
+      return JSON.parse(payload); // Returns payload
     } else {
       return null;
     }
   }
 
+  /** Checks if a user is loggedin based on jwt  */
   public isLoggedIn(): boolean {
     const user = this.getUserDetails();
-    if (user) {
-      return user.exp > Date.now() / 1000;
+    console.log(user);
+
+    // TO DO ; make jwt expire
+    if( user ) {
+      return true;
     } else {
       return false;
     }

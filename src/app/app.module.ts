@@ -53,6 +53,7 @@ import { GoalChartComponent } from './charts/goal-chart/goal-chart.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { CheckinComponent } from './pages/checkin/checkin.component';
 import { WeighttableComponent } from './charts/weighttable/weighttable.component';
+import { AuthGuardService } from './core/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { WeighttableComponent } from './charts/weighttable/weighttable.component
   ],
   providers: [
     Title,
-    MatDatepickerModule
+    MatDatepickerModule,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

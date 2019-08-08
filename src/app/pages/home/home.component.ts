@@ -126,16 +126,6 @@ export class HomeComponent implements OnInit {
       },
     ];
 
-    // Dashboard 2
-    this.userGoal = 1;
-
-    // Dashboard 3
-
-    // Donought-chart data
-    this.userProtien = 200;
-    this.userFat = 60;
-    this.userCarb = 400;
-
   } // End ngOnInit
 
 }

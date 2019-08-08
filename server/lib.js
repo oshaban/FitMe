@@ -24,11 +24,14 @@ function getTDEE(fitnessProfile) {
 
     let baseCals;
 
+    wtinkg = fitnessProfile.startWeight / 2.2; // 1 kg = 2.2 lbs
+    htincm = fitnessProfile.height * 2.54; // 1 in = 2.54 cm
+
     // https://www.k-state.edu/paccats/Contents/PA/PDF/Physical%20Activity%20and%20Controlling%20Weight.pdf
     if(fitnessProfile.gender === "M") {
-        baseCals = 66 + (13.7 * fitnessProfile.startWeight) + (5 * fitnessProfile.height) + (6.8 * getAge(fitnessProfile.birthDay));
+        baseCals = 66 + (13.7 * wtinkg) + (5 * htincm) + (6.8 * getAge(fitnessProfile.birthDay));
     } else {
-        baseCals= 665 + (9.6 * fitnessProfile.startWeight) + (1.8 * fitnessProfile.height) + (4.7 * getAge(fitnessProfile.birthDay));
+        baseCals= 665 + (9.6 * wtinkg) + (1.8 * htincm) + (4.7 * getAge(fitnessProfile.birthDay));
     }
 
     const TDEE = (baseCals * fitnessProfile.activityMultiplier);
@@ -71,7 +74,7 @@ function getCals(fitnessProfile) {
             break;
     }
 
-    return tdee + caloricSurplus;
+    return Math.floor(tdee + caloricSurplus);
 
 }
 

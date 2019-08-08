@@ -129,13 +129,13 @@ export class SignupComponent implements OnInit {
       heightfeet: ['', [
         Validators.required,
         Validators.min(1),
-        Validators.max(10)
+        Validators.max(8)
         ]
       ],
       heightinches: ['', [
         Validators.required,
         Validators.min(0),
-        Validators.max(12)
+        Validators.max(11)
         ]
       ],
       gender : ['', [
@@ -171,7 +171,7 @@ export class SignupComponent implements OnInit {
       fitnessProfile: {
         startWeight: this.fitnessInfoGroup.value.startingweight,
         gender: this.fitnessInfoGroup.value.gender,
-        height: ((this.fitnessInfoGroup.value.heightfeet * 12) + this.fitnessInfoGroup.value.heightinches),
+        height: ( (12 * +this.fitnessInfoGroup.value.heightfeet) + +this.fitnessInfoGroup.value.heightinches ),
         birthDay: this.fitnessInfoGroup.value.DOB,
         activityMultiplier: this.fitnessInfoGroup.value.activitylevel,
         goal: this.fitnessInfoGroup.value.goal,
@@ -185,7 +185,7 @@ export class SignupComponent implements OnInit {
         // If successful registration, go to dashboard
         console.log('auth service createUser data: ' + resData);
 
-        // this.router.navigateByUrl('/dashboard'); // If successful registration, go to dashboard
+        this.router.navigateByUrl('/dashboard'); // If successful registration, go to dashboard
 
       },
       (err) => {

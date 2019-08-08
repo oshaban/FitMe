@@ -133,7 +133,7 @@ function validateUser(user) {
         password: Joi.string().min(8).max(25).required(),
         fitnessProfile : {
             startWeight: Joi.number().min(10).max(500).required(),
-            height: Joi.number().min(1).max(1000).required(),
+            height: Joi.number().min(1).max(144).required(),
             gender: Joi.string().valid('M','F').required(),
             birthDay: Joi.date().required(),
             activityMultiplier: Joi.number().required(),
@@ -160,7 +160,7 @@ function validateUser(user) {
 	"password":"testpass",
 	"fitnessProfile":{
         "startWeight": "81",
-        "height": 182,
+        "height": 120,
 		"gender":"M",
 		"birthDay":"2000-08-05T12:54:48.944Z",
         "activityMultiplier": "1",

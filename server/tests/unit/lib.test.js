@@ -53,9 +53,12 @@ describe('lib.js', ()=>{
             
             const cals = fit.getTDEE(mockUserM.fitnessProfile);
 
+            wtinkg = mockUserM.fitnessProfile.startWeight / 2.2; // 1 kg = 2.2 lbs
+            htincm = mockUserM.fitnessProfile.height * 2.54; // 1 in = 2.54 cm
+
             let baseCals = 66
-            + (13.7 * mockUserM.fitnessProfile.startWeight)
-            + (5 * mockUserM.fitnessProfile.height)
+            + (13.7 * wtinkg)
+            + (5 * htincm)
             + (6.8 * fit.getAge(mockUserM.fitnessProfile.birthDay) );
 
             let tdee = (baseCals * mockUserM.fitnessProfile.activityMultiplier);
@@ -72,9 +75,12 @@ describe('lib.js', ()=>{
             
             const cals = fit.getTDEE(mockUserF.fitnessProfile);
 
+            wtinkg = mockUserF.fitnessProfile.startWeight / 2.2; // 1 kg = 2.2 lbs
+            htincm = mockUserF.fitnessProfile.height * 2.54; // 1 in = 2.54 cm
+
             let baseCals = 665
-            + (9.6 * mockUserF.fitnessProfile.startWeight)
-            + (1.8 * mockUserF.fitnessProfile.height)
+            + (9.6 * wtinkg)
+            + (1.8 * htincm)
             + (4.7 * fit.getAge(mockUserF.fitnessProfile.birthDay) );
 
             let tdee = (baseCals * mockUserF.fitnessProfile.activityMultiplier);

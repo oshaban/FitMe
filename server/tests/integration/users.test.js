@@ -33,7 +33,7 @@ describe('/api/users', ()=>{
                 startWeight: "81",
                 goal: "1",
                 gender:"M",
-                height: 182,
+                height: 140,
                 birthDay:"2000-08-05T12:54:48.944Z",
                 activityMultiplier: "1"
             }
@@ -76,7 +76,7 @@ describe('/api/users', ()=>{
                     startWeight: "81",
                     goal: "1",
                     gender:"M",
-                    height: 182,
+                    height: 140,
                     birthDay:"2000-08-05T12:54:48.944Z",
                     activityMultiplier: "1"
                 }
@@ -172,8 +172,8 @@ describe('/api/users', ()=>{
             expect(res.status).toBe(400);
         });
 
-        it('should return a 400 if fitnessProfile height is greater than 1000', async()=> {
-            mockUser.fitnessProfile.height = 1001;
+        it('should return a 400 if fitnessProfile height is greater than 144', async()=> {
+            mockUser.fitnessProfile.height = 145;
             const res = await exec();
             expect(res.status).toBe(400);
         });

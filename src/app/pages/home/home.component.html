@@ -1,5 +1,4 @@
 <div class="container">
-    <!-- Only show once userData and userWeights loaded *ngIf="userDataAvail && userWeightAvail" -->
     <!-- Page title -->
     <div class="row section-title">
         <div class="col-12">
@@ -14,14 +13,14 @@
             <app-statbox
                 [title]="statbox.title"
                 [subtitle]="statbox.subtitle"
-                [numDisplay]="statbox.numDisplay" 
+                [numDisplay]="statbox?.numDisplay" 
                 [unit]="statbox.unit"
                 [iconInput]="statbox.icon"
                 [routerLink]="statbox.routerLink" >
             </app-statbox>
         </div>
     </div>
-
+    <!-- userData?.fitnessProfile.recommendedCalories -->
     <!-- Displays component based on which statbox is clicked -->
     <div class="row dynamicGraphs">
         <div class="col-12">

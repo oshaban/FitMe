@@ -55,7 +55,7 @@ export class AuthenticationService {
   }
 
   /** XGets a users jwt from local storage */
-  private getToken(): string {
+  public getToken(): string {
     try {
       const storedToken: string = localStorage.getItem('token');
       if (!storedToken) {throw new Error('no token found'); }
@@ -153,7 +153,7 @@ export class AuthenticationService {
   getUser(): Observable<UserGetData> {
 
     // Set httpOptions before get response
-    let httpOptions = {
+    const httpOptions = {
       headers: new HttpHeaders({
         'x-auth-token': `${this.getToken()}`
       })

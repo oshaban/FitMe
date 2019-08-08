@@ -116,7 +116,7 @@ function validateWeight(weight) {
 // Sample POST request format
 /* {
 	"weight":"150",
-	"date":"2000-08-05T12:54:48.944Z",
+	"date":"2000-08-05T12:54:48.944Z"
 	}
 } */
 

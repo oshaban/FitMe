@@ -3,6 +3,7 @@ import { UserDataService } from 'src/app/core/user-data.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { DateValidator } from '../signup/date.validator'; // Validates that date isn't past today
+import { WeightsDataService } from 'src/app/core/weights-data.service';
 
 @Component({
   selector: 'app-checkin',
@@ -36,13 +37,22 @@ export class CheckinComponent implements OnInit {
    *
    * @param userDataService Used to fetch user data and update user data
    * @param formBuilder Used to create form for user weight submission
+   * @param weightsService Used to fetch user weights and update user weights
    */
   constructor(
     private userDataService: UserDataService,
     private formBuilder: FormBuilder,
+    private weightsService: WeightsDataService,
   ) { }
 
   ngOnInit() {
+
+    // Fetches weights from backend
+    this.weightsService.getWeights().subscribe(
+      (resData) => {
+        console.log(resData.weight);
+        this.userWeight = resData.weight;
+    });
 
     this.updateWeightGroup = this.formBuilder.group({
       weightControl: ['', [
@@ -59,7 +69,7 @@ export class CheckinComponent implements OnInit {
       ]
     });
 
-    this.userWeight = this.userDataService.getUserWeights();
+
   }
 
   /**
@@ -67,18 +77,17 @@ export class CheckinComponent implements OnInit {
    */
   private onSubmit() {
 
-    this.userDataService.getUserWeights();
+    if (this.updateWeightGroup.valid) {
 
-    // Get values from form submission
-    this.dateInput = this.updateWeightGroup.value.dateControl;
-    this.weightInput = this.updateWeightGroup.value.weightControl;
+      this.weightsService.addWeight({
+        weight: this.updateWeightGroup.value.weightControl,
+        date: this.updateWeightGroup.value.dateControl,
+      }).subscribe( (resData) => {
+        console.log(resData);
+      });
 
-    // Check if the weight entry for the given date exists
-    this.userWeight = this.userDataService.getUserWeights();
+    } // End if
 
-    // Adds a weight to the server it it doesn't exist, otherwise updates an existing entry
-    this.userDataService.addWeight({value: this.weightInput, name: this.dateInput.toISOString()});
-
-  }
+  } // END onSubmit()
 
 }

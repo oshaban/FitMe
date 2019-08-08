@@ -76,6 +76,7 @@ export class HomeComponent implements OnInit {
     private userDataService: UserDataService,
     private weightsDataService: WeightsDataService,
     private auth: AuthenticationService,
+    private weightsService: WeightsDataService,
     ) {}
 
 
@@ -96,6 +97,12 @@ export class HomeComponent implements OnInit {
       (resData) => {
         console.log(resData);
         this.userData = resData;
+    });
+
+    this.weightsService.getWeights().subscribe(
+      (resData) => {
+        console.log(resData);
+        this.userWeights = resData;
     });
 
     // Updates dashboard components data

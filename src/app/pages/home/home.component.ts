@@ -74,7 +74,6 @@ export class HomeComponent implements OnInit {
   constructor(
     private title: Title,
     private userDataService: UserDataService,
-    private weightsDataService: WeightsDataService,
     private auth: AuthenticationService,
     private weightsService: WeightsDataService,
     ) {}
@@ -84,23 +83,16 @@ export class HomeComponent implements OnInit {
     // Set page title
     this.title.setTitle(this.pageTitle);
 
-    // Fetch data from back-end
-    this.weightsDataService.getWeights().subscribe( (resData: WeightsGetData) => {
-      // console.log(resData);
-      this.userWeights = resData;
-
-      if (this.userWeights) { this.userWeightAvail = true; }
-
-    });
-
+    // Fetch user data from back-end
     this.auth.getUser().subscribe(
-      (resData) => {
+      (resData: UserGetData) => {
         console.log(resData);
         this.userData = resData;
     });
 
+    // Fetch weight data from back-end
     this.weightsService.getWeights().subscribe(
-      (resData) => {
+      (resData: WeightsGetData) => {
         console.log(resData);
         this.userWeights = resData;
     });

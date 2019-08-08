@@ -29,7 +29,8 @@ const routes: Routes = [
   },
   {
     path: 'stats',
-    component: StatsComponent
+    component: StatsComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'signup',
@@ -41,7 +42,8 @@ const routes: Routes = [
   },
   {
     path: 'checkin',
-    component: CheckinComponent
+    component: CheckinComponent,
+    canActivate: [AuthGuardService]
   },
   { path: '**', component: PageNotFoundComponent } /* Wild-card route */
 

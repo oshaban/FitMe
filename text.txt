@@ -53,6 +53,6 @@ To DO: Make macros update from back-end
 [] Make macros update from back-end
 [X] Make page not found look nice
 [] Redesign overall CSS: https://www.betterment.com/
-	[] Change css styling to get rid of purple
+	[X] Change css styling to get rid of purple:  https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1
 [] Check if user is logged in properly
 [X] format ngx charts so dates shows short dates: https://github.com/swimlane/ngx-charts/issues/434

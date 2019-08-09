@@ -63,6 +63,7 @@ export class HomeComponent implements OnInit {
 
     // Initially data from back-end is not available
     this.userDataAvail = false;
+    this.userWeightAvail = false;
 
     // Fetch user data from back-end
     this.auth.getUser().subscribe(
@@ -111,6 +112,12 @@ export class HomeComponent implements OnInit {
       (resData: WeightsGetData) => {
         console.log(resData);
         this.userWeights = resData;
+
+        // Check if data from back-end is available
+        if (this.userWeights) {
+          this.userWeightAvail = true;
+        }
+
     });
 
   } // End ngOnInit

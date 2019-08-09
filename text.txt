@@ -50,3 +50,8 @@ Weight = {
 https://www.k-state.edu/paccats/Contents/PA/PDF/Physical%20Activity%20and%20Controlling%20Weight.pdf
 
 To DO: Make macros update from back-end
+[] Make macros update from back-end
+[] Make page not found look nice
+[] Redesign overall CSS
+[] Check if user is logged in properly
+[X] format ngx charts so dates shows short dates: https://github.com/swimlane/ngx-charts/issues/434

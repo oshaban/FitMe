@@ -55,15 +55,16 @@ export class DateTrackingChartComponent implements OnInit {
       (resData) => {
 
         // weight series from back-end has {_id, value, name}
-          // Filter out the _id by mapping
+          // Filter out the _id by mapping and turn ISO date string to date object
         const filteredData = resData.weight.map( (obj) => {
-          return {value: obj.value, name: obj.name};
+          return {value: obj.value, name: new Date(obj.name)};
         });
 
         // Sort array to have earliest date in the start of array
-        filteredData.sort( (a, b) => {
+          // Note: If time series has a proper date object, ngx charts will auto sort dates
+        /*   filteredData.sort( (a, b) => {
           return Date.parse(a.name) -  Date.parse(b.name);
-        });
+        }); */
 
         // Add data from back-end to multidataset for plotting
         this.userWeights.push(

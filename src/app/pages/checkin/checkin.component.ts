@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserDataService } from 'src/app/core/user-data.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { DateValidator } from '../signup/date.validator'; // Validates that date isn't past today
@@ -34,13 +33,10 @@ export class CheckinComponent implements OnInit {
   private userWeight: {value: number, name: string}[];
 
   /**
-   *
-   * @param userDataService Used to fetch user data and update user data
    * @param formBuilder Used to create form for user weight submission
    * @param weightsService Used to fetch user weights and update user weights
    */
   constructor(
-    private userDataService: UserDataService,
     private formBuilder: FormBuilder,
     private weightsService: WeightsDataService,
   ) { }

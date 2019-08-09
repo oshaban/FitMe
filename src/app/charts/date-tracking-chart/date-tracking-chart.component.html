@@ -9,14 +9,14 @@
 
   <!-- Display graph
     *Only show once the data is loaded -->
-  <div class="row graphdisplay" *ngIf="weightData">
+  <div class="row graphdisplay" *ngIf="ready">
     
     <div class="col-8 mx-auto" >
       <ngx-charts-line-chart
         [animations]="false"
         [view]="view"
         [scheme]="colorScheme"
-        [results]="weightData"
+        [results]="userWeights"
         [gradient]="gradient"
         [xAxis]="showXAxis"
         [yAxis]="showYAxis"
@@ -26,14 +26,11 @@
         [yAxisLabel]="yAxisLabel"
         [autoScale]="autoScale"
         [timeline]="timeline"
-        [showGridLines]="showGridLines"
-        (select)="select($event)"
-        (activate)="activate($event)"
-        (deactivate)="deactivate($event)" >
+        [showGridLines]="showGridLines">
       </ngx-charts-line-chart>
     </div>
 
-    {{weightData | json}}
+    <!-- {{userWeights | json}} -->
     
   </div> 
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser'; // For setting page title
-import { UserDataService } from '../../core/user-data.service';
 import { WeightsDataService } from 'src/app/core/weights-data.service';
 import { UserGetData } from 'src/app/interfaces/userRes';
 import { WeightsGetData } from 'src/app/interfaces/weightsRes';
@@ -68,12 +67,11 @@ export class HomeComponent implements OnInit {
 
   /**
    * @param title Injects title service into component
-   * @param usersService Injects userservice to interact with API
-   * @param userDataService Used to get fitness data from the current user
+   * @param auth Injects auth service to get fitness data of current user
+   * @param weightsService Injects weightService to get weight data from current user
    */
   constructor(
     private title: Title,
-    private userDataService: UserDataService,
     private auth: AuthenticationService,
     private weightsService: WeightsDataService,
     ) {}
@@ -92,7 +90,7 @@ export class HomeComponent implements OnInit {
         this.StatBoxData = [
           {
             title: 'Current Weight',
-            subtitle: 'Weight as of ' + this.userDataService.getCurrentWeight().name.substring(0, 10),
+            subtitle: 'Weight as of ' + '7/24/19',
             numDisplay: 100,
             unit: 'lbs',
             icon: 'faChartLine',
@@ -100,8 +98,8 @@ export class HomeComponent implements OnInit {
           },
           {
             title: 'Your Goal',
-            subtitle: this.userDataService.getUserGoal().goalType + ' per week',
-            numDisplay: this.userDataService.getUserGoal().perWeek,
+            subtitle: 'loose' + ' per week',
+            numDisplay: 1,
             unit: 'lbs',
             icon: 'faChartBar',
             routerLink: 'goals'

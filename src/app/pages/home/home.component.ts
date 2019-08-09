@@ -88,6 +88,34 @@ export class HomeComponent implements OnInit {
       (resData: UserGetData) => {
         console.log(resData);
         this.userData = resData;
+
+        this.StatBoxData = [
+          {
+            title: 'Current Weight',
+            subtitle: 'Weight as of ' + this.userDataService.getCurrentWeight().name.substring(0, 10),
+            numDisplay: 100,
+            unit: 'lbs',
+            icon: 'faChartLine',
+            routerLink: ''
+          },
+          {
+            title: 'Your Goal',
+            subtitle: this.userDataService.getUserGoal().goalType + ' per week',
+            numDisplay: this.userDataService.getUserGoal().perWeek,
+            unit: 'lbs',
+            icon: 'faChartBar',
+            routerLink: 'goals'
+          },
+          {
+            title: 'Your Calories',
+            subtitle: 'To meet your goal',
+            numDisplay: resData.fitnessProfile.recommendedCalories,
+            unit: 'cal',
+            icon: 'faChartPie',
+            routerLink: 'calories'
+          },
+        ];
+
     });
 
     // Fetch weight data from back-end
@@ -98,33 +126,6 @@ export class HomeComponent implements OnInit {
     });
 
     // Updates dashboard components data
-
-    this.StatBoxData = [
-      {
-        title: 'Current Weight',
-        subtitle: 'Weight as of ' + this.userDataService.getCurrentWeight().name.substring(0, 10),
-        numDisplay: this.userDataService.getCurrentWeight().value,
-        unit: 'lbs',
-        icon: 'faChartLine',
-        routerLink: ''
-      },
-      {
-        title: 'Your Goal',
-        subtitle: this.userDataService.getUserGoal().goalType + ' per week',
-        numDisplay: this.userDataService.getUserGoal().perWeek,
-        unit: 'lbs',
-        icon: 'faChartBar',
-        routerLink: 'goals'
-      },
-      {
-        title: 'Your Calories',
-        subtitle: 'To meet your goal',
-        numDisplay: 100,
-        unit: 'cal',
-        icon: 'faChartPie',
-        routerLink: 'calories'
-      },
-    ];
 
   } // End ngOnInit
 

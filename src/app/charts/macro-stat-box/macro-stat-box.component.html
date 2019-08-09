@@ -9,18 +9,20 @@
     <!-- Displays doughnut chart -->
     <div class="col-md-6 mx-auto">
         <app-macro-doughnut-chart
-            [protein]="userProtein"
-            [fat]="userFat"
-            [carbs]="userCarb"
+            [protein]="userMacros?.protein"
+            [fat]="userMacros?.fat"
+            [carbs]="userMacros?.carbs"
+            *ngIf="ready"
         ></app-macro-doughnut-chart>
     </div>
 
     <!-- Displays macro table -->
     <div class="col md-6 mx-auto">
         <app-macrotable
-            [protein]="userProtein"
-            [fat]="userFat"
-            [carbs]="userCarb"
+            [protein]="userMacros?.protein"
+            [fat]="userMacros?.fat"
+            [carbs]="userMacros?.carbs"
+            *ngIf="ready"
         ></app-macrotable>
     </div>
 

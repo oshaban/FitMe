@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UserDataService } from '../../core/user-data.service';
+import { AuthenticationService } from 'src/app/core/authentication.service';
 
 @Component({
   selector: 'app-macro-stat-box',
@@ -29,19 +30,36 @@ export class MacroStatBoxComponent implements OnInit {
    */
   private userMacros;
 
+  private ready;
+
   /**
    *
    * @param userDataService Service to fetch a users data
    */
   constructor(
-    private userDataService: UserDataService
+    private userDataService: UserDataService,
+    private auth: AuthenticationService,
   ) { }
 
   ngOnInit() {
-    this.userMacros = this.userDataService.getUserMacros();
-    this.userProtein = this.userMacros.protein;
-    this.userFat = this.userMacros.fat;
-    this.userCarb = this.userMacros.carbs;
+
+    this.ready = false;
+
+    this.auth.getUser().subscribe(
+      (resData) => {
+        this.userMacros = resData.fitnessProfile.macros;
+
+        if(this.userMacros) {
+          this.ready = true;
+        }
+
+      }
+    );
+
+    // this.userMacros = this.userDataService.getUserMacros();
+    // this.userProtein = this.userMacros.protein;
+    // this.userFat = this.userMacros.fat;
+    // this.userCarb = this.userMacros.carbs;
   }
 
 }

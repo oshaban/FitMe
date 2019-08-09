@@ -6,7 +6,6 @@ import { WeightsGetData } from 'src/app/interfaces/weightsRes';
 import { AuthenticationService } from 'src/app/core/authentication.service';
 
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,10 +16,10 @@ export class HomeComponent implements OnInit {
   /** Title of page */
   pageTitle = 'Dashboard';
 
-  /** Stores data fetched from back-end */
+  /** Stores user data fetched from back-end */
   userData: UserGetData;
 
-  /** Stores data fetched from back-end */
+  /** Stores user weight data fetched from back-end */
   userWeights: WeightsGetData;
 
   /** User Data Initially not available */
@@ -29,15 +28,13 @@ export class HomeComponent implements OnInit {
   /** User Weight Initially not available */
   userWeightAvail = false;
 
-  /** Stores data for statboxes */
+  /** Stores data for displaying multiple statboxes. Each array entry is a new statbox. */
   StatBoxData = [];
 
   /** Stores current weight value */
   currentWeight: number;
 
-  /**
-   * Stores date of current weight in string mm/dd/yyyy
-   */
+  /** Stores date of current weight in string mm/dd/yyyy */
   currentDate: string;
 
   /**
@@ -46,24 +43,6 @@ export class HomeComponent implements OnInit {
    * perWeek is amount of pounds user wants to gain/loose per week
    */
   userGoal: number;
-
-  /** User TDEE */
-  userTDEE: number;
-
-  /**
-   * User protien intake
-   */
-  userProtien: number;
-
-  /**
-   * User fat intake
-   */
-  userFat: number;
-
-  /**
-   * User carb intake
-   */
-  userCarb: number;
 
   /**
    * @param title Injects title service into component
@@ -78,15 +57,26 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
+
     // Set page title
     this.title.setTitle(this.pageTitle);
+
+    // Initially data from back-end is not available
+    this.userDataAvail = false;
 
     // Fetch user data from back-end
     this.auth.getUser().subscribe(
       (resData: UserGetData) => {
         console.log(resData);
+
         this.userData = resData;
 
+        // Check if data from back-end is available
+        if (this.userData) {
+          this.userDataAvail = true;
+        }
+
+        // Update statbox displays with data from back-end
         this.StatBoxData = [
           {
             title: 'Current Weight',
@@ -122,8 +112,6 @@ export class HomeComponent implements OnInit {
         console.log(resData);
         this.userWeights = resData;
     });
-
-    // Updates dashboard components data
 
   } // End ngOnInit
 

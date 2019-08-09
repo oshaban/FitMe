@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="userDataAvail">
     <!-- Page title -->
     <div class="row section-title">
         <div class="col-12">
@@ -28,6 +28,7 @@
         </div>
     </div>
 
+    <!-- For debugging -->
     <div>
         {{userWeights | json}}
         {{userData | json}}

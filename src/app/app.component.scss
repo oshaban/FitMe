@@ -7,7 +7,12 @@
 }
 
 .mat-sidenav {
-    background: rgb(245, 248, 250);
+    background: #30363d;
+}
+
+.mat-list-item {
+    color: #ffffff;
+    font-weight: 300;
 }
 
 .mat-icon {
@@ -35,7 +40,7 @@
 
 a.login-button {
     position: relative;
-    color: #000;
+    color: #1682e0;
     text-decoration: none;
 }
 

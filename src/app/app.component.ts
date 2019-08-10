@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser'; // Import Title Service
 import { AuthenticationService } from './core/authentication.service';
 
+import { faHome, faWeightHanging, faChartBar, faTimes, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,12 @@ import { AuthenticationService } from './core/authentication.service';
 })
 
 export class AppComponent {
+
+  // Setting up icons
+  faHome = faHome;
+  faWeightHanging = faWeightHanging;
+  faChartBar = faChartBar;
+  faTimes = faTimes;
 
   /**
    * @param titleService Used to set title

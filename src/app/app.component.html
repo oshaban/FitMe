@@ -7,8 +7,9 @@
       <h1>FitMe</h1>
       <span flex></span>
       <div class="nav-items ml-auto">
-        <a class="login-button u-focus--underline u-hover--underline" [routerLink]="'/login'">Log In</a>
-        <a class="signup-button" mat-button [routerLink]="'/signup'">Sign Up</a>
+        <!-- <a class="login-button u-focus--underline u-hover--underline" [routerLink]="'/login'">Log In</a> -->
+        <!-- <a class="signup-button" mat-button [routerLink]="'/signup'">Sign Up</a> -->
+        <a class="login-button u-focus--underline u-hover--underline" (click)="logOut()" [routerLink]="''">Log Out</a>
       </div>
     </mat-toolbar-row>
 

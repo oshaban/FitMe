@@ -35,6 +35,11 @@ export interface TokenPayload {
 
 export class AuthenticationService {
 
+  /**
+   * 
+   * @param http Used to send requests to /api/users and /api/auth
+   * @param router Used to navigate user to certain URLs
+   */
   constructor(
     private http: HttpClient,
     private router: Router
@@ -60,7 +65,7 @@ export class AuthenticationService {
       const storedToken: string = localStorage.getItem('token');
       if (!storedToken) {throw new Error('no token found'); }
       return storedToken;
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
 
@@ -85,7 +90,7 @@ export class AuthenticationService {
     }
   }
 
-  /** Checks if a user is loggedin based on jwt  */
+  /** Checks if a user is loggedin based on if a jwt is stored in the local storage  */
   public isLoggedIn(): boolean {
     const user = this.getUserDetails();
     console.log(user);

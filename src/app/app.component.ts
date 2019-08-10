@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser'; // Import Title Service
+import { AuthenticationService } from './core/authentication.service';
 
 
 @Component({
@@ -10,12 +11,22 @@ import { Title } from '@angular/platform-browser'; // Import Title Service
 
 export class AppComponent {
 
-  // Inject services into app component
-  public constructor(private titleService: Title) {
-    // Title service is used to get and set the title of HTML document
+  /**
+   * @param titleService Used to set title
+   * @param auth Used to log user out
+   */
+  public constructor(
+    private titleService: Title,
+    private auth: AuthenticationService,
+    ) {
   }
 
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle); // Sets title of HTML document
   }
+
+  public logOut(): void {
+    this.auth.logout();
+  }
+
 }

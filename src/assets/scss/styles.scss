@@ -8,8 +8,8 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
-$my-app-primary: mat-palette($mat-indigo);
-$my-app-accent:  mat-palette($mat-pink, 500, 900, A100);
+$my-app-primary: mat-palette($mat-blue, 600);
+$my-app-accent:  mat-palette($mat-blue, A500);
 $my-app-warn:    mat-palette($mat-deep-orange);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 @include angular-material-theme($my-app-theme);
@@ -46,17 +46,17 @@ h1, h2 {
 
 .mat-button {
     color: white;
-    background-color: #0f72e5;
+    background-color: #1e88e5;
 }
 
 .mat-button:hover {
     color: white;
-   background: #0b68d3;
+   background: #1682e0;
    text-decoration: none!important;
 }
 
 .mat-raised-button {
-    background: #00aaff;
+    background: #1e88e5;
     color: white;
 }
 

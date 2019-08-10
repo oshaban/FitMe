@@ -12,7 +12,7 @@
         <div class="col-md-4" *ngFor="let statbox of StatBoxData">
             <app-statbox
                 [title]="statbox.title"
-                [subtitle]="statbox.subtitle"
+                [subtitle]="statbox?.subtitle"
                 [numDisplay]="statbox?.numDisplay" 
                 [unit]="statbox.unit"
                 [iconInput]="statbox.icon"
@@ -20,7 +20,7 @@
             </app-statbox>
         </div>
     </div>
-    <!-- userData?.fitnessProfile.recommendedCalories -->
+
     <!-- Displays component based on which statbox is clicked -->
     <div class="row dynamicGraphs">
         <div class="col-12">

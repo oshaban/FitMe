@@ -44,6 +44,9 @@ export class HomeComponent implements OnInit {
    */
   userGoal: number;
 
+  /** Goal is either 'gain', 'loose' or 'maintain'  */
+  goalSubtitle: string;
+
   /**
    * @param title Injects title service into component
    * @param auth Injects auth service to get fitness data of current user
@@ -77,20 +80,31 @@ export class HomeComponent implements OnInit {
           this.userDataAvail = true;
         }
 
+        // Determine sub-title for goal
+        if (this.userData.fitnessProfile.goal === 0) {
+          this.goalSubtitle = 'Maintain your weight';
+        } else if(this.userData.fitnessProfile.goal > 0) {
+          this.goalSubtitle = 'Gain per week';
+        } else {
+          this.goalSubtitle = 'Loose per week';
+        }
+
+        this.userGoal = Math.abs(this.userData.fitnessProfile.goal);
+
         // Update statbox displays with data from back-end
         this.StatBoxData = [
           {
             title: 'Current Weight',
             subtitle: 'Weight as of ' + '7/24/19',
-            numDisplay: 100,
+            numDisplay: 10,
             unit: 'lbs',
             icon: 'faChartLine',
             routerLink: ''
           },
           {
             title: 'Your Goal',
-            subtitle: 'loose' + ' per week',
-            numDisplay: 1,
+            subtitle: this.goalSubtitle,
+            numDisplay: this.userGoal,
             unit: 'lbs',
             icon: 'faChartBar',
             routerLink: 'goals'

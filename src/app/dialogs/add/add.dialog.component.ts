@@ -3,6 +3,7 @@ import {Component, Inject} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { Issue } from 'src/app/interfaces/issue';
 import { DataService } from 'src/app/core/data.service';
+import { WeightFormData } from 'src/app/interfaces/weightForm';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { DataService } from 'src/app/core/data.service';
 
 export class AddDialogComponent {
   constructor(public dialogRef: MatDialogRef<AddDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Issue,
+              @Inject(MAT_DIALOG_DATA) public data: WeightFormData,
               public dataService: DataService) { }
 
   formControl = new FormControl('', [
@@ -24,10 +25,6 @@ export class AddDialogComponent {
     return this.formControl.hasError('required') ? 'Required field' :
       this.formControl.hasError('email') ? 'Not a valid email' :
         '';
-  }
-
-  submit() {
-  // emppty stuff
   }
 
   onNoClick(): void {

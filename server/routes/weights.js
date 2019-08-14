@@ -15,7 +15,7 @@ router.get('/', async function(req,res) {
     
     try{
         const weights = await Weight.find(); // Finds all user weights
-        res.send(weights);
+        res.send(weights[0].weight);
     } catch(error) {
         res.status(500).send('Something failed');
     }

@@ -5,7 +5,7 @@
 export interface WeightsGetData {
     _id: string;
     user: string;
-    weight: {id: string, value: number, name: Date}[];
+    weight: {id: string, value: number, name: string}[];
 }
 
 /* Example weights recieved: */

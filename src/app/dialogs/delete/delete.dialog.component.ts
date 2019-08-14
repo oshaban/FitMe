@@ -1,5 +1,5 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {Component, Inject} from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { DataService } from 'src/app/core/data.service';
 
 
@@ -8,10 +8,11 @@ import { DataService } from 'src/app/core/data.service';
   templateUrl: '../../dialogs/delete/delete.dialog.html',
   styleUrls: ['../../dialogs/delete/delete.dialog.css']
 })
+
 export class DeleteDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<DeleteDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService) { 
+              @Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService) {
                 console.log(data);
               }
 
@@ -20,6 +21,7 @@ export class DeleteDialogComponent {
   }
 
   confirmDelete(): void {
-    this.dataService.deleteIssue(this.data.id);
+    this.dataService.deleteIssue(this.data._id);
+    console.log(this.data._id);
   }
 }

@@ -14,7 +14,7 @@ import { StatsComponent } from './pages/stats/stats.component';
 import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
 import { EditDialogComponent } from './dialogs/edit/edit.dialog.component';
 import { AddDialogComponent } from './dialogs/add/add.dialog.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatSortModule } from '@angular/material/sort';
 
 /* Angular material: https://material.angular.io/*/
@@ -60,7 +60,6 @@ import { MacroStatBoxComponent } from './charts/macro-stat-box/macro-stat-box.co
 import { GoalChartComponent } from './charts/goal-chart/goal-chart.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { CheckInComponent } from './pages/checkin/checkin.component';
-import { WeighttableComponent } from './charts/weighttable/weighttable.component';
 import { AuthGuardService } from './core/auth-guard.service';
 import { DataService } from './core/data.service';
 
@@ -79,7 +78,6 @@ import { DataService } from './core/data.service';
     GoalChartComponent,
     PageNotFoundComponent,
     CheckInComponent,
-    WeighttableComponent,
     AddDialogComponent,
     DeleteDialogComponent,
     EditDialogComponent

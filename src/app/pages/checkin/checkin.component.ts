@@ -1,20 +1,20 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
-import {HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
-import {DataSource} from '@angular/cdk/collections';
+import { DataSource } from '@angular/cdk/collections';
 
-import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import { WeightsDataService } from 'src/app/core/weights-data.service';
+import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { DataService } from 'src/app/core/data.service';
 import { AddDialogComponent } from 'src/app/dialogs/add/add.dialog.component';
 import { EditDialogComponent } from 'src/app/dialogs/edit/edit.dialog.component';
 import { Issue } from 'src/app/interfaces/issue';
 import { DeleteDialogComponent } from 'src/app/dialogs/delete/delete.dialog.component';
+import { AuthenticationService } from 'src/app/core/authentication.service';
 
 @Component({
   selector: 'app-checkin',
@@ -31,7 +31,9 @@ export class CheckInComponent implements OnInit {
 
   constructor(public httpClient: HttpClient,
               public dialog: MatDialog,
-              public dataService: DataService) {}
+              public dataService: DataService,
+              public auth: AuthenticationService,
+              ) {}
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -110,7 +112,8 @@ export class CheckInComponent implements OnInit {
   }
 
   public loadData() {
-    this.exampleDatabase = new DataService(this.httpClient);
+
+    this.exampleDatabase = new DataService(this.httpClient, this.auth);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
 /*     fromEvent(this.filter.nativeElement, 'keyup')
       // .debounceTime(150)

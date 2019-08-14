@@ -18,8 +18,9 @@
   
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.name | date: 'shortDate' }}</mat-cell>
       </ng-container>
+        <!-- Angular pipe to format date -->
   
       <!-- actions -->
       <ng-container matColumnDef="actions">

@@ -10,6 +10,13 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { StatsComponent } from './pages/stats/stats.component';
 
+/* Dialog boxes */
+import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
+import { EditDialogComponent } from './dialogs/edit/edit.dialog.component';
+import { AddDialogComponent } from './dialogs/add/add.dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatSortModule } from '@angular/material/sort';
+
 /* Angular material: https://material.angular.io/*/
 import {
   MatToolbarModule,
@@ -38,12 +45,13 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 /* Forms */
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 
 /* Table */
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator'
 
 /* Font Awesome */
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -51,9 +59,10 @@ import { MacrotableComponent } from './charts/macrotable/macrotable.component';
 import { MacroStatBoxComponent } from './charts/macro-stat-box/macro-stat-box.component';
 import { GoalChartComponent } from './charts/goal-chart/goal-chart.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { CheckinComponent } from './pages/checkin/checkin.component';
+import { CheckInComponent } from './pages/checkin/checkin.component';
 import { WeighttableComponent } from './charts/weighttable/weighttable.component';
 import { AuthGuardService } from './core/auth-guard.service';
+import { DataService } from './core/data.service';
 
 @NgModule({
   declarations: [
@@ -69,8 +78,12 @@ import { AuthGuardService } from './core/auth-guard.service';
     MacroStatBoxComponent,
     GoalChartComponent,
     PageNotFoundComponent,
-    CheckinComponent,
+    CheckInComponent,
     WeighttableComponent,
+    AddDialogComponent,
+    DeleteDialogComponent,
+    EditDialogComponent
+
   ],
   imports: [
     BrowserModule,
@@ -94,12 +107,22 @@ import { AuthGuardService } from './core/auth-guard.service';
     MatSelectModule,
     FontAwesomeModule,
     MatTableModule,
-    NgxChartsModule
+    NgxChartsModule,
+    MatPaginatorModule,
+    FormsModule,
+    MatDialogModule,
+    MatSortModule
   ],
   providers: [
     Title,
     MatDatepickerModule,
-    AuthGuardService
+    AuthGuardService,
+    DataService
+  ],
+  entryComponents: [
+    AddDialogComponent,
+    EditDialogComponent,
+    DeleteDialogComponent
   ],
   bootstrap: [AppComponent]
 })

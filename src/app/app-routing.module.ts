@@ -10,7 +10,7 @@ import { MacroStatBoxComponent } from './charts/macro-stat-box/macro-stat-box.co
 import { DateTrackingChartComponent } from './charts/date-tracking-chart/date-tracking-chart.component';
 import { GoalChartComponent } from './charts/goal-chart/goal-chart.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { CheckinComponent } from './pages/checkin/checkin.component';
+import { CheckInComponent } from './pages/checkin/checkin.component';
 import { AuthGuardService } from './core/auth-guard.service';
 import { ResolverService } from './core/resolver.service';
 
@@ -44,7 +44,7 @@ const routes: Routes = [
   },
   {
     path: 'checkin',
-    component: CheckinComponent,
+    component: CheckInComponent,
     canActivate: [AuthGuardService]
   },
   { path: '**', component: PageNotFoundComponent } /* Wild-card route */

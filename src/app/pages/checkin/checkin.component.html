@@ -1,58 +1,59 @@
-<div class="container">
+<div class="container mat-elevation-z8">
 
-        <!-- Page title -->
-        <div class="row section-title">
-            <div class="col-12">
-                <h2 class="stat">Check In</h2>
-            </div>
-        </div>
+    <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
-        <div class="row blurb">
-            <div class="col-12">
-                <p>Update your weight to get the most accurate fitness analysis!</p>
-            </div>
-        </div>
-
-        <div class="formSection-container">
-
-            <form class="row" [formGroup]="updateWeightGroup" (ngSubmit)="onSubmit()"> <!-- Start form -->
-
-                <div class="weightInput col-6">
-                    <mat-form-field>
-                        <input matInput placeholder="Weight?" formControlName="weightControl" required>
-                        <span matSuffix style="margin-right: 1rem">lbs</span>
-                    </mat-form-field>
-                </div> <!-- End weightInput -->
-
-                <div class="dateInput col-6">
-                    <mat-form-field>
-                        <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="dateControl">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-                </div> <!-- End dateInput -->
-
-
-                <!-- Submit button -->
-                <button
-                [disabled]="!updateWeightGroup.valid"
-                class="submit-btn"
-                mat-raised-button type="submit" 
-                style="margin-left: 1rem">Submit</button>
-
-            </form> <!-- End form -->
-
-        </div> <!-- End formSection -->
-
-        <div class="row">
-            <div class="col-12">
-
-                <!-- TO DO -->
-                <!-- https://github.com/marinantonio/angular-mat-table-crud -->
-
-                {{userWeight | json}}
-
-            </div>
-        </div>
-    
-    </div> <!-- End container -->
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="_id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+        <mat-cell *matCellDef="let row" >{{row._id}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="value">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Weight</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.value}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
+      </ng-container>
+  
+      <!-- actions -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-icon-button color="primary" (click)="addNew()">
+            <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+          </button>
+        </mat-header-cell>
+  
+        <mat-cell *matCellDef="let row; let i=index;">
+          <button mat-icon-button color="accent" (click)="startEdit(i, row.id, row.value, row.name)">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+  
+          <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.value, row.name)">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+  
+    <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+      No results
+    </div>
+  
+    <mat-paginator #paginator
+                   [length]="dataSource.filteredData.length"
+                   [pageIndex]="0"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+</div>
+  

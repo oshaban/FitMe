@@ -1,8 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 
-import { DateValidator } from '../signup/date.validator'; // Validates that date isn't past today
+import {HttpClient} from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+
+import {DataSource} from '@angular/cdk/collections';
+
+import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 import { WeightsDataService } from 'src/app/core/weights-data.service';
+import { DataService } from 'src/app/core/data.service';
+import { AddDialogComponent } from 'src/app/dialogs/add/add.dialog.component';
+import { EditDialogComponent } from 'src/app/dialogs/edit/edit.dialog.component';
+import { Issue } from 'src/app/interfaces/issue';
+import { DeleteDialogComponent } from 'src/app/dialogs/delete/delete.dialog.component';
 
 @Component({
   selector: 'app-checkin',
@@ -10,80 +22,181 @@ import { WeightsDataService } from 'src/app/core/weights-data.service';
   styleUrls: ['./checkin.component.scss']
 })
 
-export class CheckinComponent implements OnInit {
+export class CheckInComponent implements OnInit {
+  displayedColumns = ['_id', 'value', 'name', 'actions'];
+  exampleDatabase: DataService | null;
+  dataSource: ExampleDataSource | null;
+  index: number;
+  id: number;
 
-  /**
-   * Form for user updating weight
-   */
-  private updateWeightGroup: FormGroup;
+  constructor(public httpClient: HttpClient,
+              public dialog: MatDialog,
+              public dataService: DataService) {}
 
-  /**
-   * Stores form submission for user weight input
-   */
-  private weightInput: number;
-
-  /**
-   * Stores form submission for user date input
-   */
-  private dateInput: Date;
-
-  /**
-   * Stores a users weights from the server
-   */
-  private userWeight: {value: number, name: string}[];
-
-  /**
-   * @param formBuilder Used to create form for user weight submission
-   * @param weightsService Used to fetch user weights and update user weights
-   */
-  constructor(
-    private formBuilder: FormBuilder,
-    private weightsService: WeightsDataService,
-  ) { }
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild('filter',  {static: true}) filter: ElementRef;
 
   ngOnInit() {
-
-    // Fetches weights from backend
-    this.weightsService.getWeights().subscribe(
-      (resData) => {
-        console.log(resData.weight);
-        this.userWeight = resData.weight;
-    });
-
-    this.updateWeightGroup = this.formBuilder.group({
-      weightControl: ['', [
-        Validators.required,
-        Validators.min(10),
-        Validators.max(500),
-        Validators.pattern('[0-9]*')
-        ]
-      ],
-      dateControl: ['', [
-        Validators.required,
-        DateValidator.validDate,
-        ]
-      ]
-    });
-
-
+    this.loadData();
   }
 
-  /**
-   * When user submits form, this will update the weight in the back-end
-   */
-  private onSubmit() {
+  refresh() {
+    this.loadData();
+  }
 
-    if (this.updateWeightGroup.valid) {
+  addNew(issue: Issue) {
+    const dialogRef = this.dialog.open(AddDialogComponent, {
+      data: {issue: issue }
+    });
 
-      this.weightsService.addWeight({
-        weight: this.updateWeightGroup.value.weightControl,
-        date: this.updateWeightGroup.value.dateControl,
-      }).subscribe( (resData) => {
-        console.log(resData);
-      });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        // After dialog is closed we're doing frontend updates
+        // For add we're just pushing a new row inside DataService
+        this.exampleDatabase.dataChange.value.push(this.dataService.getDialogData());
 
-    } // End if
+        console.log(this.dataService.getDialogData());
 
-  } // END onSubmit()
+        this.refreshTable();
+      }
+    });
+  }
 
+  startEdit(i: number, id: number, value: number, name: string) {
+    this.id = id;
+    // index row is used just for debugging proposes and can be removed
+    this.index = i;
+    console.log(this.index);
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      data: {id: id, value: value, name: name}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        // When using an edit things are little different, firstly we find record inside DataService by id
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+        // Then you update that record using data from dialogData (values you enetered)
+        this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
+        // And lastly refresh table
+        this.refreshTable();
+      }
+    });
+  }
+
+  deleteItem(i: number, id: number, value: number, name: string) {
+    this.index = i;
+    this.id = id;
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: {id: id, value: value, name: name}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+        // for delete we use splice in order to remove single object from DataService
+        this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+        this.refreshTable();
+      }
+    });
+  }
+
+
+  private refreshTable() {
+    // Refreshing table using paginator
+    // Thanks yeager-j for tips
+    // https://github.com/marinantonio/angular-mat-table-crud/issues/12
+    this.paginator._changePageSize(this.paginator.pageSize);
+  }
+
+  public loadData() {
+    this.exampleDatabase = new DataService(this.httpClient);
+    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
+/*     fromEvent(this.filter.nativeElement, 'keyup')
+      // .debounceTime(150)
+      // .distinctUntilChanged()
+      .subscribe(() => {
+        if (!this.dataSource) {
+          return;
+        }
+        this.dataSource.filter = this.filter.nativeElement.value;
+      }); */
+  }
+}
+
+export class ExampleDataSource extends DataSource<Issue> {
+  _filterChange = new BehaviorSubject('');
+
+  get filter(): string {
+    return this._filterChange.value;
+  }
+
+  set filter(filter: string) {
+    this._filterChange.next(filter);
+  }
+
+  filteredData: Issue[] = [];
+  renderedData: Issue[] = [];
+
+  constructor(public _exampleDatabase: DataService,
+              public _paginator: MatPaginator,
+              public _sort: MatSort) {
+    super();
+    // Reset to the first page when the user changes the filter.
+    this._filterChange.subscribe(() => this._paginator.pageIndex = 0);
+  }
+
+  /** Connect function called by the table to retrieve one stream containing the data to render. */
+  connect(): Observable<Issue[]> {
+    // Listen for any changes in the base data, sorting, filtering, or pagination
+    const displayDataChanges = [
+      this._exampleDatabase.dataChange,
+      this._sort.sortChange,
+      this._filterChange,
+      this._paginator.page
+    ];
+
+    this._exampleDatabase.getAllIssues();
+
+
+    return merge(...displayDataChanges).pipe(map( () => {
+        // Filter data
+        this.filteredData = this._exampleDatabase.data;
+
+        // Sort filtered data
+        const sortedData = this.sortData(this.filteredData.slice());
+
+        // Grab the page's slice of the filtered sorted data.
+        const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+        this.renderedData = sortedData.splice(startIndex, this._paginator.pageSize);
+        return this.renderedData;
+      }
+    ));
+  }
+
+  disconnect() {}
+
+
+  /** Returns a sorted copy of the database data. */
+  sortData(data: Issue[]): Issue[] {
+    if (!this._sort.active || this._sort.direction === '') {
+      return data;
+    }
+
+    return data.sort((a, b) => {
+      let propertyA: number | string = '';
+      let propertyB: number | string = '';
+
+      switch (this._sort.active) {
+        case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
+        case 'value': [propertyA, propertyB] = [a.value, b.value]; break;
+        case 'name': [propertyA, propertyB] = [a.name, b.name]; break;
+      }
+
+      const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+      const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
+      return (valueA < valueB ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1);
+    });
+  }
 }

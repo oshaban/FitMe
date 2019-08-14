@@ -1,5 +1,5 @@
 export class Issue {
-  id: number;
+  id: string;
   value: number;
   name: string;
 }

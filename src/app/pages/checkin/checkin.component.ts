@@ -27,7 +27,7 @@ export class CheckInComponent implements OnInit {
   exampleDatabase: DataService | null;
   dataSource: ExampleDataSource | null;
   index: number;
-  id: number;
+  id: string;
 
   constructor(public httpClient: HttpClient,
               public dialog: MatDialog,
@@ -49,7 +49,7 @@ export class CheckInComponent implements OnInit {
 
   addNew(issue: Issue) {
     const dialogRef = this.dialog.open(AddDialogComponent, {
-      data: {issue: issue }
+      data: { issue }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -65,7 +65,7 @@ export class CheckInComponent implements OnInit {
     });
   }
 
-  startEdit(i: number, id: number, value: number, name: string) {
+  startEdit(i: number, id: string, value: number, name: string) {
     this.id = id;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
@@ -86,7 +86,7 @@ export class CheckInComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, value: number, name: string) {
+  deleteItem(i: number, id: string, value: number, name: string) {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteDialogComponent, {

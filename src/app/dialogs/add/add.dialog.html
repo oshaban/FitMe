@@ -1,26 +1,36 @@
 <div class="container">
   
-  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
-    
-    <h3 mat-dialog-title>Add new entry</h3>
-    
+  <!-- Creating form Group -->
+  <form [formGroup]="addGroup">
+
+    <!-- Weight form control -->
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput placeholder="Weight" [(ngModel)]="data.weight" name="weight">
+      <mat-form-field>
+          <input matInput placeholder="What is your weight?" formControlName="weight"required>
+          <span matSuffix style="margin-right: 1rem">lbs</span>
+      
+          <mat-error *ngFor="let validation of weightValidationMessage.weight">
+              <p *ngIf="addGroup.get('weight').hasError(validation.type) && ( addGroup.get('weight').dirty ) ">{{validation.message}} </p>
+          </mat-error>
+
       </mat-form-field>
     </div>
 
+    <!-- Date form control -->
     <div class="form">
       <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="data.date" name="date">
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-  </div>
-
-    <div mat-dialog-actions>
-      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
-      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
     </div>
+
+    <!-- Form actions -->
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]="!addGroup.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+      <button mat-button [type]="reset"  (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+
   </form>
+  
 </div>

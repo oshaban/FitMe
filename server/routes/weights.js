@@ -87,6 +87,33 @@ router.post('/me', auth, async function(req,res) {
         
 });
 
+// DELETE /api/weights/me/:id
+    // Deletes weight document of the user
+    // Body response: Returns deleted weight document of user
+    // End point is only available to authenticated users
+router.delete('/me/:id', auth, async function(req,res) {
+    
+    try {
+        enteredID = req.params.id; //Gets dynamic route parameter
+
+        const userWeights = await Weight.findOne( {'weight._id' : enteredID} )
+
+        if (userWeights === null) {
+            // Weight with ID was not found
+            res.status(404).send('Weight with given ID is not found');
+        } else {
+            weightDel = userWeights.weight.id(enteredID).remove(); // Remove subdocument
+            userWeights.save(); // Save main document
+            res.send(weightDel);
+        }
+
+    } catch(error) {
+        res.status(500).send('Something failed');
+        console.log(error);
+    }
+
+});
+
 
 /**
  * Returns true if valid request body, otherwise returns false

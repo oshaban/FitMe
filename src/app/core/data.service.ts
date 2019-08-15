@@ -82,10 +82,17 @@ export class DataService {
    * Deletes a weight document from a users weight data
    * @param id Id of weight document
    */
-  deleteItem(id: number): void {
+  deleteItem(id: string): void {
+
+    // Sets authorization token headers
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'x-auth-token': `${this.auth.getToken()}`
+      })
+    };
 
     // DELETE request
-    this.httpClient.delete(this.API_URL + id).subscribe(data => {
+    this.httpClient.delete(this.API_URL + id, httpOptions).subscribe(data => {
       console.log(data['']);
         // this.toasterService.showToaster('Successfully deleted', 3000);
       },
@@ -99,9 +106,6 @@ export class DataService {
     this.dialogData = issue;
   }
 
-  deleteIssue(id: number): void {
-    console.log(id);
-  }
 }
 
 
@@ -119,15 +123,4 @@ export class DataService {
     );
   }
 
-  // DELETE METHOD
-  deleteItem(id: number): void {
-    this.httpClient.delete(this.API_URL + id).subscribe(data => {
-      console.log(data['']);
-        this.toasterService.showToaster('Successfully deleted', 3000);
-      },
-      (err: HttpErrorResponse) => {
-        this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
-      }
-    );
-  }
 */

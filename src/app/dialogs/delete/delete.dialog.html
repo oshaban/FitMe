@@ -3,7 +3,7 @@
   <div mat-dialog-content>
     Weight: {{data.value}}
     <p></p>
-    Date: {{data.name}}
+    Date: {{data.name | date: 'shortDate' }}
   </div>
 
   <div mat-dialog-actions>

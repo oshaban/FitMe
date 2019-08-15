@@ -23,12 +23,22 @@ import { AuthenticationService } from 'src/app/core/authentication.service';
 })
 
 export class CheckInComponent implements OnInit {
-  displayedColumns = ['_id', 'value', 'name', 'actions'];
+
+  /** Columns to display in table  */
+  displayedColumns = ['value', 'name', 'actions'];
+
   exampleDatabase: DataService | null;
   dataSource: ExampleDataSource | null;
   index: number;
   id: string;
 
+
+  /**
+   * @param httpClient Sends HTTP requets
+   * @param dialog Dialog box for adding, modifying, and deleting weights
+   * @param dataService Fetches data from dialog boxes
+   * @param auth Used to authenticate user
+   */
   constructor(public httpClient: HttpClient,
               public dialog: MatDialog,
               public dataService: DataService,
@@ -47,6 +57,7 @@ export class CheckInComponent implements OnInit {
     this.loadData();
   }
 
+  /** Adds a new weight {weight:.., date:...,} to database */
   addNew(issue: Issue) {
     const dialogRef = this.dialog.open(AddDialogComponent, {
       data: { issue }
@@ -86,6 +97,7 @@ export class CheckInComponent implements OnInit {
     });
   }
 
+  /** Deletes a weight from the database */
   deleteItem(i: number, id: string, value: number, name: string) {
     this.index = i;
     this.id = id;

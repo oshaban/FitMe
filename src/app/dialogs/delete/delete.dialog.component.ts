@@ -11,17 +11,24 @@ import { DataService } from 'src/app/core/data.service';
 
 export class DeleteDialogComponent {
 
-  constructor(public dialogRef: MatDialogRef<DeleteDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService) {
-                console.log(data);
-              }
+  /** Stores weight document to delete  */
+  weightDoc: { id: string; value: number; name: string };
+
+  constructor(
+    public dialogRef: MatDialogRef<DeleteDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService
+    ) {
+      console.log(data);
+      this.weightDoc = data;
+    }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
+  /** Sends weight document id to service to delete  */
   confirmDelete(): void {
-    this.dataService.deleteIssue(this.data._id);
-    console.log(this.data._id);
+    console.log(this.weightDoc.id);
+    this.dataService.deleteItem(this.weightDoc.id);
   }
 }

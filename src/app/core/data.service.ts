@@ -57,6 +57,7 @@ export class DataService {
   /**
    * Adds a user weight to the database
    * @param weightItem User weight to add to database
+   * POST Body {weight:..., date:...}
    */
   addItem(weightItem: WeightFormData): void {
 
@@ -70,7 +71,7 @@ export class DataService {
     // POST request
     this.httpClient.post<WeightsGetData>(this.API_URL, weightItem, httpOptions).subscribe(data => {
       this.dialogData = {name: weightItem.date, value: weightItem.weight};
-      console.log(weightItem);
+      console.log('weightItem to add to DB: ' + weightItem);
       // this.toasterService.showToaster('Successfully added', 3000);
       },
       (err: HttpErrorResponse) => {
@@ -102,25 +103,29 @@ export class DataService {
     );
   }
 
-  updateIssue(issue: Issue): void {
-    this.dialogData = issue;
-  }
+  /** Updates a weight document from a users weight data
+   * @param id Id of weight document
+   * @param weightItem User weight to add to database, PUT Body {weight:..., date:...}
+   */
+  updateItem(id: string, weightItem: WeightFormData): void {
 
-}
+    // Sets authorization token headers
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'x-auth-token': `${this.auth.getToken()}`
+      })
+    };
 
-
-/* REAL LIFE CRUD Methods I've used in my projects. ToasterService uses Material Toasts for displaying messages:
-
-    // UPDATE, PUT METHOD
-     updateItem(kanbanItem: KanbanItem): void {
-    this.httpClient.put(this.API_URL + kanbanItem.id, kanbanItem).subscribe(data => {
-        this.dialogData = kanbanItem;
-        this.toasterService.showToaster('Successfully edited', 3000);
+    // PUT request
+    this.httpClient.put(this.API_URL + id, weightItem, httpOptions).subscribe(data => {
+      this.dialogData = {_id: id, name: weightItem.date, value: weightItem.weight};
+      console.log('weightItem to add to DB: ' + weightItem);
+      // this.toasterService.showToaster('Successfully added', 3000);
       },
       (err: HttpErrorResponse) => {
-        this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
+        // this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
       }
     );
   }
 
-*/
+}

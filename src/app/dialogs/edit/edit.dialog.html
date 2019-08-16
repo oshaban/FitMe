@@ -1,24 +1,29 @@
 <div class="container">
-  <h3 mat-dialog-title>Issue id: {{data.id}}</h3>
+  
+    <!-- Creating form Group -->
+    <form [formGroup]="addGroup">
+  
+      <h6>Edit weight on {{weightDate | date:'shortDate'}}</h6>
 
-  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
-
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" required >
-        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-    </div>
-
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput placeholder="Created at" [(ngModel)]="data.created_at" name="created_at">
-      </mat-form-field>
-    </div>
-
-    <div mat-dialog-actions>
-      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Save</button>
-      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
-    </div>
-  </form>
-</div>
+      <!-- Weight form control -->
+      <div class="form">
+        <mat-form-field>
+            <input matInput placeholder="Weight" formControlName="weight"required>
+            <span matSuffix style="margin-right: 1rem">lbs</span>
+        
+            <mat-error *ngFor="let validation of weightValidationMessage.weight">
+                <p *ngIf="addGroup.get('weight').hasError(validation.type) && ( addGroup.get('weight').dirty ) ">{{validation.message}} </p>
+            </mat-error>
+  
+        </mat-form-field>
+      </div>
+    
+      <!-- Form actions -->
+      <div mat-dialog-actions>
+        <button mat-button [type]="submit" [disabled]="!addGroup.valid" [mat-dialog-close]="1" (click)="stopEdit()">Save</button>
+        <button mat-button [type]="reset"  (click)="onNoClick()" tabindex="-1">Cancel</button>
+      </div>
+  
+    </form>
+    
+  </div>

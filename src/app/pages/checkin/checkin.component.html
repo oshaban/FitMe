@@ -6,20 +6,12 @@
   </div>
 </div>
 
-<div class="container mat-elevation-z8">
+<div class="container">
 
   <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
-
-    <!-- ID Column -->
-<!--       
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-      <mat-cell *matCellDef="let row" >{{row._id}}</mat-cell>
-    </ng-container> 
-  -->
 
     <!-- Value column -->
     <ng-container matColumnDef="value">

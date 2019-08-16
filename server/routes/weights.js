@@ -87,6 +87,45 @@ router.post('/me', auth, async function(req,res) {
         
 });
 
+// PUT /api/weights/me/:id
+// Updates weight document of the user
+    // Body response: Returns updated weight of user
+    // End point is only available to authenticated users
+router.put('/me/:id', auth, async function(req,res) {
+
+    // Check if the HTTP request body is valid
+    if( !validateWeight(req.body) ) {
+        // Invalid input
+        return res.status(400).send('Bad Request');
+    }
+
+    try{
+
+        enteredID = req.params.id; //Gets dynamic route parameter
+
+        // Finds weight document for user
+        const userWeights = await Weight.findOne( {'weight._id' : enteredID} )
+
+        if (userWeights === null) {
+            // Weight with ID was not found
+            res.status(404).send('Weight with given ID is not found');
+        } else {
+            // Update the document
+
+            userWeights.weight.id(enteredID).value = req.body.weight
+            weightDoc = userWeights.weight.id(enteredID).name = new Date(req.body.date);
+            
+            // Find
+            userWeights.save(); // Save main document
+            res.send(weightDoc);
+        }
+
+    } catch(error) {
+        res.status(500).send('Something failed');
+    }
+        
+});
+
 // DELETE /api/weights/me/:id
     // Deletes weight document of the user
     // Body response: Returns deleted weight document of user

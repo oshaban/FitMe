@@ -29,8 +29,8 @@
 
     <!-- Form actions -->
     <div mat-dialog-actions>
-      <button mat-button [type]="submit" [disabled]="!addGroup.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
-      <button mat-button [type]="reset"  (click)="onNoClick()" tabindex="-1">Cancel</button>
+      <button mat-raised-button type="submit" class="submit-btn" [disabled]="!addGroup.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+      <button mat-raised-button type="submit" class="submit-btn"  (click)="onNoClick()" tabindex="-1">Cancel</button>
     </div>
 
   </form>

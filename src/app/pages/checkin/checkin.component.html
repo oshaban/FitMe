@@ -2,11 +2,11 @@
 
 <div class="container">
 
-  <div class="col-12 main-wrapper">
+  <div class="row section-title">
+    <h5 class="stat">Check-In</h5>
+  </div>
 
-    <div class="row section-title">
-      <h5 class="stat">Your Weight</h5>
-    </div>
+  <div class="col-12 main-wrapper">
 
     <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
@@ -61,6 +61,6 @@
     </mat-paginator>
 
 
-</div> <!-- End col-12 -->
+  </div> <!-- End col-12 -->
 
 </div>

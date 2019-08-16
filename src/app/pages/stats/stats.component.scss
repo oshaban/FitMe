@@ -16,6 +16,7 @@
     padding-top: 0.5rem;
 }
 
-ng::deep h5 {
-    color: black;
+::ng-deep h5.stat {
+    color: black !important;
+    font-weight: 500 !important;
 }

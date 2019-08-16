@@ -98,7 +98,7 @@ export class HomeComponent implements OnInit {
         this.StatBoxData = [
           {
             title: 'Starting Weight',
-            subtitle: 'Weight as of ' + strDate,
+            subtitle: 'Weight on ' + strDate,
             numDisplay: this.userData.fitnessProfile.startWeight.weight,
             unit: 'lbs',
             icon: 'faChartLine',

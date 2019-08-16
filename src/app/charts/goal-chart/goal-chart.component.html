@@ -1,15 +1,20 @@
-
-<!-- Section title -->
 <div class="row section-title">
-    <div class="col-12">
-        <h5 class="stat">Your Goal</h5>
-    </div>
+  <div class="col-12">
+      <h5 class="stat">Your Breakdown</h5>
+  </div>
 </div>
 
-<!-- Display graph
-  *Only show once the data is loaded -->
-<div class="row graphdisplay">
-    
-  
-</div> 
+<div class="row">
 
+  <!-- Displays macro table -->
+  <div class="col md-6 mx-auto">
+      <app-goaltable
+          [userGoal]="userGoal"
+          [userCalDiff]="userCalDiff"
+          [userTDEE]="userTDEE"
+          [userCalories]="userCalories"
+          *ngIf="ready"
+      ></app-goaltable>
+  </div>
+
+</div>

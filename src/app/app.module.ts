@@ -62,6 +62,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { CheckInComponent } from './pages/checkin/checkin.component';
 import { AuthGuardService } from './core/auth-guard.service';
 import { DataService } from './core/data.service';
+import { GoaltableComponent } from './charts/goaltable/goaltable.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { DataService } from './core/data.service';
     CheckInComponent,
     AddDialogComponent,
     DeleteDialogComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    GoaltableComponent
 
   ],
   imports: [

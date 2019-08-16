@@ -1,0 +1,21 @@
+<table mat-table [dataSource]="dataSource" >
+
+    <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+    <!-- Macro Column -->
+    <ng-container matColumnDef="stat">
+        <th mat-header-cell *matHeaderCellDef> Stat </th>
+        <td mat-cell *matCellDef="let element"> {{element.stat}} </td>
+    </ng-container>
+    
+    <!-- Amount Column -->
+    <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+    </ng-container>
+
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

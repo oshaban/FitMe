@@ -83,3 +83,13 @@ button.toggle {
 .graphSection {
     margin-top: 2rem;
 }
+
+mat-header-cell.actionHeader{
+  display:flex;
+  justify-content:flex-end;
+ }
+
+ mat-cell.actionButtons {
+  display:flex;
+  justify-content:flex-end;
+ }

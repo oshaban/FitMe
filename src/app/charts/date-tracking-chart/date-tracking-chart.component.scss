@@ -1,3 +1,39 @@
 .graphdisplay {
     margin-top: 3rem;
 }
+
+h5 {
+    font-weight: 900;
+    color: #1682e0;
+}
+
+.section-title {
+    border-color: rgba(243, 244, 248, 1);
+    border-width: 0 0 0.1rem 0;
+    border-style: solid;
+    margin-bottom: 2rem;
+}
+
+.chart-parent {
+    min-height: 400px;
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+    .chart-parent {
+        min-height: 300px;
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    .chart-parent {
+        min-height: 400px;
+    }
+}
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    .chart-parent {
+        min-height: 500px;
+    }
+}

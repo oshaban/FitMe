@@ -21,3 +21,18 @@ a {
   width: 100%;
   padding-top: 2rem;
 }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    mat-card.example-card {
+        height: 12rem;
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 992px) {
+  mat-card.example-card {
+      height: 9rem;
+  }
+}
+

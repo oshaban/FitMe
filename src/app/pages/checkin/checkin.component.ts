@@ -111,7 +111,7 @@ export class CheckInComponent implements OnInit {
       if (result === 1) {
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
           x => {
-            return x._id === this.id; });
+            return x._id === this.id; }); /* TO DO: Fix types */
 
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);

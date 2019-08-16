@@ -1,6 +1,10 @@
 .section-title {
     margin-top: 2rem;
     margin-bottom: 1rem;
+    border-color: rgba(243, 244, 248, 1);
+    border-width: 0 0 0.1rem 0;
+    border-style: solid;
+    margin-bottom: 2rem;
 }
 
 .container {
@@ -10,4 +14,8 @@
     border-width: 0.2rem 0 0 0;
     border-style: solid;
     padding-top: 0.5rem;
+}
+
+ng::deep h5 {
+    color: black;
 }

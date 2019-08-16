@@ -1,35 +1,5 @@
-h2 {
-    text-align: center;
-}
-
-h2.stat {
-    text-align: left;
-}
-
-.section-title {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-}
-
-.formSection-container {
-    padding: 2rem 2rem 2rem 2rem;
-    margin-top: 2rem;
-    border: 0;
-    border-radius: 0.5rem;
-    box-shadow: 0.2rem 0.4rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
-    background-color: white;
-  }
-  
-  .mat-select-underline {
-    transform: perspective(1px);
-  }
-
-form {
-  margin-left: 1rem;
-}
-
-mat-form-field {
-  margin-top: 1rem;
+.mat-select-underline {
+  transform: perspective(1px);
 }
 
 ::ng-deep .mat-form-field-flex {
@@ -44,44 +14,8 @@ mat-form-field {
   background-color: transparent;
 }
 
-
-::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
-  border-color: #00aaff;
-}
-
-::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
-  background-color: #00aaff;
-}
-
 .label-activity {
   display: block;
-}
-
-mat-radio-group.radio-group-activity {
-display: inline-block;
-}
-
-mat-radio-button.btn-activity {
-display: block;
-}
-
-.field-title {
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.signup-section {
-  margin-top: 2rem;
-}
-
-button.toggle {
-  border: 0.07rem;
-  border-color: #00aaff;
-  border-style: solid;
-} 
-
-.graphSection {
-    margin-top: 2rem;
 }
 
 mat-header-cell.actionHeader{
@@ -93,3 +27,19 @@ mat-header-cell.actionHeader{
   display:flex;
   justify-content:flex-end;
  }
+
+ .section-title {
+  margin-top: 2rem;
+  border-color: #1682e0;
+  border-width: 0.2rem 0 0 0;
+  border-style: solid;
+  padding-top: 0.5rem;
+}
+
+.section-title h5 {
+  margin-left: 1rem;
+}
+
+.main-wrapper {
+  background: #ffffff;
+}

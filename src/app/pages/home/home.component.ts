@@ -88,15 +88,18 @@ export class HomeComponent implements OnInit {
         } else {
           this.goalSubtitle = 'Loose per week';
         }
-
         this.userGoal = Math.abs(this.userData.fitnessProfile.goal);
+
+        // Determine display for weight:
+        const weightDate = new Date(this.userData.fitnessProfile.startWeight.date);
+        const strDate = weightDate.toLocaleDateString('en-US');
 
         // Update statbox displays with data from back-end
         this.StatBoxData = [
           {
-            title: 'Current Weight',
-            subtitle: 'Weight as of ' + '7/24/19',
-            numDisplay: 10,
+            title: 'Starting Weight',
+            subtitle: 'Weight as of ' + strDate,
+            numDisplay: this.userData.fitnessProfile.startWeight.weight,
             unit: 'lbs',
             icon: 'faChartLine',
             routerLink: 'weight'

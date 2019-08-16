@@ -48,14 +48,16 @@ function getCals(fitnessProfile) {
     let tdee = getTDEE(fitnessProfile)
 
     let caloricSurplus = 0;
+
     // Calculate caloric surplus based on fitnessProfile goal
+        // 3500*(weekly gain or loss in lbs) / 7 
     switch (fitnessProfile.goal) {
         case 1:
-            caloricSurplus = 200;
+            caloricSurplus = 500;
             break;
         
         case 0.5:
-            caloricSurplus = 100;
+            caloricSurplus = 250;
             break;
 
         case 0:
@@ -63,11 +65,11 @@ function getCals(fitnessProfile) {
             break;
 
         case -0.5:
-            caloricSurplus = -100;
+            caloricSurplus = -250;
             break;
 
         case -1:
-            caloricSurplus = -200;
+            caloricSurplus = -500;
             break;
     
         default:
@@ -85,8 +87,37 @@ function getCals(fitnessProfile) {
 function getMacros(fitnessProfile) {
     
     calories = getCals(fitnessProfile); // Find total number of calories
+
+    /** Amount of fat in grams  */
+    fat = 0;
+
+    /** Amount of protein in grams  */
+    protein = 0;
+
+    /** Amount of carbs in grams  */
+    carbs = 0;
+
+    if(fitnessProfile.goal >= 0) {
+        // User is bulking or maintaining
+        fat = (calories*0.3)/9; // Fat is ~30% of weight, 9 grams/cal 
+        protein = (fitnessProfile.startWeight * 1.2); // Protein is 1.2 grams / bodyweight
+
+    } else {
+        // User is cutting
+        fat = (calories*0.24)/9; // Fat is ~24% of weight, 9 grams/cal
+        protein = fitnessProfile.startWeight * 1.4; // Protein is 1.4 grams / bodyweight
+
+    }
+
+    // Carbs is remainder
+    carbs = ( calories - ((fat*9) + (protein*4) ) ) / 4;
     
-    return {protein: 200, fat: 30, carbs: 50}
+    // Round values
+    carbs = Math.round(carbs)
+    fat = Math.round(fat);
+    protein = Math.round(protein);
+
+    return {protein: protein, fat: fat, carbs: carbs}
 }
 
 module.exports = {

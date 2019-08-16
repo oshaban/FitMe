@@ -51,9 +51,9 @@ export class MacrotableComponent implements OnInit {
 
     // Setting data source to graph
     this.dataSource =  [
-      { macro: 'Protein', amount: this.protein },
+      { macro: 'Proteins', amount: this.protein },
       { macro: 'Fats', amount: this.fat },
-      { macro: 'Carbs', amount: this.carbs },
+      { macro: 'Carbohydrates', amount: this.carbs },
     ];
 
   }

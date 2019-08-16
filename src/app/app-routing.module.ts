@@ -22,8 +22,8 @@ const routes: Routes = [
   {
     path: 'dashboard', component: HomeComponent,
     children: [
-      {path: '', component: DateTrackingChartComponent, canActivate: [AuthGuardService]  },
-      {path: 'calories', component: MacroStatBoxComponent, canActivate: [AuthGuardService] },
+      {path: 'weight', component: DateTrackingChartComponent, canActivate: [AuthGuardService]  },
+      {path: '', component: MacroStatBoxComponent, canActivate: [AuthGuardService] },
       {path: 'goals', component: GoalChartComponent, canActivate: [AuthGuardService] },
     ],
     canActivate: [AuthGuardService],

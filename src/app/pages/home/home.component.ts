@@ -99,7 +99,7 @@ export class HomeComponent implements OnInit {
             numDisplay: 10,
             unit: 'lbs',
             icon: 'faChartLine',
-            routerLink: ''
+            routerLink: 'weight'
           },
           {
             title: 'Your Goal',
@@ -115,7 +115,7 @@ export class HomeComponent implements OnInit {
             numDisplay: resData.fitnessProfile.recommendedCalories,
             unit: 'cal',
             icon: 'faChartPie',
-            routerLink: 'calories'
+            routerLink: ''
           },
         ];
 

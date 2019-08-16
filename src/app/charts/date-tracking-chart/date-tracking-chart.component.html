@@ -10,7 +10,7 @@
 
   <!-- Display graph
     *Only show once the data is loaded -->
-  <div class="row graphdisplay" *ngIf="ready">
+  <div class="row graphdisplay" *ngIf="ready && moreThanOne">
     
     <div class="col-10 mx-auto chart-parent" >
       <ngx-charts-line-chart
@@ -33,6 +33,10 @@
 
     <!-- {{userWeights | json}} -->
     
-  </div> 
+  </div> <!-- End graphdisplay -->
+
+  <div class="row errordisplay" *ngIf="!moreThanOne">
+      <p>Please track your weight to <a href="/checkin">get started</a>.</p>
+  </div>
 
 </div>

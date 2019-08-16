@@ -23,6 +23,9 @@ export class DateTrackingChartComponent implements OnInit {
   /** When true, data is ready from back-end */
   private ready;
 
+  /**  If true, graph is play is shown */
+  private moreThanOne;
+
   // Chart Options
   view: any[] = [700, 400];
   colorScheme = {
@@ -74,13 +77,20 @@ export class DateTrackingChartComponent implements OnInit {
           }
         );
 
+        // Check there is more than 1 data point before showing graph
+        if (filteredData.length > 1 ) {
+          this.moreThanOne = true;
+        } else {
+          this.moreThanOne = false;
+        }
+
         // Data from back-end is ready
         if (this.userWeights.length > 0) {
           this.ready = true;
           console.log(this.userWeights);
         }
 
-    });
+    }); // End subscribe()
 
   } // End ngOnInit()
 

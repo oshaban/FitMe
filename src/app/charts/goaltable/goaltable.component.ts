@@ -56,7 +56,7 @@ export class GoaltableComponent implements OnInit {
     this.dataSource =  [
       { stat: 'Weekly weight ' + gainMsg, amount: this.userGoal + ' lbs'},
       { stat: 'Caloric ' + surplusMsg, amount: this.userCalDiff + ' cal'},
-      { stat: 'TDEE ', amount: this.userTDEE + ' cal'},
+      { stat: 'Total daily energy expenditure', amount: this.userTDEE + ' cal'},
       { stat: 'Recommended caloric intake', amount: this.userCalories + ' cal'},
     ];
 

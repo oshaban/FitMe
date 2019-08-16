@@ -101,13 +101,18 @@ export class CheckInComponent implements OnInit {
   deleteItem(i: number, id: string, value: number, name: string) {
     this.index = i;
     this.id = id;
+
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      // tslint:disable-next-line: object-literal-shorthand
       data: {id: id, value: value, name: name}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
+          x => {
+            return x._id === this.id; });
+
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
@@ -117,25 +122,12 @@ export class CheckInComponent implements OnInit {
 
 
   private refreshTable() {
-    // Refreshing table using paginator
-    // Thanks yeager-j for tips
-    // https://github.com/marinantonio/angular-mat-table-crud/issues/12
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 
   public loadData() {
-
     this.exampleDatabase = new DataService(this.httpClient, this.auth);
-    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
-/*     fromEvent(this.filter.nativeElement, 'keyup')
-      // .debounceTime(150)
-      // .distinctUntilChanged()
-      .subscribe(() => {
-        if (!this.dataSource) {
-          return;
-        }
-        this.dataSource.filter = this.filter.nativeElement.value;
-      }); */
+    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort)
   }
 }
 

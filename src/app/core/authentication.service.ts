@@ -9,6 +9,10 @@ import { UserPostResData } from '../interfaces/userPostRes';
 import { UserFormLogin } from '../interfaces/loginForm';
 
 
+/**
+ * This service is used to authenticate the user.
+ */
+
 /** Payload from jwt
  * _id: user id for corresponding jwt
  * iat: time jwt was issued at in ms
@@ -17,6 +21,7 @@ export interface UserDetails {
   _id: string;
   iat: number;
 }
+
 /** Token recieved from /api/auth  */
 export interface Token {
   token: string;
@@ -36,7 +41,6 @@ export interface TokenPayload {
 export class AuthenticationService {
 
   /**
-   * 
    * @param http Used to send requests to /api/users and /api/auth
    * @param router Used to navigate user to certain URLs
    */
@@ -54,12 +58,12 @@ export class AuthenticationService {
   /** Endpoint to login/auth user  */
   private userLoginuri = 'http://localhost:3500/api/auth';
 
-  /** XSaves a users jwt  */
+  /** Saves a users jwt  */
   private saveToken(token: string): void {
     localStorage.setItem('token', token);
   }
 
-  /** XGets a users jwt from local storage */
+  /** Gets a users jwt from local storage */
   public getToken(): string {
     try {
       const storedToken: string = localStorage.getItem('token');
@@ -71,7 +75,7 @@ export class AuthenticationService {
 
   }
 
-  /** XLogs out a user by removing jwt  */
+  /** Logs out a user by removing jwt  */
   public logout(): void {
     localStorage.removeItem('token');
     this.router.navigateByUrl('/login');
@@ -103,7 +107,7 @@ export class AuthenticationService {
     }
   }
 
-  /** XPOST: logs in a user by POST to /api/auth
+  /** POST: logs in a user by POST to /api/auth
    * Returns an observable of type Token.
    * Observe full response and get token from body: {token: ...}
    */
@@ -114,13 +118,13 @@ export class AuthenticationService {
 
     return this.http.post<Token>(this.userLoginuri, userLoginData).pipe(
       tap( resData => {
-        console.log('Token in auth logInUser: ' + resData.token);
+        // console.log('Token in auth logInUser: ' + resData.token);
         // If login is successful, a token is returned
         if (resData.token) {
-          console.log('Success token: ' + resData.token);
+          // console.log('Success token: ' + resData.token);
           this.saveToken(resData.token);
 
-          console.log('Getting token: ' + this.getToken());
+          // console.log('Getting token: ' + this.getToken());
         }
 
       })
@@ -128,7 +132,7 @@ export class AuthenticationService {
 
   } // End logInUser
 
-  /** XPOST: saves a new user in the database
+  /** POST: saves a new user in the database
    * Returns an observable. After subscribing response data is type UserResData.
    * Observe full response and get x-auth-token header; this is exposed on back-end.
    */
@@ -142,10 +146,10 @@ export class AuthenticationService {
           // If valid POST response, get the x-auth-token and save it
 
             const resHeaders = resData.headers.get('x-auth-token');
-            console.log(typeof(resHeaders));
-            console.log('Token from res headers: ' + resHeaders);
+            // console.log(typeof(resHeaders));
+            // console.log('Token from res headers: ' + resHeaders);
             this.saveToken( resHeaders );
-            console.log('Getting token from storage after saved   ' + this.getToken() );
+            // console.log('Getting token from storage after saved   ' + this.getToken() );
         })
       );
 

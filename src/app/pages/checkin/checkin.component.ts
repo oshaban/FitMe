@@ -15,6 +15,7 @@ import { EditDialogComponent } from 'src/app/dialogs/edit/edit.dialog.component'
 import { Issue } from 'src/app/interfaces/issue';
 import { DeleteDialogComponent } from 'src/app/dialogs/delete/delete.dialog.component';
 import { AuthenticationService } from 'src/app/core/authentication.service';
+import { MatSnackBar } from '@angular/material';
 
 /** Datasource for table */
 export class ExampleDataSource extends DataSource<Issue> {
@@ -124,6 +125,7 @@ export class CheckInComponent implements OnInit {
               public dialog: MatDialog,
               public dataService: DataService,
               public auth: AuthenticationService,
+              public toasterservice: MatSnackBar
               ) {}
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -219,7 +221,7 @@ export class CheckInComponent implements OnInit {
 
   /** Load data for table  */
   public loadData() {
-    this.exampleDatabase = new DataService(this.httpClient, this.auth); // Service to fetch data
+    this.exampleDatabase = new DataService(this.httpClient, this.auth, this.toasterservice); // Service to fetch data
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort); // Create new data source for table
     console.log(this.dataSource); // Weight data from database: {_id:..,value:...,name:...}
 

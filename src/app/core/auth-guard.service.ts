@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
 
+/**
+ * This service is a route guarding service. Checks if the user is logged in, and if not redirects them to login.
+ */
+
 @Injectable()
 export class AuthGuardService implements CanActivate {
 

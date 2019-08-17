@@ -32,6 +32,7 @@ import {
 import { MatRadioModule } from '@angular/material/radio';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 /* Chart js */
 import { ChartsModule } from '../../node_modules/ng2-charts';
@@ -51,7 +52,7 @@ import { LoginComponent } from './pages/login/login.component';
 
 /* Table */
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 /* Font Awesome */
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -111,7 +112,8 @@ import { GoaltableComponent } from './charts/goaltable/goaltable.component';
     MatPaginatorModule,
     FormsModule,
     MatDialogModule,
-    MatSortModule
+    MatSortModule,
+    MatSnackBarModule,
   ],
   providers: [
     Title,

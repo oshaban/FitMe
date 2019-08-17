@@ -5,6 +5,7 @@ import { Issue } from '../interfaces/issue';
 import { AuthenticationService } from './authentication.service';
 import { WeightsGetData } from '../interfaces/weightsRes';
 import { WeightFormData } from '../interfaces/weightForm';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class DataService {
@@ -23,6 +24,7 @@ export class DataService {
   constructor(
     private httpClient: HttpClient,
     private auth: AuthenticationService,
+    private toasterservice: MatSnackBar,
     ) {}
 
   get data(): Issue[] {
@@ -72,10 +74,10 @@ export class DataService {
     this.httpClient.post<WeightsGetData>(this.API_URL, weightItem, httpOptions).subscribe(data => {
       this.dialogData = {name: weightItem.date, value: weightItem.weight};
       console.log('weightItem to add to DB: ' + weightItem);
-      // this.toasterService.showToaster('Successfully added', 3000);
-      },
-      (err: HttpErrorResponse) => {
-      // this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
+      this.toasterservice.open('Successfully added', '', { duration: 3000} );
+    },
+    (err: HttpErrorResponse) => {
+      this.toasterservice.open('Error occurred. Details: ' + err.name + ' ' + err.message, '', { duration: 8000} );
     });
    }
 
@@ -95,12 +97,11 @@ export class DataService {
     // DELETE request
     this.httpClient.delete(this.API_URL + id, httpOptions).subscribe(data => {
       console.log(data['']);
-        // this.toasterService.showToaster('Successfully deleted', 3000);
-      },
-      (err: HttpErrorResponse) => {
-        // this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
-      }
-    );
+      this.toasterservice.open('Successfully deleted', '', { duration: 3000} );
+    },
+    (err: HttpErrorResponse) => {
+      this.toasterservice.open('Error occurred. Details: ' + err.name + ' ' + err.message, '', { duration: 8000} );
+    });
   }
 
   /** Updates a weight document from a users weight data
@@ -120,12 +121,11 @@ export class DataService {
     this.httpClient.put(this.API_URL + id, weightItem, httpOptions).subscribe(data => {
       this.dialogData = {_id: id, name: weightItem.date, value: weightItem.weight};
       console.log('weightItem to add to DB: ' + weightItem);
-      // this.toasterService.showToaster('Successfully added', 3000);
-      },
-      (err: HttpErrorResponse) => {
-        // this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
-      }
-    );
+      this.toasterservice.open('Successfully updated', '', { duration: 3000} );
+    },
+    (err: HttpErrorResponse) => {
+      this.toasterservice.open('Error occurred. Details: ' + err.name + ' ' + err.message, '', { duration: 8000} );
+    });
   }
 
 }

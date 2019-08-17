@@ -72,8 +72,9 @@ export class DataService {
 
     // POST request
     this.httpClient.post<WeightsGetData>(this.API_URL, weightItem, httpOptions).subscribe(data => {
-      this.dialogData = {name: weightItem.date, value: weightItem.weight};
-      console.log('weightItem to add to DB: ' + weightItem);
+      this.dialogData = {_id: data._id, name: weightItem.date, value: weightItem.weight};
+      // console.log('weightItem to add to DB: ' + weightItem);
+      // console.log(data);
       this.toasterservice.open('Successfully added', '', { duration: 3000} );
     },
     (err: HttpErrorResponse) => {

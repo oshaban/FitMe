@@ -87,7 +87,7 @@ export class DateTrackingChartComponent implements OnInit {
         // Data from back-end is ready
         if (this.userWeights.length > 0) {
           this.ready = true;
-          console.log(this.userWeights);
+          // console.log(this.userWeights);
         }
 
     }); // End subscribe()

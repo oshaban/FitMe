@@ -1,5 +1,5 @@
 /**
- * Interface for GET response to /api/users/
+ * Interface for GET response from /api/users/
  */
 export interface UserGetData {
     _id: string;

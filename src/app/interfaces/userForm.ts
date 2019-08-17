@@ -1,5 +1,5 @@
 /**
- * Interface for POST response to /api/users/
+ * Interface for POST request to /api/users/
  */
 export interface UserFormData {
     username: string;

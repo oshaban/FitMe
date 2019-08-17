@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
     // Fetch user data from back-end
     this.auth.getUser().subscribe(
       (resData: UserGetData) => {
-        console.log(resData);
+        // console.log(resData);
 
         this.userData = resData;
 
@@ -127,7 +127,7 @@ export class HomeComponent implements OnInit {
     // Fetch weight data from back-end
     this.weightsService.getWeights().subscribe(
       (resData: WeightsGetData) => {
-        console.log(resData);
+        // console.log(resData);
         this.userWeights = resData;
 
         // Check if data from back-end is available

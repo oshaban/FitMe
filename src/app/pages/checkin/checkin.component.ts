@@ -152,7 +152,7 @@ export class CheckInComponent implements OnInit {
         // For add we're just pushing a new row inside DataService
         this.exampleDatabase.dataChange.value.push(this.dataService.getDialogData());
 
-        console.log(this.dataService.getDialogData());
+        // console.log(this.dataService.getDialogData());
 
         this.refreshTable();
       }
@@ -223,7 +223,7 @@ export class CheckInComponent implements OnInit {
   public loadData() {
     this.exampleDatabase = new DataService(this.httpClient, this.auth, this.toasterservice); // Service to fetch data
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort); // Create new data source for table
-    console.log(this.dataSource); // Weight data from database: {_id:..,value:...,name:...}
+    // console.log(this.dataSource); // Weight data from database: {_id:..,value:...,name:...}
 
   }
 } // END CheckInComponent

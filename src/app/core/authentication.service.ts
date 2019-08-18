@@ -97,10 +97,10 @@ export class AuthenticationService {
   /** Checks if a user is loggedin based on if a jwt is stored in the local storage  */
   public isLoggedIn(): boolean {
     const user = this.getUserDetails();
-    console.log(user);
 
     // TO DO ; make jwt expire
     if ( user ) {
+      // console.log(user);
       return true;
     } else {
       return false;

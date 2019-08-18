@@ -77,8 +77,10 @@ router.post('/me', auth, async function(req,res) {
         // Save document
         const resultWeight = await weightDoc.save();
 
-        // Sends document back to front-end
-        res.send(resultWeight);
+        // Send new weight document back to front-end
+            //resultWeight contains the entire user weight document
+        // console.log(resultWeight.weight[resultWeight.weight.length - 1]  );
+        res.send( resultWeight.weight[resultWeight.weight.length - 1] );
 
 
     } catch(error) {

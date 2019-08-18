@@ -40,8 +40,7 @@ export class GoalChartComponent implements OnInit {
         this.userGoal = resData.fitnessProfile.goal;
         this.userCalories = resData.fitnessProfile.recommendedCalories;
 
-        if (this.userGoal) {
-          this.ready = true;
+        if (this.userGoal != null) {
 
           // Find a users recommended calories above/below TDEE
           switch (this.userGoal) {
@@ -54,6 +53,7 @@ export class GoalChartComponent implements OnInit {
 
           this.userTDEE = this.userCalories - this.userCalDiff;
 
+          this.ready = true;
         }
 
       }

@@ -16,7 +16,7 @@ import { AuthenticationService } from './authentication.service';
 export class WeightsDataService {
 
   /** Endpoint for weights */
-  private weighturi = 'http://localhost:3500/api/weights/me';
+  private weighturi = '/api/weights/me';
 
   /**
    * @param http Injected HTTP client used to send requests to back-end

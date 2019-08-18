@@ -50,13 +50,13 @@ export class AuthenticationService {
   ) {}
 
   /** Endpoint for creating users */
-  private userCreateuri = 'http://localhost:3500/api/users';
+  private userCreateuri = '/api/users';
 
   /** Endpoint to get logged-in user data  */
-  private userMeuri = 'http://localhost:3500/api/users/me';
+  private userMeuri = '/api/users/me';
 
   /** Endpoint to login/auth user  */
-  private userLoginuri = 'http://localhost:3500/api/auth';
+  private userLoginuri = '/api/auth';
 
   /** Saves a users jwt  */
   private saveToken(token: string): void {
@@ -70,7 +70,7 @@ export class AuthenticationService {
       if (!storedToken) {throw new Error('no token found'); }
       return storedToken;
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
 
   }

@@ -8,6 +8,9 @@ import { AuthenticationService } from 'src/app/core/authentication.service';
 })
 export class GoalChartComponent implements OnInit {
 
+  /** When true, data is ready from back-end */
+  public ready;
+
   /** Stores a users weekly weight gain/loss */
   private userGoal;
 
@@ -20,8 +23,6 @@ export class GoalChartComponent implements OnInit {
   /** Stores a users recommended calories above/below TDEE */
   private userTDEE;
 
-  /** When true, data is ready from back-end */
-  private ready;
 
   /**
    *

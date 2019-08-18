@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class DataService {
 
   // Endpoint for weights data
-  private readonly API_URL = 'http://localhost:3500/api/weights/me/';
+  private readonly API_URL = '/api/weights/me/';
 
   dataChange: BehaviorSubject<Issue[]> = new BehaviorSubject<Issue[]>([]);
   // Temporarily stores data from dialogs
@@ -75,6 +75,7 @@ export class DataService {
       this.dialogData = {_id: data._id, name: weightItem.date, value: weightItem.weight};
       // console.log('weightItem to add to DB: ' + weightItem);
       // console.log(data);
+      this.toasterservice.open('Successfully added', '', { duration: 3000} );
     },
     (err: HttpErrorResponse) => {
       this.toasterservice.open('Error occurred. Details: ' + err.name + ' ' + err.message, '', { duration: 8000} );
@@ -96,7 +97,7 @@ export class DataService {
 
     // DELETE request
     this.httpClient.delete(this.API_URL + id, httpOptions).subscribe(data => {
-      console.log(data['']);
+      // console.log(data['']);
       this.toasterservice.open('Successfully deleted', '', { duration: 3000} );
     },
     (err: HttpErrorResponse) => {
@@ -120,7 +121,8 @@ export class DataService {
     // PUT request
     this.httpClient.put(this.API_URL + id, weightItem, httpOptions).subscribe(data => {
       this.dialogData = {_id: id, name: weightItem.date, value: weightItem.weight};
-      console.log('weightItem to add to DB: ' + weightItem);
+      // console.log('weightItem to add to DB: ');
+      // console.log(weightItem)
       this.toasterservice.open('Successfully updated', '', { duration: 3000} );
     },
     (err: HttpErrorResponse) => {

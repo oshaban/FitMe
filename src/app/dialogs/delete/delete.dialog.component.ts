@@ -18,7 +18,7 @@ export class DeleteDialogComponent {
     public dialogRef: MatDialogRef<DeleteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService
     ) {
-      console.log(data);
+      // console.log(data);
       this.weightDoc = data;
     }
 
@@ -28,7 +28,7 @@ export class DeleteDialogComponent {
 
   /** Sends weight document id to service to delete  */
   confirmDelete(): void {
-    console.log(this.weightDoc.id);
+    // console.log(this.weightDoc.id);
     this.dataService.deleteItem(this.weightDoc.id);
   }
 }

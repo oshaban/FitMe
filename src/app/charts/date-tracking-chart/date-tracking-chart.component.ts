@@ -14,17 +14,17 @@ export interface WeightMultiData  {
 
 export class DateTrackingChartComponent implements OnInit {
 
+  /** When true, data is ready from back-end */
+  public ready;
+
+  /**  If true, graph is play is shown */
+  public moreThanOne;
+
   /** Stores a users weight to be plotted */
   private weightData: any[] = [];
 
   /** Stores a users weights from back-end */
   private userWeights: WeightMultiData[] = [];
-
-  /** When true, data is ready from back-end */
-  private ready;
-
-  /**  If true, graph is play is shown */
-  private moreThanOne;
 
   // Chart Options
   view: any[] = [700, 400];

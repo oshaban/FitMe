@@ -27,7 +27,7 @@ export class EditDialogComponent implements OnInit {
   };
 
   /** Displays date of weight being edited  */
-  private weightDate;
+  public weightDate;
 
   /**
    * @param dialogRef Used for dialog box
@@ -41,7 +41,7 @@ export class EditDialogComponent implements OnInit {
     public dataService: DataService,
     private formBuilder: FormBuilder,
   ) {
-      console.log(data);
+      // console.log(data);
       this.weightDoc = data; // Gets data to be edited
       this.weightDate = data.name; // Gets date of entry being edited
     }

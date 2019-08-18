@@ -162,7 +162,7 @@ export class SignupComponent implements OnInit {
   } // End ngOnInit
 
   /** Called on submit event of form */
-  private onSubmit() {
+  public onSubmit() {
 
     // Create form data to submit to back-end
     this.formData = {
@@ -185,7 +185,7 @@ export class SignupComponent implements OnInit {
     this.authenticationService.createUser(this.formData).subscribe(
       (resData) => {
         // If successful registration, go to dashboard
-        console.log('auth service createUser data: ' + resData);
+        // console.log('auth service createUser data: ' + resData);
 
         this.router.navigateByUrl('/dashboard'); // If successful registration, go to dashboard
 

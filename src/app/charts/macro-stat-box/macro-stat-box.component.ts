@@ -8,11 +8,12 @@ import { AuthenticationService } from 'src/app/core/authentication.service';
 })
 export class MacroStatBoxComponent implements OnInit {
 
+  /** When true, data is ready from back-end */
+  public ready;
+
   /** Stores a users macros: {protein: .., fat: .., carbs: ..} */
   private userMacros;
 
-  /** When true, data is ready from back-end */
-  private ready;
 
   /**
    *

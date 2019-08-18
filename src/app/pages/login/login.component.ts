@@ -74,8 +74,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/dashboard');
       }, (err) => {
         // If err during login, show err message
-
-        this.toasterservice.open('Error occurred. Details: ' + err.name + ' ' + err.message, '', { duration: 8000} );
+        // console.log(err)
         this.invalidForm = true; // Set login form invalid to display message
       });
 

@@ -20,7 +20,7 @@ export class AppComponent {
 
   /**
    * @param titleService Used to set title
-   * @param auth Used to log user out
+   * @param auth Used to log user out, and check if user is logged in
    */
   public constructor(
     private titleService: Title,
@@ -34,6 +34,10 @@ export class AppComponent {
 
   public logOut(): void {
     this.auth.logout();
+  }
+
+  public isLoggedIn(): boolean {
+    return this.auth.isLoggedIn();
   }
 
 }

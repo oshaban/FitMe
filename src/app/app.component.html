@@ -1,8 +1,8 @@
 <!-- Container for application header -->
-<mat-toolbar class=".navbar-fixed-top" color="primary">
+<mat-toolbar class=".navbar-fixed-top" color="primary" *ngIf="isLoggedIn()">
     <mat-toolbar-row>
-      <button mat-icon-button>
-        <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+      <button mat-icon-button >
+        <mat-icon (click)="sidenav.toggle()" >menu</mat-icon>
       </button>
       <h1>FitMe</h1>
       <span flex></span>
@@ -31,7 +31,7 @@
   </mat-sidenav>
 
   <!-- Contains application main content -->
-  <mat-sidenav-content style="height: 93vh;">
+  <mat-sidenav-content style="height: 100vh;">
 
     <div class="main-view">
       <router-outlet></router-outlet> <!-- Displays a page depending on URL -->

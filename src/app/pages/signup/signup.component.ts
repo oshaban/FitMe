@@ -5,6 +5,7 @@ import { DateValidator } from './date.validator'; // Checks if user entered date
 import { AuthenticationService } from 'src/app/core/authentication.service';
 import { UserFormData } from 'src/app/interfaces/userForm';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 /**
  * @title Signup Component
@@ -81,6 +82,7 @@ export class SignupComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private router: Router,
+    private toasterservice: MatSnackBar,
     ) {}
 
   ngOnInit() {
@@ -187,12 +189,15 @@ export class SignupComponent implements OnInit {
 
         this.router.navigateByUrl('/dashboard'); // If successful registration, go to dashboard
 
+        this.toasterservice.open('Welcome! Click on the cards above to get started!', '', { duration: 5000} );
       },
       (err) => {
         // If err during registration
 
         if (err.error === 'User already registered') {
           this.isUserTaken = true; // Set isUserTaken to display message
+        } else {
+          this.toasterservice.open('Error occurred. Details: ' + err.name + ' ' + err.message, '', { duration: 8000} );
         }
 
       }

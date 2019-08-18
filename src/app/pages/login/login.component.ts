@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/authentication.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -33,11 +34,13 @@ export class LoginComponent implements OnInit {
    * @param fb Used to build reactive form
    * @param authenticationService Service used to authenticate user login
    * @param router Used to route the user to dashboard once loggedin
+   * @param toasterservice Used to display messages
    */
   constructor(
     private fb: FormBuilder,
     private authenticationService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private toasterservice: MatSnackBar,
     ) { }
 
   ngOnInit() {
@@ -65,13 +68,14 @@ export class LoginComponent implements OnInit {
         password: this.userDetailsGroup.value.password
       }).subscribe( (resData) => {
 
-        console.log('login component success!');
+        // console.log('login component success!');
+        this.toasterservice.open('Login Successful', '', { duration: 2000} );
         // If successful login, go to dashboard
         this.router.navigateByUrl('/dashboard');
       }, (err) => {
         // If err during login, show err message
 
-        // console.log(err);
+        this.toasterservice.open('Error occurred. Details: ' + err.name + ' ' + err.message, '', { duration: 8000} );
         this.invalidForm = true; // Set login form invalid to display message
       });
 

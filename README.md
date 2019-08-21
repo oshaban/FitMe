@@ -1,31 +1,73 @@
-# Fitme
+# FitMe Full-stack Application
+FitMe is a full-stack Fitness Application that creates personalized diet plans for users, and allows users to track their fitness data.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.1.
+## Demo and Features
 
-## Development server
+### Features
+* RESTful back-end server allowing user fitness data to be stored persistently in a MongoDB cloud database
+* Reactive front-end design using Angular 8
+* Fully functional user authentication using JWT
+* Live updating graphs and charts using ngx-charts and mat-table
+* Automated test coverage using jest.js
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Login demo
+![Login Demo](demo/Login.gif)
 
-## Code scaffolding
+### Dashboard demo
+![Dashboard Demo](demo/Dashboard_Overview.gif)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Live updating table demo
+![Table Demo](demo/Table_Update.gif)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Getting Started
 
-## Running unit tests
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Prerequisites
 
-## Running end-to-end tests
+This project was built using Angular 8, NodeJS v12.3.1 and MongoDB. All dependencies can be found in the package.json file. See below to install all dependencies.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Installing
 
-## Further help
+Install the dependencies in the package.json file
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+In the project folder, run: $ npm i
+```
 
-## packages used for Angular:
+### Running the Application
 
-Chart.js
+After all the dependencies are installed, follow the below commands to run the application.
+
+```
+Startup MongoDB locally, run: $ mongod 
+```
+
+```
+Startup back-end server, run: $ nodemon server 
+```
+
+```
+Startup front-end application, run: $ ng serve
+```
+
+## Running the tests
+
+Back-end tests are written using the JEST package.
+
+```
+To run the tests: $ npm test
+```
+
+## Deployment
+
+This application comes prepared to deploy to production. Please note that a MongoDB cloud database is required for production. 
+
+## Authors
+
+* **Omar Shaban**
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details
